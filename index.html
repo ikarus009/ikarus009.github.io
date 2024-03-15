@@ -1,46 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Productos</title>
+    <title>Catálogo de Productos y Encuesta</title>
     <style>
-        /* Estilos CSS para el catálogo de productos */
+        /* Estilos CSS para el catálogo de productos y la encuesta */
         /* Puedes personalizar estos estilos según tus preferencias */
     </style>
 </head>
 <body>
-    <h1>Catálogo de Productos</h1>
 
-    <!-- Formulario de encuesta -->
+<!-- Encuesta -->
+<div id="encuesta">
+    <h2>Encuesta</h2>
     <form id="encuestaForm">
         <label for="sexo">Sexo:</label>
         <select id="sexo" name="sexo">
-            <option value="masculino">Masculino</option>
-            <option value="femenino">Femenino</option>
-            <option value="otro">Otro</option>
+            <option value="hombre">Hombre</option>
+            <option value="mujer">Mujer</option>
         </select><br>
 
         <label for="edad">Edad:</label>
-        <input type="number" id="edad" name="edad" min="18" max="100"><br>
+        <input type="number" id="edad" name="edad" min="1" max="128"><br>
 
         <label for="estadoAnimo">Estado de Ánimo:</label>
-        <input type="text" id="estadoAnimo" name="estadoAnimo"><br>
+        <select id="estadoAnimo" name="estadoAnimo">
+            <option value="feliz">Feliz</option>
+            <option value="neutral">Neutral</option>
+            <option value="triste">Triste</option>
+            <option value="asco">Asco</option>
+            <option value="enojado">Enojado</option>
+            <option value="miedo">Miedo</option>
+            <option value="sorpresa">Sorpresa</option>
+        </select><br>
 
         <label for="raza">Raza:</label>
-        <input type="text" id="raza" name="raza"><br>
+        <select id="raza" name="raza">
+            <option value="blanco">Blanco</option>
+            <option value="hispano-latino">Hispano Latino</option>
+            <option value="indio">Indio</option>
+            <option value="asiatico">Asiático</option>
+            <option value="negro">Negro</option>
+            <option value="oriente-medio">Oriente Medio</option>
+        </select><br>
 
         <input type="submit" value="Enviar">
     </form>
+</div>
 
-    <!-- Contenedor para el catálogo de productos -->
-    <div id="catalogoProductos">
-        <!-- Aquí se cargarán los productos dinámicamente con JavaScript -->
+<!-- Catálogo de Productos -->
+<div id="catalogo">
+    <h2>Catálogo de Productos</h2>
+    <!-- Barra de navegación para seleccionar clases de productos -->
+    <div id="barraNavegacion">
+        <button onclick="mostrarProductos('bebidas-alcoholicas')">Bebidas Alcohólicas</button>
+        <button onclick="mostrarProductos('comidas')">Comidas</button>
+        <button onclick="mostrarProductos('bebidas-no-alcoholicas')">Bebidas No Alcohólicas</button>
+        <!-- Agrega más botones para otras clases de productos según sea necesario -->
     </div>
+    <!-- Contenedor para mostrar los productos -->
+    <div id="productos">
+        <!-- Los productos se cargarán aquí mediante JavaScript -->
+    </div>
+</div>
 
-    <script>
-        // JavaScript para leer datos de productos desde un archivo CSV y cargar imágenes
-        // Puedes escribir tu lógica JavaScript aquí
-    </script>
+<script>
+    // Función para mostrar productos según la clase seleccionada
+    function mostrarProductos(clase) {
+        // Aquí puedes agregar tu lógica para cargar productos de esa clase
+    }
+</script>
+
 </body>
 </html>
