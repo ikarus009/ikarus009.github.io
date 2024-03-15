@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Productos</title>
+    <style>
+        /* Estilos CSS para el catálogo de productos */
+        /* Puedes personalizar estos estilos según tus preferencias */
+    </style>
+</head>
+<body>
+    <h1>Catálogo de Productos</h1>
+
+    <!-- Formulario de encuesta -->
+    <form id="encuestaForm">
+        <label for="sexo">Sexo:</label>
+        <select id="sexo" name="sexo">
+            <option value="masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+            <option value="otro">Otro</option>
+        </select><br>
+
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" name="edad" min="18" max="100"><br>
+
+        <label for="estadoAnimo">Estado de Ánimo:</label>
+        <input type="text" id="estadoAnimo" name="estadoAnimo"><br>
+
+        <label for="raza">Raza:</label>
+        <input type="text" id="raza" name="raza"><br>
+
+        <input type="submit" value="Enviar">
+    </form>
+
+    <!-- Contenedor para el catálogo de productos -->
+    <div id="catalogoProductos">
+        <!-- Aquí se cargarán los productos dinámicamente con JavaScript -->
+    </div>
+
+    <script>
+        // JavaScript para leer datos de productos desde un archivo CSV y cargar imágenes
+        // Puedes escribir tu lógica JavaScript aquí
+    </script>
+</body>
+</html>
