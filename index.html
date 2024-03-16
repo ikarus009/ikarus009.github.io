@@ -7203,23 +7203,43 @@
     const limpiarFormularioBtn = document.getElementById('limpiarFormulario');
 
     enviarRespuestaBtn.addEventListener('click', () => {
+      
       const sexo = document.getElementById('sexo').value;
       const edad = document.getElementById('edad').value;
       const raza = document.getElementById('raza').value;
       const estadoAnimo = document.getElementById('estadoAnimo').value;
-
+/*
       sexoSeleccionado = sexo;
       edadDigitada = edad;
       razaSeleccionada = raza;
       estadoAnimoSeleccionado = estadoAnimo;
 
       const respuesta = `Sexo: ${sexoSeleccionado}, Edad: ${edadDigitada}, Raza: ${razaSeleccionada}, Estado de ánimo: ${estadoAnimoSeleccionado}, Productos seleccionados: ${productosSeleccionados.join(', ')}`;
+*/
+      const datos = {
+                sexo: sexo,
+                edad: edad,
+                raza: raza,
+                estadoAnimo: estadoAnimo,
+                productosSeleccionados: productosSeleccionados.join(', ') 
+            };
 
-      const fs = require('fs');
-      fs.appendFile('https://raw.githubusercontent.com/ikarus009/ikarus009.github.io/main/respuestas.txt', respuesta + '\n', (err) => {
-        if (err) throw err;
-        console.log('Respuesta guardada en respuestas.txt');
-      });
+            fetch('https://script.google.com/macros/s/AKfycbyXSuFmoaRSNCbQo8XU2fA7AnUumdsEZLcqep83va-cn6A5vhIS5QXGX1LAXFl2w9AVqg/exec', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(datos)
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Datos enviados correctamente a Google Sheets');
+                } else {
+                    console.error('Error al enviar datos a Google Sheets:', response.status);
+                }
+            })
+            .catch(error => console.error('Error al enviar datos a Google Sheets:', error));
+
     });
 
     limpiarFormularioBtn.addEventListener('click', () => {
@@ -7239,6 +7259,8 @@
 
     // Llamar a la función para cargar todos los productos al cargar la página
     filtrarProductos('');
+
+
   </script>
 </body>
 </html>
