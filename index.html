@@ -1,128 +1,183 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Productos y Encuesta</title>
-    <style>
-        /* Estilos CSS para el catálogo de productos y la encuesta */
-        /* Puedes personalizar estos estilos según tus preferencias */
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Productos</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+  <div class="container">
+    <h1>Catálogo de Productos</h1>
 
-<!-- Encuesta -->
-<div id="encuesta">
-    <h2>Encuesta</h2>
-    <form id="encuestaForm">
-        <label for="sexo">Sexo:</label>
-        <select id="sexo" name="sexo">
-            <option value="hombre">Hombre</option>
-            <option value="mujer">Mujer</option>
-        </select><br>
-
-        <label for="edad">Edad:</label>
-        <input type="number" id="edad" name="edad" min="1" max="128"><br>
-
-        <label for="estadoAnimo">Estado de Ánimo:</label>
-        <select id="estadoAnimo" name="estadoAnimo">
-            <option value="feliz">Feliz</option>
-            <option value="neutral">Neutral</option>
-            <option value="triste">Triste</option>
-            <option value="asco">Asco</option>
-            <option value="enojado">Enojado</option>
-            <option value="miedo">Miedo</option>
-            <option value="sorpresa">Sorpresa</option>
-        </select><br>
-
-        <label for="raza">Raza:</label>
-        <select id="raza" name="raza">
-            <option value="blanco">Blanco</option>
-            <option value="hispano-latino">Hispano Latino</option>
-            <option value="indio">Indio</option>
-            <option value="asiatico">Asiático</option>
-            <option value="negro">Negro</option>
-            <option value="oriente-medio">Oriente Medio</option>
-        </select><br>
-
-        <input type="submit" value="Enviar">
-    </form>
-</div>
-
-<!-- Catálogo de Productos -->
-<div id="catalogo">
-    <h2>Catálogo de Productos</h2>
-    <!-- Barra de navegación para seleccionar clases de productos -->
-    <div id="barraNavegacion">
-        <button onclick="mostrarProductos('bebidas-alcoholicas')">Bebidas Alcohólicas</button>
-        <button onclick="mostrarProductos('comidas')">Comidas</button>
-        <button onclick="mostrarProductos('bebidas-no-alcoholicas')">Bebidas No Alcohólicas</button>
-        <!-- Agrega más botones para otras clases de productos según sea necesario -->
+    <!-- Cuestionario -->
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Cuestionario</h2>
+        <form>
+          <div class="form-group">
+            <label for="sexo">Sexo:</label>
+            <select class="form-control" id="sexo">
+              <option value="hombre">Hombre</option>
+              <option value="mujer">Mujer</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="edad">Edad:</label>
+            <input type="number" class="form-control" id="edad" min="1" max="128">
+          </div>
+          <div class="form-group">
+            <label for="estadoAnimo">Estado de ánimo:</label>
+            <select class="form-control" id="estadoAnimo">
+              <option value="feliz">Feliz</option>
+              <option value="neutral">Neutral</option>
+              <option value="triste">Triste</option>
+              <option value="asco">Asco</option>
+              <option value="enojado">Enojado</option>
+              <option value="miedo">Miedo</option>
+              <option value="sorpresa">Sorpresa</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="raza">Raza:</label>
+            <select class="form-control" id="raza">
+              <option value="blanco">Blanco</option>
+              <option value="hispano">Hispano Latino</option>
+              <option value="indio">Indio</option>
+              <option value="asiatico">Asiático</option>
+              <option value="negro">Negro</option>
+              <option value="orienteMedio">Oriente Medio</option>
+            </select>
+          </div>
+        </form>
+      </div>
     </div>
-    <!-- Contenedor para mostrar los productos -->
-    <div id="productos">
+
+    <!-- Barra de navegación -->
+    <nav>
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="filtrarProductos('BEBIDAS ALHOLICAS')">BEBIDAS ALHOLICAS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="filtrarProductos('COMIDAS')">COMIDAS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="filtrarProductos('BEBIDAS NO ALHOLICAS')">BEBIDAS NO ALHOLICAS</a>
+        </li>
+        <li class="nav -item">
+          <a class="nav-link" href="#" onclick="filtrarProductos('CIGARROS')">CIGARROS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="filtrarProductos('PIQUEOS Y SNACKS')">PIQUEOS Y SNACKS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="filtrarProductos('CONFITERIA')">CONFITERIA</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="filtrarProductos('HELADOS')">HELADOS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="filtrarProductos('ABARROTES')">ABARROTES</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="filtrarProductos('EMBUTIDOS, LÁCTEOS Y HUEVOS')">EMBUTIDOS, LÁCTEOS Y HUEVOS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="filtrarProductos('PANES & BISCUITS')">PANES & BISCUITS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="filtrarProductos('CUIDADO PERSONAL')">CUIDADO PERSONAL</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Catálogo de productos -->
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Catálogo de Productos</h2>
         <!-- Los productos se cargarán aquí mediante JavaScript -->
+        <div id="productos-container" class="row"></div>
+      </div>
     </div>
-</div>
+  </div>
 
-<script>
-    // Función para mostrar productos según la clase seleccionada
-    function mostrarProductos(clase) {
-        // Limpiar el contenido anterior
-        document.getElementById("productos").innerHTML = "";
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    // Función para cargar los productos desde el archivo CSV
+    function cargarProductos(categoria = '') {
+      fetch('https://raw.githubusercontent.com/ikarus009/ikarus009.github.io/main/bdprod.csv')
+        .then(response => response.text())
+        .then(data => {
+          const filas = data.trim().split('\n').slice(1);
+          const productos = filas.map(fila => {
+            const [id, categoriaProd, descripcion, precio, imagen] = fila.split(',');
+            return { id, categoria: categoriaProd, descripcion, precio, imagen };
+          });
 
-        // Leer los datos del archivo CSV
-        fetch('bdprod.csv')
-            .then(response => response.text())
-            .then(data => {
-                // Parsear los datos CSV
-                const productos = Papa.parse(data, { header: true }).data;
+          const productosContainer = document.getElementById('productos-container');
+          productosContainer.innerHTML = '';
+          let columnasActuales = 0;
+          const productosSeleccionados = [];
 
-                // Filtrar productos por la clase seleccionada
-                const productosFiltrados = productos.filter(producto => producto.CATEGORIA === clase);
+          productos.forEach(producto => {
+            if (categoria === '' || producto.categoria === categoria) {
+              const divProducto = document.createElement('div');
+              divProducto.className = 'col-md-2';
 
-                // Iterar sobre los productos filtrados
-                productosFiltrados.forEach(producto => {
-                    // Crear elementos HTML para mostrar el producto
-                    const productoElemento = document.createElement("div");
-                    productoElemento.classList.add("producto");
+              const imgProducto = document.createElement('img');
+              imgProducto.src = `/${producto.imagen}`;
+              imgProducto.alt = producto.descripcion;
+              imgProducto.className = 'img-fluid';
 
-                    const imagenElemento = document.createElement("img");
-                    imagenElemento.src = producto.ID + ".jpg"; // Suponiendo que los nombres de las imágenes coinciden con los ID de los productos
-                    productoElemento.appendChild(imagenElemento);
+              const descProducto = document.createElement('p');
+              descProducto.textContent = producto.descripcion;
 
-                    const descripcionElemento = document.createElement("p");
-                    descripcionElemento.textContent = "Descripción: " + producto.DESCRIPCION;
-                    productoElemento.appendChild(descripcionElemento);
+              const precioProducto = document.createElement('p');
+              precioProducto.textContent = `Precio: ${producto.precio}`;
 
-                    const precioElemento = document.createElement("p");
-                    precioElemento.textContent = "Precio: $" + producto.PRECIO;
-                    productoElemento.appendChild(precioElemento);
+              const checkboxProducto = document.createElement('input');
+              checkboxProducto.type = 'checkbox';
+              checkboxProducto.addEventListener('change', () => {
+                if (checkboxProducto.checked) {
+                  productosSeleccionados.push(producto.id);
+                } else {
+                  const index = productosSeleccionados.indexOf(producto.id);
+                  if (index !== -1) {
+                    productosSeleccionados.splice(index, 1);
+                  }
+                }
+                console.log('Productos seleccionados:', productosSeleccionados);
+              });
 
-                    const checkboxElemento = document.createElement("input");
-                    checkboxElemento.type = "checkbox";
-                    checkboxElemento.value = producto.ID;
-                    checkboxElemento.addEventListener("change", function() {
-                        // Lógica para guardar el estado del checkbox
-                        if (this.checked) {
-                            // Producto seleccionado
-                            console.log("Producto seleccionado: " + this.value);
-                            // Aquí puedes guardar el estado de selección en una variable
-                        } else {
-                            // Producto deseleccionado
-                            console.log("Producto deseleccionado: " + this.value);
-                            // Aquí puedes eliminar el estado de selección de la variable
-                        }
-                    });
-                    productoElemento.appendChild(checkboxElemento);
+              divProducto.appendChild(imgProducto);
+              divProducto.appendChild(descProducto);
+              divProducto.appendChild(precioProducto);
+              divProducto.appendChild(checkboxProducto);
 
-                    // Agregar el producto al contenedor de productos
-                    document.getElementById("productos").appendChild(productoElemento);
-                });
-            })
-            .catch(error => console.error('Error al leer el archivo CSV:', error));
+              productosContainer.appendChild(divProducto);
+
+              columnasActuales++;
+              if (columnasActuales === 5) {
+                const divFila = document.createElement('div');
+                divFila.className = 'row';
+                productosContainer.appendChild(divFila);
+                columnasActuales = 0;
+              }
+            }
+          });
+        })
+        .catch(error => console.error('Error al cargar el archivo CSV:', error));
     }
-</script>
 
+    function filtrarProductos(categoria) {
+      cargarProductos(categoria);
+    }
+
+    // Llamar a la función para cargar todos los productos al cargar la página
+    cargarProductos();
+  </script>
 </body>
 </html>
