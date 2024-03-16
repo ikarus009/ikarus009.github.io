@@ -68,7 +68,59 @@
 <script>
     // Función para mostrar productos según la clase seleccionada
     function mostrarProductos(clase) {
-        // Aquí puedes agregar tu lógica para cargar productos de esa clase
+        // Limpiar el contenido anterior
+        document.getElementById("productos").innerHTML = "";
+
+        // Leer los datos del archivo CSV
+        fetch('bdprod.csv')
+            .then(response => response.text())
+            .then(data => {
+                // Parsear los datos CSV
+                const productos = Papa.parse(data, { header: true }).data;
+
+                // Filtrar productos por la clase seleccionada
+                const productosFiltrados = productos.filter(producto => producto.CATEGORIA === clase);
+
+                // Iterar sobre los productos filtrados
+                productosFiltrados.forEach(producto => {
+                    // Crear elementos HTML para mostrar el producto
+                    const productoElemento = document.createElement("div");
+                    productoElemento.classList.add("producto");
+
+                    const imagenElemento = document.createElement("img");
+                    imagenElemento.src = producto.ID + ".jpg"; // Suponiendo que los nombres de las imágenes coinciden con los ID de los productos
+                    productoElemento.appendChild(imagenElemento);
+
+                    const descripcionElemento = document.createElement("p");
+                    descripcionElemento.textContent = "Descripción: " + producto.DESCRIPCION;
+                    productoElemento.appendChild(descripcionElemento);
+
+                    const precioElemento = document.createElement("p");
+                    precioElemento.textContent = "Precio: $" + producto.PRECIO;
+                    productoElemento.appendChild(precioElemento);
+
+                    const checkboxElemento = document.createElement("input");
+                    checkboxElemento.type = "checkbox";
+                    checkboxElemento.value = producto.ID;
+                    checkboxElemento.addEventListener("change", function() {
+                        // Lógica para guardar el estado del checkbox
+                        if (this.checked) {
+                            // Producto seleccionado
+                            console.log("Producto seleccionado: " + this.value);
+                            // Aquí puedes guardar el estado de selección en una variable
+                        } else {
+                            // Producto deseleccionado
+                            console.log("Producto deseleccionado: " + this.value);
+                            // Aquí puedes eliminar el estado de selección de la variable
+                        }
+                    });
+                    productoElemento.appendChild(checkboxElemento);
+
+                    // Agregar el producto al contenedor de productos
+                    document.getElementById("productos").appendChild(productoElemento);
+                });
+            })
+            .catch(error => console.error('Error al leer el archivo CSV:', error));
     }
 </script>
 
