@@ -65,7 +65,7 @@
         <li class="nav-item">
           <a class="nav-link" href="#" onclick="filtrarProductos('BEBIDAS NO ALHOLICAS')">BEBIDAS NO ALHOLICAS</a>
         </li>
-        <li class="nav -item">
+        <li class="nav-item">
           <a class="nav-link" href="#" onclick="filtrarProductos('CIGARROS')">CIGARROS</a>
         </li>
         <li class="nav-item">
@@ -106,78 +106,7033 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script>
-    // Función para cargar los productos desde el archivo CSV
-    function cargarProductos(categoria = '') {
-      fetch('https://raw.githubusercontent.com/ikarus009/ikarus009.github.io/main/bdprod.csv')
-        .then(response => response.text())
-        .then(data => {
-          const filas = data.trim().split('\n').slice(1);
-          const productos = filas.map(fila => {
-            const [id, categoriaProd, descripcion, precio, imagen] = fila.split(',');
-            return { id, categoria: categoriaProd, descripcion, precio, imagen };
-          });
-
-          const productosContainer = document.getElementById('productos-container');
-          productosContainer.innerHTML = '';
-          let columnasActuales = 0;
-          const productosSeleccionados = [];
-
-          productos.forEach(producto => {
-            if (categoria === '' || producto.categoria === categoria) {
-              const divProducto = document.createElement('div');
-              divProducto.className = 'col-md-2';
-
-              const imgProducto = document.createElement('img');
-              imgProducto.src = `/${producto.imagen}`;
-              imgProducto.alt = producto.descripcion;
-              imgProducto.className = 'img-fluid';
-
-              const descProducto = document.createElement('p');
-              descProducto.textContent = producto.descripcion;
-
-              const precioProducto = document.createElement('p');
-              precioProducto.textContent = `Precio: ${producto.precio}`;
-
-              const checkboxProducto = document.createElement('input');
-              checkboxProducto.type = 'checkbox';
-              checkboxProducto.addEventListener('change', () => {
-                if (checkboxProducto.checked) {
-                  productosSeleccionados.push(producto.id);
-                } else {
-                  const index = productosSeleccionados.indexOf(producto.id);
-                  if (index !== -1) {
-                    productosSeleccionados.splice(index, 1);
-                  }
-                }
-                console.log('Productos seleccionados:', productosSeleccionados);
-              });
-
-              divProducto.appendChild(imgProducto);
-              divProducto.appendChild(descProducto);
-              divProducto.appendChild(precioProducto);
-              divProducto.appendChild(checkboxProducto);
-
-              productosContainer.appendChild(divProducto);
-
-              columnasActuales++;
-              if (columnasActuales === 5) {
-                const divFila = document.createElement('div');
-                divFila.className = 'row';
-                productosContainer.appendChild(divFila);
-                columnasActuales = 0;
-              }
-            }
-          });
-        })
-        .catch(error => console.error('Error al cargar el archivo CSV:', error));
-    }
+    // Aquí debes pegar el JSON con los datos de los productos
+    const productos = [
+[
+  {
+    "id": 0,
+    "categoria": "bebidas alholicas",
+    "descripcion": "cerveza pilsen callao six pack lata 355 ml",
+    "precio": 23.9,
+    "imagen": "0.jpg"
+  },
+  {
+    "id": 1,
+    "categoria": "bebidas alholicas",
+    "descripcion": "cerveza corona sixpack lata 355 ml",
+    "precio": 25.9,
+    "imagen": "1.jpg"
+  },
+  {
+    "id": 2,
+    "categoria": "bebidas alholicas",
+    "descripcion": "cerveza pilsen callao six pack lata 473 ml",
+    "precio": 31.9,
+    "imagen": "2.jpg"
+  },
+  {
+    "id": 3,
+    "categoria": "bebidas alholicas",
+    "descripcion": "cerveza pilsen callao six pack botella 305 ml",
+    "precio": 24.9,
+    "imagen": "3.jpg"
+  },
+  {
+    "id": 4,
+    "categoria": "bebidas alholicas",
+    "descripcion": "cerveza stella artois six pack botella 330 ml",
+    "precio": 29.9,
+    "imagen": "4.jpg"
+  },
+  {
+    "id": 5,
+    "categoria": "bebidas alholicas",
+    "descripcion": "cerveza budweiser six pack botella 343 ml",
+    "precio": 24.9,
+    "imagen": "5.jpg"
+  },
+  {
+    "id": 6,
+    "categoria": "bebidas alholicas",
+    "descripcion": "cerveza tres cruces six pack lata 473 ml",
+    "precio": 24.9,
+    "imagen": "6.jpg"
+  },
+  {
+    "id": 7,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 cerveza coronita six pack botella 210 ml",
+    "precio": 41.8,
+    "imagen": "7.jpg"
+  },
+  {
+    "id": 8,
+    "categoria": "bebidas alholicas",
+    "descripcion": "cerveza cristal six pack lata 355 ml",
+    "precio": 22.9,
+    "imagen": "8.jpg"
+  },
+  {
+    "id": 10,
+    "categoria": "bebidas alholicas",
+    "descripcion": "cerveza cusque�a doble malta six pack botella 310 ml",
+    "precio": 23.9,
+    "imagen": "10.jpg"
+  },
+  {
+    "id": 11,
+    "categoria": "bebidas alholicas",
+    "descripcion": "cerveza cusque�a dorada six pack botella 310 ml",
+    "precio": 23.9,
+    "imagen": "11.jpg"
+  },
+  {
+    "id": 12,
+    "categoria": "bebidas alholicas",
+    "descripcion": "cerveza cusque�a negra six pack botella 310 ml",
+    "precio": 23.9,
+    "imagen": "12.jpg"
+  },
+  {
+    "id": 13,
+    "categoria": "bebidas alholicas",
+    "descripcion": "cerveza cusque�a trigo six pack botella 310 ml",
+    "precio": 23.9,
+    "imagen": "13.jpg"
+  },
+  {
+    "id": 14,
+    "categoria": "bebidas alholicas",
+    "descripcion": "bebida de ma�z golden sixpack lata 355 ml",
+    "precio": 16.9,
+    "imagen": "14.jpg"
+  },
+  {
+    "id": 15,
+    "categoria": "bebidas alholicas",
+    "descripcion": "cerveza coronita six pack botella 210 ml",
+    "precio": 16.9,
+    "imagen": "15.jpg"
+  },
+  {
+    "id": 16,
+    "categoria": "bebidas alholicas",
+    "descripcion": "cerveza cusque�a dorada six pack lata 355 ml",
+    "precio": 26.9,
+    "imagen": "16.jpg"
+  },
+  {
+    "id": 17,
+    "categoria": "bebidas alholicas",
+    "descripcion": "cerveza cusque�a negra six pack lata 355 ml",
+    "precio": 26.9,
+    "imagen": "17.jpg"
+  },
+  {
+    "id": 18,
+    "categoria": "bebidas alholicas",
+    "descripcion": "cerveza cusque�a trigo six pack lata 355 ml",
+    "precio": 26.9,
+    "imagen": "18.jpg"
+  },
+  {
+    "id": 19,
+    "categoria": "bebidas alholicas",
+    "descripcion": "cerveza heineken six pack botella 330 ml",
+    "precio": 25.9,
+    "imagen": "19.jpg"
+  },
+  {
+    "id": 24,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 cerveza cusque�a dorada six pack lata 355 ml",
+    "precio": 55.8,
+    "imagen": "24.jpg"
+  },
+  {
+    "id": 25,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 cerveza cusque�a negra six pack botella 310 ml",
+    "precio": 41.9,
+    "imagen": "25.jpg"
+  },
+  {
+    "id": 26,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 cerveza cusque�a negra six pack lata 355 ml",
+    "precio": 55.8,
+    "imagen": "26.jpg"
+  },
+  {
+    "id": 27,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 cerveza cusque�a trigo six pack lata 355 ml",
+    "precio": 55.8,
+    "imagen": "27.jpg"
+  },
+  {
+    "id": 28,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 cerveza cusque�a trigo sixpack botella 310 ml",
+    "precio": 41.9,
+    "imagen": "28.jpg"
+  },
+  {
+    "id": 29,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 cerveza heineken six pack botella 330 ml",
+    "precio": 70,
+    "imagen": "29.jpg"
+  },
+  {
+    "id": 30,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 cerveza pilsen callao six pack lata 355 ml",
+    "precio": 53,
+    "imagen": "30.jpg"
+  },
+  {
+    "id": 31,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 cerveza pilsen callao sixpack botella 305 ml",
+    "precio": 47.8,
+    "imagen": "31.jpg"
+  },
+  {
+    "id": 35,
+    "categoria": "bebidas alholicas",
+    "descripcion": "bebida de maiz golden sixpack lata 473 ml",
+    "precio": 18.9,
+    "imagen": "35.jpg"
+  },
+  {
+    "id": 36,
+    "categoria": "bebidas alholicas",
+    "descripcion": "cerveza artesanal barbarian magic quinua lata 269 ml",
+    "precio": 6.9,
+    "imagen": "36.jpg"
+  },
+  {
+    "id": 37,
+    "categoria": "bebidas alholicas",
+    "descripcion": "cerveza barbarian american 174 ipa 269 ml",
+    "precio": 8.4,
+    "imagen": "37.jpg"
+  },
+  {
+    "id": 38,
+    "categoria": "bebidas alholicas",
+    "descripcion": "cerveza barbarian la nena wheat ale lata 269 ml",
+    "precio": 6.9,
+    "imagen": "38.jpg"
+  },
+  {
+    "id": 39,
+    "categoria": "bebidas alholicas",
+    "descripcion": "cerveza corona six pack botella 330 ml",
+    "precio": 27.9,
+    "imagen": "39.jpg"
+  },
+  {
+    "id": 40,
+    "categoria": "bebidas alholicas",
+    "descripcion": "cerveza heineken fourpack lata 473 ml",
+    "precio": 20.9,
+    "imagen": "40.jpg"
+  },
+  {
+    "id": 41,
+    "categoria": "bebidas alholicas",
+    "descripcion": "cerveza heineken sixpack lata 310 ml",
+    "precio": 21.9,
+    "imagen": "41.jpg"
+  },
+  {
+    "id": 42,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 cerveza corona six pack botella 330 ml",
+    "precio": 71.8,
+    "imagen": "42.jpg"
+  },
+  {
+    "id": 43,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 cerveza cusque�a doble malta six pack botella 310 ml",
+    "precio": 41.9,
+    "imagen": "43.jpg"
+  },
+  {
+    "id": 48,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 cerveza tres cruces light six pack lata 310 ml",
+    "precio": 36.9,
+    "imagen": "48.jpg"
+  },
+  {
+    "id": 49,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 cerveza tres cruces pum pum six pack lata 310 ml",
+    "precio": 36.9,
+    "imagen": "49.jpg"
+  },
+  {
+    "id": 50,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 cerveza tres cruces six pack lata 310 ml (lager/light)",
+    "precio": 36.9,
+    "imagen": "50.jpg"
+  },
+  {
+    "id": 51,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 03 cerveza tres cruces lager six pack lata 355 ml",
+    "precio": 66,
+    "imagen": "51.jpg"
+  },
+  {
+    "id": 52,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack cerveza coronita six pack botella 210 ml + cheetos flamin hot 120g",
+    "precio": 26.8,
+    "imagen": "52.jpg"
+  },
+  {
+    "id": 53,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack cerveza heineken fourpack lata 500 ml + cheetos flamin hot 120g",
+    "precio": 30.9,
+    "imagen": "53.jpg"
+  },
+  {
+    "id": 54,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron bacardi carta oro garrafa 1.75 l + gaseosa coca cola sin az�car 1.5 l + hielo iglu bolsa",
+    "precio": 87.8,
+    "imagen": "54.jpg"
+  },
+  {
+    "id": 55,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vino altos del sur carmenere 750 ml + pizza familiar americana",
+    "precio": 43.8,
+    "imagen": "55.jpg"
+  },
+  {
+    "id": 56,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron cartavio selecto 5 a�os 750 ml + coca cola sin az�car 1.5 l + hielo 1.5kg",
+    "precio": 29.9,
+    "imagen": "56.jpg"
+  },
+  {
+    "id": 57,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron abuelo a�ejo 750 ml + coca cola sin az�car 1.5 l + hielo 1.5 kg",
+    "precio": 63.8,
+    "imagen": "57.jpg"
+  },
+  {
+    "id": 58,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron bacardi a�ejo 750 ml + coca cola sin az�car 1.5 l + hielo",
+    "precio": 50.9,
+    "imagen": "58.jpg"
+  },
+  {
+    "id": 59,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron bacardi carta oro 750 ml + coca cola sin az�car 1.5 l + hielo 1.5 kg",
+    "precio": 40.9,
+    "imagen": "59.jpg"
+  },
+  {
+    "id": 60,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron bacardi garrafa 1.75 l + gaseosa coca cola 3 l + hielo 1.5 kg",
+    "precio": 92.4,
+    "imagen": "60.jpg"
+  },
+  {
+    "id": 61,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron barcelo a�ejo garrafa 1.75 lt + coca cola sin azucar 1.5 l + hielo iglu bolsa 1.5",
+    "precio": 105.8,
+    "imagen": "61.jpg"
+  },
+  {
+    "id": 62,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron cartavio black 1 l + coca cola 1 l + hielo 1.5 k",
+    "precio": 43.3,
+    "imagen": "62.jpg"
+  },
+  {
+    "id": 63,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron cartavio black 750 ml + coca cola 1 l + hielo 1.5 kg",
+    "precio": 45.5,
+    "imagen": "63.jpg"
+  },
+  {
+    "id": 64,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron cartavio black 750 ml + coca cola sin az�car 1 l + hielo 1.5 kg",
+    "precio": 45.5,
+    "imagen": "64.jpg"
+  },
+  {
+    "id": 65,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron cartavio black 750 ml + coca cola sin az�car 1.5 l + hielo 1.5 kg",
+    "precio": 25.9,
+    "imagen": "65.jpg"
+  },
+  {
+    "id": 66,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron cartavio reserva 8 a�os 750 ml + coca cola sin az�car 1 l + hielo 1.5 kg",
+    "precio": 56.3,
+    "imagen": "66.jpg"
+  },
+  {
+    "id": 67,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron cartavio reserva 8 a�os 750 ml + coca cola sin az�car 1.5 l + hielo 1.5 kg",
+    "precio": 46.9,
+    "imagen": "67.jpg"
+  },
+  {
+    "id": 68,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron cartavio reserva 8 a�os 750 ml + gaseosa coca cola 1 l + hielo 1.5 kg",
+    "precio": 56.3,
+    "imagen": "68.jpg"
+  },
+  {
+    "id": 69,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron cartavio reserva 8 a�os 750 ml + bebida cabornatada schweppes ginger ale 1.5 l + hielo igl� 1.5 kg",
+    "precio": 47.9,
+    "imagen": "69.jpg"
+  },
+  {
+    "id": 70,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron cartavio selecto 5 a�os 750 ml + coca cola 1 l + hielo 1.5",
+    "precio": 42.3,
+    "imagen": "70.jpg"
+  },
+  {
+    "id": 71,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron cartavio selecto 5 a�os 750 ml + coca cola zero 1 l + hielo 1.5",
+    "precio": 42.3,
+    "imagen": "71.jpg"
+  },
+  {
+    "id": 72,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron flor de ca�a oro 5 a�os 750 ml + coca cola sin az�car 1.5 l + hielo 1.5 kg",
+    "precio": 59.9,
+    "imagen": "72.jpg"
+  },
+  {
+    "id": 73,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron flor de ca�a oro 4 a�os 750 ml + coca cola 1l + hielo 1.5 kg",
+    "precio": 57.3,
+    "imagen": "73.jpg"
+  },
+  {
+    "id": 74,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron flor de ca�a oro 4 a�os 750 ml + coca cola sin azucar 1.5 l + hielo 1.5 kg",
+    "precio": 49.9,
+    "imagen": "74.jpg"
+  },
+  {
+    "id": 75,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron havana club a�ejo especial 700 ml + coca cola sin az�car 1.5 l + hielo iglu 1.5 kg",
+    "precio": 36.9,
+    "imagen": "75.jpg"
+  },
+  {
+    "id": 76,
+    "categoria": "bebidas alholicas",
+    "descripcion": "ron bacardi carta oro 750 ml",
+    "precio": 45.9,
+    "imagen": "76.jpg"
+  },
+  {
+    "id": 77,
+    "categoria": "bebidas alholicas",
+    "descripcion": "ron bacardi carta oro garrafa 1.75 l",
+    "precio": 75.9,
+    "imagen": "77.jpg"
+  },
+  {
+    "id": 78,
+    "categoria": "bebidas alholicas",
+    "descripcion": "ron barcelo a�ejo garrafa 1.75 l",
+    "precio": 93.9,
+    "imagen": "78.jpg"
+  },
+  {
+    "id": 79,
+    "categoria": "bebidas alholicas",
+    "descripcion": "ron cartavio selecto 5 a�os 750 ml",
+    "precio": 36.9,
+    "imagen": "79.jpg"
+  },
+  {
+    "id": 80,
+    "categoria": "bebidas alholicas",
+    "descripcion": "ron havana club a�ejo especial 700 ml",
+    "precio": 59.9,
+    "imagen": "80.jpg"
+  },
+  {
+    "id": 81,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 ron havana club a�ejo especial 700 ml",
+    "precio": 119.8,
+    "imagen": "81.jpg"
+  },
+  {
+    "id": 82,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack flor de ca�a oro 7 a�os 750 ml + coca cola zero 1.5 l + hielo 1.5 kl",
+    "precio": 94.8,
+    "imagen": "82.jpg"
+  },
+  {
+    "id": 83,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron bacardi carta blanca edici�n halloween 750 ml + gaseosa coca cola sin az�car 1.5 l + hielo 1.5 kg",
+    "precio": 40.9,
+    "imagen": "83.jpg"
+  },
+  {
+    "id": 84,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron bacardi carta oro garrafa 1.75 l + gaseosa coca cola sin az�car 1.5 l + hielo iglu bolsa",
+    "precio": 87.8,
+    "imagen": "84.jpg"
+  },
+  {
+    "id": 85,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack ron barcelo garrafa 1.75 l + 02 gaseosas coca cola 1l + hielo 1.5 kg",
+    "precio": 91.9,
+    "imagen": "85.jpg"
+  },
+  {
+    "id": 104,
+    "categoria": "bebidas alholicas",
+    "descripcion": "ron bacard� a�ejo 750 ml",
+    "precio": 54.9,
+    "imagen": "104.jpg"
+  },
+  {
+    "id": 105,
+    "categoria": "bebidas alholicas",
+    "descripcion": "ron cabo blanco black 1 l",
+    "precio": 19.9,
+    "imagen": "105.jpg"
+  },
+  {
+    "id": 106,
+    "categoria": "bebidas alholicas",
+    "descripcion": "ron captain morgan 700 ml",
+    "precio": 45.9,
+    "imagen": "106.jpg"
+  },
+  {
+    "id": 107,
+    "categoria": "bebidas alholicas",
+    "descripcion": "ron cartavio black 1 l",
+    "precio": 33.9,
+    "imagen": "107.jpg"
+  },
+  {
+    "id": 108,
+    "categoria": "bebidas alholicas",
+    "descripcion": "ron cartavio black 250 ml",
+    "precio": 11.9,
+    "imagen": "108.jpg"
+  },
+  {
+    "id": 109,
+    "categoria": "bebidas alholicas",
+    "descripcion": "ron cartavio black 750 ml",
+    "precio": 28.9,
+    "imagen": "109.jpg"
+  },
+  {
+    "id": 191,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vodka smirnoff red 700 ml + evervess 1.5 l + hielo 1.5 kg",
+    "precio": 36.9,
+    "imagen": "191.jpg"
+  },
+  {
+    "id": 192,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vodka smirnoff raspberry 700 ml + bebida carbonatada schweppes ginger ale 1.5 l  + hielo 1.5 kg",
+    "precio": 40.9,
+    "imagen": "192.jpg"
+  },
+  {
+    "id": 193,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vodka smirnoff raspberry 700 ml + evervess 1.5 l + hielo bolsa 1.5 kg",
+    "precio": 40.9,
+    "imagen": "193.jpg"
+  },
+  {
+    "id": 194,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vodka smirnoff red 700 ml + bebida carbonatada schweppes ginger ale 1.5 l  + hielo 1.5 kg",
+    "precio": 36.9,
+    "imagen": "194.jpg"
+  },
+  {
+    "id": 195,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vodka smirnoff watermelon 700 ml + bebida carbonatada schweppes ginger ale 1.5 l  + hielo 1.5 kg",
+    "precio": 40.9,
+    "imagen": "195.jpg"
+  },
+  {
+    "id": 196,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vodka smirnoff watermelon 700 ml + evervess  1.5 l + hielo bolsa 1.5 kg",
+    "precio": 40.9,
+    "imagen": "196.jpg"
+  },
+  {
+    "id": 197,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vodka smirnoff green apple 700 ml + bebida carbonatada schweppes ginger ale 1.5 l  + hielo 1.5 kg",
+    "precio": 40.9,
+    "imagen": "197.jpg"
+  },
+  {
+    "id": 198,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vodka smirnoff green apple 700 ml + evervess  1.5 l + hielo bolsa 1.5 kg",
+    "precio": 40.9,
+    "imagen": "198.jpg"
+  },
+  {
+    "id": 199,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vodka absolut 700 ml",
+    "precio": 64.9,
+    "imagen": "199.jpg"
+  },
+  {
+    "id": 200,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vodka russkaya 1 l + schweppes ginger ale 1.5 l + hielo 1.5 kg",
+    "precio": 36.2,
+    "imagen": "200.jpg"
+  },
+  {
+    "id": 201,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vodka russkaya 750 ml + cifrut punch citrus 1.5 l + hielo 1.5 kg",
+    "precio": 25.9,
+    "imagen": "201.jpg"
+  },
+  {
+    "id": 202,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vodka russkaya 750 ml + evervess 1.5 l + hielo igl� 1.5 kg",
+    "precio": 25.9,
+    "imagen": "202.jpg"
+  },
+  {
+    "id": 203,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vodka russkaya 750 ml + frutaris frutas citricas 3 l + hielo 1.5 kg",
+    "precio": 25.9,
+    "imagen": "203.jpg"
+  },
+  {
+    "id": 204,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vodka russkaya 750 ml + schweppes ginger ale 1.5 l + hielo igl� 1.5 kg",
+    "precio": 25.9,
+    "imagen": "204.jpg"
+  },
+  {
+    "id": 205,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vodka russkaya pink 750 ml + schweppes ginger ale 1.5 l + hielo igl� 1.5 kg",
+    "precio": 27.9,
+    "imagen": "205.jpg"
+  },
+  {
+    "id": 206,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vodka russkaya yellow 750 ml + schweppes ginger ale 1.5 l + hielo igl� 1.5 kg",
+    "precio": 27.9,
+    "imagen": "206.jpg"
+  },
+  {
+    "id": 207,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vodka skyy 750 ml + evervess 1.5 l + hielo 1.5 k",
+    "precio": 55.9,
+    "imagen": "207.jpg"
+  },
+  {
+    "id": 208,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vodka skyy 750 ml + schweppes ginger ale 1.5 l + hielo 1.5 kg",
+    "precio": 54.9,
+    "imagen": "208.jpg"
+  },
+  {
+    "id": 209,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vodka skyy infusions raspberry 750 ml + schweppes ginger ale 1.5 l + hielo 1.5 kg",
+    "precio": 59.9,
+    "imagen": "209.jpg"
+  },
+  {
+    "id": 210,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vodka russkaya 1 l",
+    "precio": 26.9,
+    "imagen": "210.jpg"
+  },
+  {
+    "id": 215,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vodka smirnoff raspberry 700 ml",
+    "precio": 38.9,
+    "imagen": "215.jpg"
+  },
+  {
+    "id": 216,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vodka smirnoff red 700ml",
+    "precio": 34.9,
+    "imagen": "216.jpg"
+  },
+  {
+    "id": 217,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vodka smirnoff watermelon 700 ml",
+    "precio": 38.9,
+    "imagen": "217.jpg"
+  },
+  {
+    "id": 218,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vodka smirnoff green apple 700 ml",
+    "precio": 38.9,
+    "imagen": "218.jpg"
+  },
+  {
+    "id": 219,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 smirnoff ice guaran� lata 350 ml",
+    "precio": 13.9,
+    "imagen": "219.jpg"
+  },
+  {
+    "id": 220,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 smirnoff ice lata 350 ml (1 red/1 green apple)",
+    "precio": 13.9,
+    "imagen": "220.jpg"
+  },
+  {
+    "id": 221,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 smirnoff ice red lata 350 ml",
+    "precio": 13.9,
+    "imagen": "221.jpg"
+  },
+  {
+    "id": 222,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 smirnoff ice green apple lata 350 ml",
+    "precio": 13.9,
+    "imagen": "222.jpg"
+  },
+  {
+    "id": 223,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd chilcano santiago queirolo lim�n 275 ml",
+    "precio": 6.5,
+    "imagen": "223.jpg"
+  },
+  {
+    "id": 224,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd chilcano santiago queirolo masco 275 ml",
+    "precio": 6.5,
+    "imagen": "224.jpg"
+  },
+  {
+    "id": 225,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd chilcano santiago queirolo lim�n 275 ml",
+    "precio": 13,
+    "imagen": "225.jpg"
+  },
+  {
+    "id": 226,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd chilcano santiago queirolo masco 275 ml",
+    "precio": 13,
+    "imagen": "226.jpg"
+  },
+  {
+    "id": 227,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd chilcano santiago queirolo 275 ml (lim�n/masco)",
+    "precio": 13,
+    "imagen": "227.jpg"
+  },
+  {
+    "id": 228,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd corona tropical frutos rojos lata 355 ml",
+    "precio": 6.9,
+    "imagen": "228.jpg"
+  },
+  {
+    "id": 229,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd corona tropical limon toronja lata 355 ml",
+    "precio": 6.9,
+    "imagen": "229.jpg"
+  },
+  {
+    "id": 230,
+    "categoria": "bebidas alholicas",
+    "descripcion": "smirnoff ice green apple lata 350 ml",
+    "precio": 8.5,
+    "imagen": "230.jpg"
+  },
+  {
+    "id": 231,
+    "categoria": "bebidas alholicas",
+    "descripcion": "smirnoff ice guaran� lata 350 ml",
+    "precio": 8.5,
+    "imagen": "231.jpg"
+  },
+  {
+    "id": 232,
+    "categoria": "bebidas alholicas",
+    "descripcion": "smirnoff ice red bot 355 ml",
+    "precio": 9,
+    "imagen": "232.jpg"
+  },
+  {
+    "id": 233,
+    "categoria": "bebidas alholicas",
+    "descripcion": "smirnoff ice green apple 355 ml",
+    "precio": 9,
+    "imagen": "233.jpg"
+  },
+  {
+    "id": 234,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 smirnoff ice red botella 355 ml",
+    "precio": 14.9,
+    "imagen": "234.jpg"
+  },
+  {
+    "id": 235,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 03 smirnoff ice green apple lata 350 ml",
+    "precio": 19.9,
+    "imagen": "235.jpg"
+  },
+  {
+    "id": 236,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 03 smirnoff ice red lata 350 ml",
+    "precio": 19.9,
+    "imagen": "236.jpg"
+  },
+  {
+    "id": 237,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 03 smirnoff ice guaran� lata 350 ml",
+    "precio": 19.9,
+    "imagen": "237.jpg"
+  },
+  {
+    "id": 238,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 03 smirnoff ice lata 350 ml (2 guaran�/1 red)",
+    "precio": 19.9,
+    "imagen": "238.jpg"
+  },
+  {
+    "id": 239,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 03 smirnoff ice lata 350 ml (2 guaran�/1 green apple)",
+    "precio": 19.9,
+    "imagen": "239.jpg"
+  },
+  {
+    "id": 240,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 03 smirnoff ice lata 350 ml (2 red/1 guaran�)",
+    "precio": 19.9,
+    "imagen": "240.jpg"
+  },
+  {
+    "id": 241,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 03 smirnoff ice lata 350 ml (2 red/1 green apple)",
+    "precio": 19.9,
+    "imagen": "241.jpg"
+  },
+  {
+    "id": 242,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 03 smirnoff ice lata 350 ml (2 green apple/1 guaran�)",
+    "precio": 19.9,
+    "imagen": "242.jpg"
+  },
+  {
+    "id": 243,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 03 smirnoff ice lata 350 ml (2 green apple/1 red)",
+    "precio": 19.9,
+    "imagen": "243.jpg"
+  },
+  {
+    "id": 244,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd four loko blue 473 ml",
+    "precio": 11,
+    "imagen": "244.jpg"
+  },
+  {
+    "id": 245,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd four loko gold 473 ml",
+    "precio": 11,
+    "imagen": "245.jpg"
+  },
+  {
+    "id": 246,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd four loko ponche de frutas 473 ml",
+    "precio": 11,
+    "imagen": "246.jpg"
+  },
+  {
+    "id": 247,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd four loko purple 473 ml",
+    "precio": 11,
+    "imagen": "247.jpg"
+  },
+  {
+    "id": 248,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd four loko sand�a 473 ml",
+    "precio": 11,
+    "imagen": "248.jpg"
+  },
+  {
+    "id": 249,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd four loko green 473 ml",
+    "precio": 11,
+    "imagen": "249.jpg"
+  },
+  {
+    "id": 250,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd four loko blue 473 ml",
+    "precio": 14.9,
+    "imagen": "250.jpg"
+  },
+  {
+    "id": 255,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd four loko green  473 ml",
+    "precio": 14.9,
+    "imagen": "255.jpg"
+  },
+  {
+    "id": 256,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd four loko 473 ml (gold/blue)",
+    "precio": 14.9,
+    "imagen": "256.jpg"
+  },
+  {
+    "id": 257,
+    "categoria": "bebidas alholicas",
+    "descripcion": "mikes hard lemonade 355 ml",
+    "precio": 6.9,
+    "imagen": "257.jpg"
+  },
+  {
+    "id": 258,
+    "categoria": "bebidas alholicas",
+    "descripcion": "mikes hard strawberry lemonade 355ml",
+    "precio": 6.9,
+    "imagen": "258.jpg"
+  },
+  {
+    "id": 259,
+    "categoria": "bebidas alholicas",
+    "descripcion": "mikes passion fruit lemonade 355 ml",
+    "precio": 6.9,
+    "imagen": "259.jpg"
+  },
+  {
+    "id": 260,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 03 mikes 355 ml (01 hard lemonade/02 hard strawberry lemonade)",
+    "precio": 15.9,
+    "imagen": "260.jpg"
+  },
+  {
+    "id": 261,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 03 mikes 355 ml (01 hard strawberry lemonade/02 passion fruit lemonade)",
+    "precio": 15.9,
+    "imagen": "261.jpg"
+  },
+  {
+    "id": 262,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 03 mikes 355 ml (01 passion fruit lemonade/01 hard lemonade/01 hard strawberry lemonade)",
+    "precio": 15.9,
+    "imagen": "262.jpg"
+  },
+  {
+    "id": 267,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 03 mikes passion fruit lemonade 355 ml",
+    "precio": 15.9,
+    "imagen": "267.jpg"
+  },
+  {
+    "id": 268,
+    "categoria": "bebidas alholicas",
+    "descripcion": "psyco berry crush 473 ml",
+    "precio": 9.9,
+    "imagen": "268.jpg"
+  },
+  {
+    "id": 269,
+    "categoria": "bebidas alholicas",
+    "descripcion": "psyco black mood 473 ml",
+    "precio": 9.9,
+    "imagen": "269.jpg"
+  },
+  {
+    "id": 270,
+    "categoria": "bebidas alholicas",
+    "descripcion": "psyco funky green apple 473 ml",
+    "precio": 9.9,
+    "imagen": "270.jpg"
+  },
+  {
+    "id": 271,
+    "categoria": "bebidas alholicas",
+    "descripcion": "psyco golden squad 473 ml",
+    "precio": 9.9,
+    "imagen": "271.jpg"
+  },
+  {
+    "id": 272,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd wild sex on the beach 355 ml",
+    "precio": 5.9,
+    "imagen": "272.jpg"
+  },
+  {
+    "id": 273,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd wild tropical orange 355 ml",
+    "precio": 5.9,
+    "imagen": "273.jpg"
+  },
+  {
+    "id": 274,
+    "categoria": "bebidas alholicas",
+    "descripcion": "hit mojito botella 355 ml",
+    "precio": 5.9,
+    "imagen": "274.jpg"
+  },
+  {
+    "id": 279,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd corona tropical frutos rojos lata 355 ml + 02 rtd corona tropical lim�n toronja lata 355 ml",
+    "precio": 18.9,
+    "imagen": "279.jpg"
+  },
+  {
+    "id": 280,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 smirnoff ice green apple botella 355 ml",
+    "precio": 14.9,
+    "imagen": "280.jpg"
+  },
+  {
+    "id": 281,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 04 rtd corona tropical limon toronja lata 355 ml",
+    "precio": 18.9,
+    "imagen": "281.jpg"
+  },
+  {
+    "id": 282,
+    "categoria": "bebidas alholicas",
+    "descripcion": "piscano limon 275 ml",
+    "precio": 7.9,
+    "imagen": "282.jpg"
+  },
+  {
+    "id": 283,
+    "categoria": "bebidas alholicas",
+    "descripcion": "piscano manzana 275 ml",
+    "precio": 7.9,
+    "imagen": "283.jpg"
+  },
+  {
+    "id": 284,
+    "categoria": "bebidas alholicas",
+    "descripcion": "piscano maracuy� 275 ml",
+    "precio": 7.9,
+    "imagen": "284.jpg"
+  },
+  {
+    "id": 285,
+    "categoria": "bebidas alholicas",
+    "descripcion": "piscano naranja 275 ml",
+    "precio": 7.9,
+    "imagen": "285.jpg"
+  },
+  {
+    "id": 286,
+    "categoria": "bebidas alholicas",
+    "descripcion": "psyco crazy grape 473 ml",
+    "precio": 9.9,
+    "imagen": "286.jpg"
+  },
+  {
+    "id": 291,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 psyco (1 berry crush/1 crazy grape) 473 ml",
+    "precio": 13.9,
+    "imagen": "291.jpg"
+  },
+  {
+    "id": 292,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 psyco (1 berry crush/1 funky green apple) 473 ml",
+    "precio": 13.9,
+    "imagen": "292.jpg"
+  },
+  {
+    "id": 293,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 psyco (1 berry crush/1 golden squad) 473 ml",
+    "precio": 13.9,
+    "imagen": "293.jpg"
+  },
+  {
+    "id": 294,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 psyco (1 berry crush/1 tropical hit) 473 ml",
+    "precio": 13.9,
+    "imagen": "294.jpg"
+  },
+  {
+    "id": 295,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 psyco (1 crazy grape/1 funky green apple) 473 ml",
+    "precio": 13.9,
+    "imagen": "295.jpg"
+  },
+  {
+    "id": 296,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 psyco (1 crazy grape/1 tropical hit) 473 ml",
+    "precio": 13.9,
+    "imagen": "296.jpg"
+  },
+  {
+    "id": 297,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 psyco (1 tropical hit/1 funky green apple) 473 ml",
+    "precio": 13.9,
+    "imagen": "297.jpg"
+  },
+  {
+    "id": 298,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 psyco berry crush 473 ml",
+    "precio": 13.9,
+    "imagen": "298.jpg"
+  },
+  {
+    "id": 303,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 psyco tropical hit 473 ml",
+    "precio": 13.9,
+    "imagen": "303.jpg"
+  },
+  {
+    "id": 304,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd chilcano port�n (frutos rojos/limon) 355 ml",
+    "precio": 14.9,
+    "imagen": "304.jpg"
+  },
+  {
+    "id": 305,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd chilcano port�n (frutos rojos/mango) 355 ml",
+    "precio": 14.9,
+    "imagen": "305.jpg"
+  },
+  {
+    "id": 306,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd chilcano port�n (frutos rojos/maracuya) 355 ml",
+    "precio": 14.9,
+    "imagen": "306.jpg"
+  },
+  {
+    "id": 307,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd chilcano port�n (limon/mango) 355 ml",
+    "precio": 14.9,
+    "imagen": "307.jpg"
+  },
+  {
+    "id": 308,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd chilcano port�n (limon/maracuya) 355 ml",
+    "precio": 14.9,
+    "imagen": "308.jpg"
+  },
+  {
+    "id": 309,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd chilcano port�n (mango/maracuya) 355 ml",
+    "precio": 14.9,
+    "imagen": "309.jpg"
+  },
+  {
+    "id": 310,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd chilcano port�n frutos rojos 355 ml",
+    "precio": 14.9,
+    "imagen": "310.jpg"
+  },
+  {
+    "id": 315,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd chilcano tabernero limon 275 ml",
+    "precio": 10.9,
+    "imagen": "315.jpg"
+  },
+  {
+    "id": 316,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd chilcano tabernero maracuya 275 ml",
+    "precio": 10.9,
+    "imagen": "316.jpg"
+  },
+  {
+    "id": 317,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd cubata (guarana/berries) 350 ml",
+    "precio": 9.9,
+    "imagen": "317.jpg"
+  },
+  {
+    "id": 318,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd cubata (guarana/lima limon) 350 ml",
+    "precio": 9.9,
+    "imagen": "318.jpg"
+  },
+  {
+    "id": 319,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd cubata (lima limon/berries) 350 ml",
+    "precio": 9.9,
+    "imagen": "319.jpg"
+  },
+  {
+    "id": 320,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd cubata berries 350 ml",
+    "precio": 9.9,
+    "imagen": "320.jpg"
+  },
+  {
+    "id": 321,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd cubata guarana 350 ml",
+    "precio": 9.9,
+    "imagen": "321.jpg"
+  },
+  {
+    "id": 322,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd cubata lima limon 350 ml",
+    "precio": 9.9,
+    "imagen": "322.jpg"
+  },
+  {
+    "id": 327,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd piscano sour lim�n lata 473 ml",
+    "precio": 13.9,
+    "imagen": "327.jpg"
+  },
+  {
+    "id": 328,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 rtd piscano sour maracuy� lata 473 ml",
+    "precio": 13.9,
+    "imagen": "328.jpg"
+  },
+  {
+    "id": 329,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 03 rtd chilcano tabernero (02 limon/01 maracuya) 275 ml",
+    "precio": 13.9,
+    "imagen": "329.jpg"
+  },
+  {
+    "id": 330,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 03 rtd chilcano tabernero (02 maracuya/01 limon) 275 ml",
+    "precio": 13.9,
+    "imagen": "330.jpg"
+  },
+  {
+    "id": 331,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 03 rtd chilcano tabernero limon 275 ml",
+    "precio": 13.9,
+    "imagen": "331.jpg"
+  },
+  {
+    "id": 332,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 03 rtd chilcano tabernero maracuya 275 ml",
+    "precio": 13.9,
+    "imagen": "332.jpg"
+  },
+  {
+    "id": 333,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 03 rtd shelby lata 330 ml (01 lim�n + 02 manzana)",
+    "precio": 23.7,
+    "imagen": "333.jpg"
+  },
+  {
+    "id": 334,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 03 rtd shelby lata 330 ml (02 lim�n + 01 manzana)",
+    "precio": 23.7,
+    "imagen": "334.jpg"
+  },
+  {
+    "id": 339,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vino tabernero semi seco borgo�a 750 ml + 02 four loko sand�a 473 ml",
+    "precio": 41.9,
+    "imagen": "339.jpg"
+  },
+  {
+    "id": 340,
+    "categoria": "bebidas alholicas",
+    "descripcion": "piscano sour maracuy� 700 ml",
+    "precio": 16.9,
+    "imagen": "340.jpg"
+  },
+  {
+    "id": 341,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd chilcano port�n frutos rojos 355 ml",
+    "precio": 11.9,
+    "imagen": "341.jpg"
+  },
+  {
+    "id": 342,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd chilcano port�n lim�n 355 ml",
+    "precio": 11.9,
+    "imagen": "342.jpg"
+  },
+  {
+    "id": 343,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd chilcano port�n mango 355 ml",
+    "precio": 11.9,
+    "imagen": "343.jpg"
+  },
+  {
+    "id": 344,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd chilcano port�n maracuya 355 ml",
+    "precio": 11.9,
+    "imagen": "344.jpg"
+  },
+  {
+    "id": 345,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd chilcano tabernero limon 275 ml",
+    "precio": 7.4,
+    "imagen": "345.jpg"
+  },
+  {
+    "id": 346,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd chilcano tabernero maracuy� 275 ml",
+    "precio": 7.4,
+    "imagen": "346.jpg"
+  },
+  {
+    "id": 351,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd piscano sour lim�n lata 473 ml",
+    "precio": 7.9,
+    "imagen": "351.jpg"
+  },
+  {
+    "id": 352,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd piscano sour maracuy� lata 473 ml",
+    "precio": 7.9,
+    "imagen": "352.jpg"
+  },
+  {
+    "id": 353,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd shelby lim�n lata 330 ml",
+    "precio": 6.9,
+    "imagen": "353.jpg"
+  },
+  {
+    "id": 354,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd shelby manzana lata 330 ml",
+    "precio": 6.9,
+    "imagen": "354.jpg"
+  },
+  {
+    "id": 355,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd wild passion fruit lata 355 ml",
+    "precio": 5.5,
+    "imagen": "355.jpg"
+  },
+  {
+    "id": 356,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd wild xtreme watermelon 355 ml",
+    "precio": 7.5,
+    "imagen": "356.jpg"
+  },
+  {
+    "id": 357,
+    "categoria": "bebidas alholicas",
+    "descripcion": "rtd hit cuba libre lata 355 ml",
+    "precio": 5.5,
+    "imagen": "357.jpg"
+  },
+  {
+    "id": 358,
+    "categoria": "bebidas alholicas",
+    "descripcion": "sour tabernero maracuya 700 ml",
+    "precio": 17.9,
+    "imagen": "358.jpg"
+  },
+  {
+    "id": 362,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 vino altos del sur carmenere 750 ml",
+    "precio": 37.9,
+    "imagen": "362.jpg"
+  },
+  {
+    "id": 363,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 vino tabernero semi seco borgo�a 750 ml",
+    "precio": 39.8,
+    "imagen": "363.jpg"
+  },
+  {
+    "id": 364,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 vino tabernero semi seco rose 750 ml",
+    "precio": 39.8,
+    "imagen": "364.jpg"
+  },
+  {
+    "id": 365,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 vino tinto tempranillo caballero de castilla 750 ml",
+    "precio": 40.9,
+    "imagen": "365.jpg"
+  },
+  {
+    "id": 366,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 vino gran tinto tabernero semi seco malbec 750 ml",
+    "precio": 39.8,
+    "imagen": "366.jpg"
+  },
+  {
+    "id": 367,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vino tabernero semi seco borgo�a 750 ml + vino tabernero semi seco rose 750 ml",
+    "precio": 39.8,
+    "imagen": "367.jpg"
+  },
+  {
+    "id": 368,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vino tabernero semi seco borgo�a 750 ml + vino gran tinto tabernero semi seco malbec 750 ml",
+    "precio": 39.8,
+    "imagen": "368.jpg"
+  },
+  {
+    "id": 369,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vino tabernero semi seco rose 750 ml + vino gran tinto tabernero semi seco malbec 750 ml",
+    "precio": 39.8,
+    "imagen": "369.jpg"
+  },
+  {
+    "id": 370,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vino gran tinto tabernero semi seco malbec 750 ml + chocolate kisses cookies n' cream estuche lazo 102 gr",
+    "precio": 35.8,
+    "imagen": "370.jpg"
+  },
+  {
+    "id": 371,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vino tabernero semi seco borgo�a 750 ml",
+    "precio": 16.9,
+    "imagen": "371.jpg"
+  },
+  {
+    "id": 372,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vino tabernero semi seco rose 750 ml",
+    "precio": 16.9,
+    "imagen": "372.jpg"
+  },
+  {
+    "id": 373,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vino tinto tempranillo caballero de castilla 750 ml",
+    "precio": 22.9,
+    "imagen": "373.jpg"
+  },
+  {
+    "id": 374,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 01 vino tabernero semi seco borgo�a 750 ml + 01 four loko ponche de frutas 473 ml",
+    "precio": 30.9,
+    "imagen": "374.jpg"
+  },
+  {
+    "id": 375,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 01 vino tabernero semi seco borgo�a 750 ml + 01 four loko purple 473 ml",
+    "precio": 30.9,
+    "imagen": "375.jpg"
+  },
+  {
+    "id": 376,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 01 vino tabernero semi seco borgo�a 750 ml + 01 four loko sand�a 473 ml",
+    "precio": 30.9,
+    "imagen": "376.jpg"
+  },
+  {
+    "id": 377,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 vino altos del sur 750 ml (cabernet sauvignon y carmenere)",
+    "precio": 34.9,
+    "imagen": "377.jpg"
+  },
+  {
+    "id": 378,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 vino altos del sur cabernet sauvignon 750 ml",
+    "precio": 34.9,
+    "imagen": "378.jpg"
+  },
+  {
+    "id": 379,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 vino santiago queirolo semi seco borgo�a 750 ml",
+    "precio": 39.8,
+    "imagen": "379.jpg"
+  },
+  {
+    "id": 380,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 vino santiago queirolo semi seco rose 750 ml",
+    "precio": 39.8,
+    "imagen": "380.jpg"
+  },
+  {
+    "id": 381,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vino altos del sur cabernet sauvignon 750 ml + pizza familiar americana",
+    "precio": 43.8,
+    "imagen": "381.jpg"
+  },
+  {
+    "id": 386,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack vino tabernero semi seco borgo�a 750 ml + 02 four loko sand�a 473 ml",
+    "precio": 41.9,
+    "imagen": "386.jpg"
+  },
+  {
+    "id": 387,
+    "categoria": "bebidas alholicas",
+    "descripcion": "passaporte rosso pack 2 vasos + 2 tabernero vino rose 750 ml",
+    "precio": 34.9,
+    "imagen": "387.jpg"
+  },
+  {
+    "id": 388,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vino altos del sur cabernet sauvignon 750 ml",
+    "precio": 20.9,
+    "imagen": "388.jpg"
+  },
+  {
+    "id": 389,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vino altos del sur carmenere 750 ml",
+    "precio": 20.9,
+    "imagen": "389.jpg"
+  },
+  {
+    "id": 390,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vino estancia mendoza cabernet malbec 750 ml",
+    "precio": 31.9,
+    "imagen": "390.jpg"
+  },
+  {
+    "id": 391,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vino frontera sauvignon blanco 750 ml",
+    "precio": 35.9,
+    "imagen": "391.jpg"
+  },
+  {
+    "id": 392,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vino intipalka malbec 750 ml",
+    "precio": 36.9,
+    "imagen": "392.jpg"
+  },
+  {
+    "id": 393,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vino intipalka sauvignon blanc 750 ml",
+    "precio": 36.9,
+    "imagen": "393.jpg"
+  },
+  {
+    "id": 394,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vino las moras malbec 750 ml",
+    "precio": 39.9,
+    "imagen": "394.jpg"
+  },
+  {
+    "id": 395,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vino marqu�s del sur malbec 750 ml",
+    "precio": 21.9,
+    "imagen": "395.jpg"
+  },
+  {
+    "id": 396,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vino ocucaje borgo�a 750 ml",
+    "precio": 18.9,
+    "imagen": "396.jpg"
+  },
+  {
+    "id": 397,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vino santiago queirolo semiseco borgo�a 750 ml",
+    "precio": 17.5,
+    "imagen": "397.jpg"
+  },
+  {
+    "id": 398,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vino santiago queirolo semiseco rose 750 ml",
+    "precio": 17.5,
+    "imagen": "398.jpg"
+  },
+  {
+    "id": 399,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vino tabernero borgo�a semiseco gran selecci�n 750 ml",
+    "precio": 23.9,
+    "imagen": "399.jpg"
+  },
+  {
+    "id": 400,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vino tabernero rose semiseco gran selecci�n 750 ml",
+    "precio": 23.9,
+    "imagen": "400.jpg"
+  },
+  {
+    "id": 401,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vino tinto tabernero gran tinto fina reserva 750 ml",
+    "precio": 23.9,
+    "imagen": "401.jpg"
+  },
+  {
+    "id": 402,
+    "categoria": "bebidas alholicas",
+    "descripcion": "vino gran tinto tabernero semi seco malbec 750 ml",
+    "precio": 16.9,
+    "imagen": "402.jpg"
+  },
+  {
+    "id": 403,
+    "categoria": "bebidas alholicas",
+    "descripcion": "espumante opera prima blue 750 ml",
+    "precio": 24.9,
+    "imagen": "403.jpg"
+  },
+  {
+    "id": 404,
+    "categoria": "bebidas alholicas",
+    "descripcion": "espumante riccadonna asti 750 ml",
+    "precio": 67.9,
+    "imagen": "404.jpg"
+  },
+  {
+    "id": 405,
+    "categoria": "bebidas alholicas",
+    "descripcion": "espumante riccadonna moscato rose 750 ml",
+    "precio": 67.9,
+    "imagen": "405.jpg"
+  },
+  {
+    "id": 406,
+    "categoria": "bebidas alholicas",
+    "descripcion": "espumante riccadonna ruby 750 ml",
+    "precio": 67.9,
+    "imagen": "406.jpg"
+  },
+  {
+    "id": 407,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 espumante opera prima blue 750 ml",
+    "precio": 42.9,
+    "imagen": "407.jpg"
+  },
+  {
+    "id": 408,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 espumante opera prima love 750 ml",
+    "precio": 42.9,
+    "imagen": "408.jpg"
+  },
+  {
+    "id": 409,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack espumante riccadonna asti 750 ml + chocolate ferrero rocher 8 und 100 gr",
+    "precio": 113.8,
+    "imagen": "409.jpg"
+  },
+  {
+    "id": 410,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack espumante riccadonna ruby 750 ml + chocolate ferrero rocher 8 und 100 gr",
+    "precio": 113.8,
+    "imagen": "410.jpg"
+  },
+  {
+    "id": 411,
+    "categoria": "bebidas alholicas",
+    "descripcion": "espumante opera love 750 ml",
+    "precio": 24.9,
+    "imagen": "411.jpg"
+  },
+  {
+    "id": 412,
+    "categoria": "bebidas alholicas",
+    "descripcion": "espumante opera pink 750 ml",
+    "precio": 24.9,
+    "imagen": "412.jpg"
+  },
+  {
+    "id": 413,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 02 espumante opera pink 750 ml",
+    "precio": 42.9,
+    "imagen": "413.jpg"
+  },
+  {
+    "id": 414,
+    "categoria": "bebidas alholicas",
+    "descripcion": "gin gordons 750 ml",
+    "precio": 50.9,
+    "imagen": "414.jpg"
+  },
+  {
+    "id": 415,
+    "categoria": "bebidas alholicas",
+    "descripcion": "j�germeister 700 ml",
+    "precio": 74.9,
+    "imagen": "415.jpg"
+  },
+  {
+    "id": 416,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 01 j�germeister 700 ml + 02 bebida energizante red bull 250 ml",
+    "precio": 86.8,
+    "imagen": "416.jpg"
+  },
+  {
+    "id": 417,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 01 j�germeister 700 ml + 02 bebida energizante red bull sugar free 250 ml",
+    "precio": 91.8,
+    "imagen": "417.jpg"
+  },
+  {
+    "id": 418,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack 01 j�germeister 700 ml + 02 energizante red bull tropical edition 250 ml",
+    "precio": 91.8,
+    "imagen": "418.jpg"
+  },
+  {
+    "id": 419,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack gin beefeater 700 ml + agua tonica britvic fourpack + hielo",
+    "precio": 111.3,
+    "imagen": "419.jpg"
+  },
+  {
+    "id": 420,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack gin tanqueray london 700 ml + agua tonica britvic four pack 150 ml + hielo iglu bolsa 1.5 kg",
+    "precio": 126.3,
+    "imagen": "420.jpg"
+  },
+  {
+    "id": 421,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack licor de crema baileys 750 ml + chocolate ferrero rocher 100 gr",
+    "precio": 115.8,
+    "imagen": "421.jpg"
+  },
+  {
+    "id": 422,
+    "categoria": "bebidas alholicas",
+    "descripcion": "tequila jose cuervo especial 750 ml",
+    "precio": 69.9,
+    "imagen": "422.jpg"
+  },
+  {
+    "id": 423,
+    "categoria": "bebidas alholicas",
+    "descripcion": "gin beefeater 700 ml",
+    "precio": 89.9,
+    "imagen": "423.jpg"
+  },
+  {
+    "id": 424,
+    "categoria": "bebidas alholicas",
+    "descripcion": "gin beefeater pink 700 ml",
+    "precio": 114.9,
+    "imagen": "424.jpg"
+  },
+  {
+    "id": 425,
+    "categoria": "bebidas alholicas",
+    "descripcion": "gin bombay sapphire 750 ml",
+    "precio": 99.9,
+    "imagen": "425.jpg"
+  },
+  {
+    "id": 426,
+    "categoria": "bebidas alholicas",
+    "descripcion": "gin tanqueray london 700 ml",
+    "precio": 100.9,
+    "imagen": "426.jpg"
+  },
+  {
+    "id": 427,
+    "categoria": "bebidas alholicas",
+    "descripcion": "jarabe de goma artisan botella 360 ml",
+    "precio": 6.9,
+    "imagen": "427.jpg"
+  },
+  {
+    "id": 428,
+    "categoria": "bebidas alholicas",
+    "descripcion": "licor de crema baileys 750 ml",
+    "precio": 84.9,
+    "imagen": "428.jpg"
+  },
+  {
+    "id": 429,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack gin beefeater 700 ml + agua t�nica evervess 1.5 l + hielo igl� 1.5 kg",
+    "precio": 77.9,
+    "imagen": "429.jpg"
+  },
+  {
+    "id": 430,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack gin bombay sapphire 750 ml + agua t�nica evervess 1.5 l + hielo igl� 1.5 kg",
+    "precio": 87.9,
+    "imagen": "430.jpg"
+  },
+  {
+    "id": 431,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack gin gordons 750 ml + evervess 1.5 l + hielo 1.5 kg",
+    "precio": 47.9,
+    "imagen": "431.jpg"
+  },
+  {
+    "id": 432,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack gin tanqueray 10 750 ml + agua t�nica britvic four pack 150 ml",
+    "precio": 190.9,
+    "imagen": "432.jpg"
+  },
+  {
+    "id": 433,
+    "categoria": "bebidas alholicas",
+    "descripcion": "pack gin tanqueray flor de sevilla 750 ml + agua t�nica britvic four pack 150 ml",
+    "precio": 132.8,
+    "imagen": "433.jpg"
+  },
+  {
+    "id": 437,
+    "categoria": "comidas",
+    "descripcion": "enrollado de jam�n y queso el cedro 1 und",
+    "precio": 8.9,
+    "imagen": "437.jpg"
+  },
+  {
+    "id": 438,
+    "categoria": "comidas",
+    "descripcion": "enrollado de pollo el cedro",
+    "precio": 8.9,
+    "imagen": "438.jpg"
+  },
+  {
+    "id": 439,
+    "categoria": "comidas",
+    "descripcion": "combo 02 pizzas familiar americana tambo",
+    "precio": 25.8,
+    "imagen": "439.jpg"
+  },
+  {
+    "id": 440,
+    "categoria": "comidas",
+    "descripcion": "combo 02 pizzas familiar carnivora tambo",
+    "precio": 31.8,
+    "imagen": "440.jpg"
+  },
+  {
+    "id": 441,
+    "categoria": "comidas",
+    "descripcion": "combo 02 pizzas familiar hawaiana tambo",
+    "precio": 27.8,
+    "imagen": "441.jpg"
+  },
+  {
+    "id": 442,
+    "categoria": "comidas",
+    "descripcion": "combo 02 pizzas familiar pepperoni tambo",
+    "precio": 29.8,
+    "imagen": "442.jpg"
+  },
+  {
+    "id": 443,
+    "categoria": "comidas",
+    "descripcion": "combo 02 pizzas familiar (americana/hawaiana)",
+    "precio": 24.8,
+    "imagen": "443.jpg"
+  },
+  {
+    "id": 444,
+    "categoria": "comidas",
+    "descripcion": "combo 06 empanadas de pollo tambo + 01 coca cola 1 l",
+    "precio": 13.9,
+    "imagen": "444.jpg"
+  },
+  {
+    "id": 445,
+    "categoria": "comidas",
+    "descripcion": "combo 01 pizza familiar americana + 01 coca cola 1 l",
+    "precio": 16.8,
+    "imagen": "445.jpg"
+  },
+  {
+    "id": 446,
+    "categoria": "comidas",
+    "descripcion": "combo 02 hamburguesa parrillera tambo + 01 coca cola 1 l",
+    "precio": 12.9,
+    "imagen": "446.jpg"
+  },
+  {
+    "id": 447,
+    "categoria": "comidas",
+    "descripcion": "combo 02 pan pollo mega crocante tambo + 01 coca cola 1 l",
+    "precio": 12.9,
+    "imagen": "447.jpg"
+  },
+  {
+    "id": 448,
+    "categoria": "comidas",
+    "descripcion": "combo 02 pizzas familiar (americana/carn�vora) + 01 coca cola 1 l",
+    "precio": 31.4,
+    "imagen": "448.jpg"
+  },
+  {
+    "id": 449,
+    "categoria": "comidas",
+    "descripcion": "combo 02 pizzas familiar (pepperoni/carnivora)",
+    "precio": 28.8,
+    "imagen": "449.jpg"
+  },
+  {
+    "id": 450,
+    "categoria": "comidas",
+    "descripcion": "combo 02 torta de chocolate tambo",
+    "precio": 9.8,
+    "imagen": "450.jpg"
+  },
+  {
+    "id": 451,
+    "categoria": "comidas",
+    "descripcion": "combo 06 empanadas (02 carne/02 pollo/02 mixtas) + 01 coca cola 1 l",
+    "precio": 16.9,
+    "imagen": "451.jpg"
+  },
+  {
+    "id": 452,
+    "categoria": "comidas",
+    "descripcion": "combo 06 empanadas (02 carne/02 pollo/02 mixtas) + 01 inca kola 1 l",
+    "precio": 13.9,
+    "imagen": "452.jpg"
+  },
+  {
+    "id": 453,
+    "categoria": "comidas",
+    "descripcion": "combo 06 empanadas (03 carne/03 pollo) + 01 coca cola 1 l",
+    "precio": 13.9,
+    "imagen": "453.jpg"
+  },
+  {
+    "id": 454,
+    "categoria": "comidas",
+    "descripcion": "combo 06 empanadas (03 carne/03 pollo) + 01 inca kola 1 l",
+    "precio": 13.9,
+    "imagen": "454.jpg"
+  },
+  {
+    "id": 455,
+    "categoria": "comidas",
+    "descripcion": "combo 06 empanadas (03 mixtas/03 pollo) + 01 coca cola 1 l",
+    "precio": 13.9,
+    "imagen": "455.jpg"
+  },
+  {
+    "id": 456,
+    "categoria": "comidas",
+    "descripcion": "combo 06 empanadas (03 mixtas/03 pollo) + 01 inca kola 1 l",
+    "precio": 13.9,
+    "imagen": "456.jpg"
+  },
+  {
+    "id": 457,
+    "categoria": "comidas",
+    "descripcion": "combo 06 empanadas de carne tambo + 01 coca cola 1 l",
+    "precio": 13.9,
+    "imagen": "457.jpg"
+  },
+  {
+    "id": 458,
+    "categoria": "comidas",
+    "descripcion": "combo 06 empanadas de carne tambo + 01 inca kola 1 l",
+    "precio": 13.9,
+    "imagen": "458.jpg"
+  },
+  {
+    "id": 459,
+    "categoria": "comidas",
+    "descripcion": "combo 06 empanadas de pollo tambo + 01 inca kola 1 l",
+    "precio": 13.9,
+    "imagen": "459.jpg"
+  },
+  {
+    "id": 460,
+    "categoria": "comidas",
+    "descripcion": "combo 05 empanadas de carne",
+    "precio": 12.5,
+    "imagen": "460.jpg"
+  },
+  {
+    "id": 461,
+    "categoria": "comidas",
+    "descripcion": "combo 05 empanadas de pollo",
+    "precio": 12.5,
+    "imagen": "461.jpg"
+  },
+  {
+    "id": 462,
+    "categoria": "comidas",
+    "descripcion": "combo 05 empanadas mixtas",
+    "precio": 12.5,
+    "imagen": "462.jpg"
+  },
+  {
+    "id": 463,
+    "categoria": "comidas",
+    "descripcion": "combo 02 hamburguesa doble con queso tambo",
+    "precio": 13.8,
+    "imagen": "463.jpg"
+  },
+  {
+    "id": 464,
+    "categoria": "comidas",
+    "descripcion": "combo 02 hamburguesa parrillera tambo",
+    "precio": 13.8,
+    "imagen": "464.jpg"
+  },
+  {
+    "id": 465,
+    "categoria": "comidas",
+    "descripcion": "combo 02 pan pollo mega crocante tambo",
+    "precio": 13.8,
+    "imagen": "465.jpg"
+  },
+  {
+    "id": 466,
+    "categoria": "comidas",
+    "descripcion": "combo 02 torta helada tambo",
+    "precio": 9.8,
+    "imagen": "466.jpg"
+  },
+  {
+    "id": 467,
+    "categoria": "comidas",
+    "descripcion": "combo 02 torta selva negra tambo",
+    "precio": 9.8,
+    "imagen": "467.jpg"
+  },
+  {
+    "id": 468,
+    "categoria": "comidas",
+    "descripcion": "combo 02 tres leches tambo",
+    "precio": 9.8,
+    "imagen": "468.jpg"
+  },
+  {
+    "id": 469,
+    "categoria": "comidas",
+    "descripcion": "empanada aj� de gallina tambo",
+    "precio": 4.2,
+    "imagen": "469.jpg"
+  },
+  {
+    "id": 470,
+    "categoria": "comidas",
+    "descripcion": "empanada mixta tambo",
+    "precio": 3.2,
+    "imagen": "470.jpg"
+  },
+  {
+    "id": 471,
+    "categoria": "comidas",
+    "descripcion": "empanada de carne tambo",
+    "precio": 3.2,
+    "imagen": "471.jpg"
+  },
+  {
+    "id": 472,
+    "categoria": "comidas",
+    "descripcion": "empanada de pollo tambo",
+    "precio": 3.2,
+    "imagen": "472.jpg"
+  },
+  {
+    "id": 473,
+    "categoria": "comidas",
+    "descripcion": "cheesecake de maracuya tambo",
+    "precio": 4.9,
+    "imagen": "473.jpg"
+  },
+  {
+    "id": 474,
+    "categoria": "comidas",
+    "descripcion": "combo 02 hamburguesa de res + gaseosa coca cola 1 l",
+    "precio": 14.7,
+    "imagen": "474.jpg"
+  },
+  {
+    "id": 475,
+    "categoria": "comidas",
+    "descripcion": "combo 02 hamburguesa de res + gaseosa inca kola 1 l",
+    "precio": 14.7,
+    "imagen": "475.jpg"
+  },
+  {
+    "id": 476,
+    "categoria": "comidas",
+    "descripcion": "combo 02 pizza familiar carn�vora tambo + gaseosa coca cola 1 l",
+    "precio": 36.7,
+    "imagen": "476.jpg"
+  },
+  {
+    "id": 477,
+    "categoria": "comidas",
+    "descripcion": "combo 02 pizza familiar hawaiana tambo + gaseosa coca cola 1 l",
+    "precio": 32.7,
+    "imagen": "477.jpg"
+  },
+  {
+    "id": 478,
+    "categoria": "comidas",
+    "descripcion": "combo 02 pizza familiar hawaiana tambo + gaseosa inca kola 1 l",
+    "precio": 32.7,
+    "imagen": "478.jpg"
+  },
+  {
+    "id": 479,
+    "categoria": "comidas",
+    "descripcion": "combo 02 pizza familiar pepperoni tambo + gaseosa coca cola 1 l",
+    "precio": 34.7,
+    "imagen": "479.jpg"
+  },
+  {
+    "id": 480,
+    "categoria": "comidas",
+    "descripcion": "combo 02 pizzas familiar americana tambo + gaseosa coca cola 1 l",
+    "precio": 30.7,
+    "imagen": "480.jpg"
+  },
+  {
+    "id": 485,
+    "categoria": "comidas",
+    "descripcion": "combo 04 empanadas de carne tambo + jugo arandano pi�a�epic� 380 ml",
+    "precio": 17.2,
+    "imagen": "485.jpg"
+  },
+  {
+    "id": 486,
+    "categoria": "comidas",
+    "descripcion": "combo 04 empanadas de carne tambo + jugo naranja�epic� 380 ml",
+    "precio": 17.2,
+    "imagen": "486.jpg"
+  },
+  {
+    "id": 487,
+    "categoria": "comidas",
+    "descripcion": "combo 04 empanadas de pollo tambo + jugo arandano pi�a�epic� 380 ml",
+    "precio": 17.2,
+    "imagen": "487.jpg"
+  },
+  {
+    "id": 488,
+    "categoria": "comidas",
+    "descripcion": "combo 04 empanadas de pollo tambo + jugo naranja�epic� 380 ml",
+    "precio": 17.2,
+    "imagen": "488.jpg"
+  },
+  {
+    "id": 489,
+    "categoria": "comidas",
+    "descripcion": "combo 04 empanadas mixta tambo + jugo arandano pi�a�epic� 380 ml",
+    "precio": 17.2,
+    "imagen": "489.jpg"
+  },
+  {
+    "id": 490,
+    "categoria": "comidas",
+    "descripcion": "combo 04 empanadas mixta tambo + jugo naranja�epic� 380 ml",
+    "precio": 17.2,
+    "imagen": "490.jpg"
+  },
+  {
+    "id": 491,
+    "categoria": "comidas",
+    "descripcion": "combo 10 empanadas cl�sicas (04 carne/04 pollo/02 mixta)",
+    "precio": 18.9,
+    "imagen": "491.jpg"
+  },
+  {
+    "id": 492,
+    "categoria": "comidas",
+    "descripcion": "combo 10 empanadas cl�sicas (05 carne/05 mixta)",
+    "precio": 18.9,
+    "imagen": "492.jpg"
+  },
+  {
+    "id": 493,
+    "categoria": "comidas",
+    "descripcion": "combo 10 empanadas cl�sicas (05 pollo/05 carne)",
+    "precio": 18.9,
+    "imagen": "493.jpg"
+  },
+  {
+    "id": 494,
+    "categoria": "comidas",
+    "descripcion": "combo 10 empanadas cl�sicas (05 pollo/05 mixta)",
+    "precio": 18.9,
+    "imagen": "494.jpg"
+  },
+  {
+    "id": 495,
+    "categoria": "comidas",
+    "descripcion": "combo 10 empanadas de carne",
+    "precio": 18.9,
+    "imagen": "495.jpg"
+  },
+  {
+    "id": 496,
+    "categoria": "comidas",
+    "descripcion": "combo 10 empanadas de pollo",
+    "precio": 18.9,
+    "imagen": "496.jpg"
+  },
+  {
+    "id": 497,
+    "categoria": "comidas",
+    "descripcion": "combo 10 empanadas mixta",
+    "precio": 18.9,
+    "imagen": "497.jpg"
+  },
+  {
+    "id": 498,
+    "categoria": "comidas",
+    "descripcion": "combo 5 empanadas carne + gaseosa coca cola 1 l",
+    "precio": 17.1,
+    "imagen": "498.jpg"
+  },
+  {
+    "id": 499,
+    "categoria": "comidas",
+    "descripcion": "combo 5 empanadas carne + gaseosa inca kola 1 l",
+    "precio": 17.1,
+    "imagen": "499.jpg"
+  },
+  {
+    "id": 500,
+    "categoria": "comidas",
+    "descripcion": "combo 5 empanadas mixta + gaseosa coca cola 1 l",
+    "precio": 17.1,
+    "imagen": "500.jpg"
+  },
+  {
+    "id": 501,
+    "categoria": "comidas",
+    "descripcion": "combo 5 empanadas mixta + gaseosa inca kola 1 l",
+    "precio": 17.1,
+    "imagen": "501.jpg"
+  },
+  {
+    "id": 502,
+    "categoria": "comidas",
+    "descripcion": "combo empanada de carne + jugo�epic�naranja 250 ml",
+    "precio": 7,
+    "imagen": "502.jpg"
+  },
+  {
+    "id": 503,
+    "categoria": "comidas",
+    "descripcion": "combo empanada de carne + jugo�epic�zanahoria naranja 250 ml",
+    "precio": 7,
+    "imagen": "503.jpg"
+  },
+  {
+    "id": 504,
+    "categoria": "comidas",
+    "descripcion": "combo empanada mixta + jugo�epic�zanahoria naranja 250 ml",
+    "precio": 7,
+    "imagen": "504.jpg"
+  },
+  {
+    "id": 505,
+    "categoria": "comidas",
+    "descripcion": "combo hamburguesa pollo + jugo epic naranja 250 ml",
+    "precio": 9,
+    "imagen": "505.jpg"
+  },
+  {
+    "id": 506,
+    "categoria": "comidas",
+    "descripcion": "combo hamburguesa pollo + jugo�epic�zanahoria naranja 250 ml",
+    "precio": 9,
+    "imagen": "506.jpg"
+  },
+  {
+    "id": 507,
+    "categoria": "comidas",
+    "descripcion": "combo hamburguesa de pollo + hamburguesa de res + gaseosa coca cola 1 l",
+    "precio": 14.7,
+    "imagen": "507.jpg"
+  },
+  {
+    "id": 508,
+    "categoria": "comidas",
+    "descripcion": "combo hamburguesa de pollo + hamburguesa de res + gaseosa inca kola 1 l",
+    "precio": 14.7,
+    "imagen": "508.jpg"
+  },
+  {
+    "id": 509,
+    "categoria": "comidas",
+    "descripcion": "combo pan pollo deshilachado + jugo�epic�mango maracuya 250 ml",
+    "precio": 9,
+    "imagen": "509.jpg"
+  },
+  {
+    "id": 510,
+    "categoria": "comidas",
+    "descripcion": "combo pan pollo deshilachado + jugo�epic�naranja 250 ml",
+    "precio": 9,
+    "imagen": "510.jpg"
+  },
+  {
+    "id": 511,
+    "categoria": "comidas",
+    "descripcion": "combo pan pollo deshilachado + jugo�epic�zanahoria naranja 250 ml",
+    "precio": 9,
+    "imagen": "511.jpg"
+  },
+  {
+    "id": 512,
+    "categoria": "comidas",
+    "descripcion": "pack 02 cerveza cusque�a trigo sixpack botella 310 ml",
+    "precio": 41.9,
+    "imagen": "512.jpg"
+  },
+  {
+    "id": 513,
+    "categoria": "comidas",
+    "descripcion": "pan con choriburguer tambo",
+    "precio": 4.9,
+    "imagen": "513.jpg"
+  },
+  {
+    "id": 514,
+    "categoria": "comidas",
+    "descripcion": "pie de lim�n tambo",
+    "precio": 4.9,
+    "imagen": "514.jpg"
+  },
+  {
+    "id": 515,
+    "categoria": "comidas",
+    "descripcion": "torta helada tambo",
+    "precio": 4.9,
+    "imagen": "515.jpg"
+  },
+  {
+    "id": 516,
+    "categoria": "comidas",
+    "descripcion": "torta selva negra tambo 1 und",
+    "precio": 4.9,
+    "imagen": "516.jpg"
+  },
+  {
+    "id": 521,
+    "categoria": "comidas",
+    "descripcion": "combo 01 pizza familiar americana + 01 inka cola sin az�car 1 l",
+    "precio": 16.8,
+    "imagen": "521.jpg"
+  },
+  {
+    "id": 522,
+    "categoria": "comidas",
+    "descripcion": "combo 01 pizza familiar hawaiana + 01 coca cola 1 l",
+    "precio": 17.8,
+    "imagen": "522.jpg"
+  },
+  {
+    "id": 523,
+    "categoria": "comidas",
+    "descripcion": "combo 01 pizza familiar hawaiana + 01 inca kola 1 l",
+    "precio": 17.8,
+    "imagen": "523.jpg"
+  },
+  {
+    "id": 524,
+    "categoria": "comidas",
+    "descripcion": "combo 01 pizza familiar mozzarella + 01 coca cola 1 l",
+    "precio": 15.8,
+    "imagen": "524.jpg"
+  },
+  {
+    "id": 525,
+    "categoria": "comidas",
+    "descripcion": "combo 01 pizza familiar mozzarella + 01 coca cola sin az�car 1 l",
+    "precio": 15.8,
+    "imagen": "525.jpg"
+  },
+  {
+    "id": 526,
+    "categoria": "comidas",
+    "descripcion": "combo 01 pizza familiar mozzarella + 01 inca kola 1 l",
+    "precio": 15.8,
+    "imagen": "526.jpg"
+  },
+  {
+    "id": 527,
+    "categoria": "comidas",
+    "descripcion": "combo 01 pizza familiar mozzarella + 01 inca kola sin az�car 1 l",
+    "precio": 15.8,
+    "imagen": "527.jpg"
+  },
+  {
+    "id": 528,
+    "categoria": "comidas",
+    "descripcion": "combo 02 cheesecake de maracuya tambo",
+    "precio": 9.8,
+    "imagen": "528.jpg"
+  },
+  {
+    "id": 533,
+    "categoria": "comidas",
+    "descripcion": "combo 02 hamburguesa parrillera tambo + 01 inca kola 1 l",
+    "precio": 12.9,
+    "imagen": "533.jpg"
+  },
+  {
+    "id": 534,
+    "categoria": "comidas",
+    "descripcion": "combo 02 hamburguesa queso y tocino tambo + 02 gaseosa guaran� 300 ml",
+    "precio": 12.8,
+    "imagen": "534.jpg"
+  },
+  {
+    "id": 535,
+    "categoria": "comidas",
+    "descripcion": "combo 02 hamburguesa royal con queso tambo + 01 gaseosa coca cola 1 l",
+    "precio": 12.9,
+    "imagen": "535.jpg"
+  },
+  {
+    "id": 536,
+    "categoria": "comidas",
+    "descripcion": "combo 02 hamburguesa royal con queso tambo + 01 gaseosa inca kola 1 l",
+    "precio": 12.9,
+    "imagen": "536.jpg"
+  },
+  {
+    "id": 537,
+    "categoria": "comidas",
+    "descripcion": "combo 02 hamburguesa de pollo + gaseosa coca cola 1 l",
+    "precio": 14.7,
+    "imagen": "537.jpg"
+  },
+  {
+    "id": 538,
+    "categoria": "comidas",
+    "descripcion": "combo 02 hamburguesa de pollo + gaseosa inca kola 1 l",
+    "precio": 14.7,
+    "imagen": "538.jpg"
+  },
+  {
+    "id": 539,
+    "categoria": "comidas",
+    "descripcion": "combo 02 pan con choriburguer tambo + gaseosa coca cola 1 l",
+    "precio": 14.7,
+    "imagen": "539.jpg"
+  },
+  {
+    "id": 540,
+    "categoria": "comidas",
+    "descripcion": "combo 02 pan pollo deshilachado + gaseosa coca cola 1 l",
+    "precio": 9.8,
+    "imagen": "540.jpg"
+  },
+  {
+    "id": 545,
+    "categoria": "comidas",
+    "descripcion": "combo 02 papa rellena + 01 inca kola 1 lt",
+    "precio": 12.7,
+    "imagen": "545.jpg"
+  },
+  {
+    "id": 546,
+    "categoria": "comidas",
+    "descripcion": "combo 02 papa rellena + 01 inca kola sin az�car 1 lt",
+    "precio": 12.7,
+    "imagen": "546.jpg"
+  },
+  {
+    "id": 547,
+    "categoria": "comidas",
+    "descripcion": "combo 02 pie de lim�n tambo",
+    "precio": 9.8,
+    "imagen": "547.jpg"
+  },
+  {
+    "id": 548,
+    "categoria": "comidas",
+    "descripcion": "combo 02 pizza familiar americana/mozzarella tambo + gaseosa coca cola 1 l",
+    "precio": 30.7,
+    "imagen": "548.jpg"
+  },
+  {
+    "id": 549,
+    "categoria": "comidas",
+    "descripcion": "combo 02 pizza familiar americana/mozzarella tambo + gaseosa inca kola 1 l",
+    "precio": 30.7,
+    "imagen": "549.jpg"
+  },
+  {
+    "id": 550,
+    "categoria": "comidas",
+    "descripcion": "combo 02 pizza familiar mozzarella tambo + gaseosa coca cola 1 l",
+    "precio": 30.7,
+    "imagen": "550.jpg"
+  },
+  {
+    "id": 551,
+    "categoria": "comidas",
+    "descripcion": "combo 02 pizza familiar mozzarella tambo + gaseosa inca kola 1 l",
+    "precio": 30.7,
+    "imagen": "551.jpg"
+  },
+  {
+    "id": 552,
+    "categoria": "comidas",
+    "descripcion": "combo 02 pizza personal tambo (americana/carnivora)",
+    "precio": 8.8,
+    "imagen": "552.jpg"
+  },
+  {
+    "id": 553,
+    "categoria": "comidas",
+    "descripcion": "combo 02 triple de jamon queso y pollo tambo",
+    "precio": 9.8,
+    "imagen": "553.jpg"
+  },
+  {
+    "id": 557,
+    "categoria": "comidas",
+    "descripcion": "combo 03 torta selva negra tambo",
+    "precio": 9.9,
+    "imagen": "557.jpg"
+  },
+  {
+    "id": 558,
+    "categoria": "comidas",
+    "descripcion": "combo 03 torta de chocolate tambo",
+    "precio": 9.9,
+    "imagen": "558.jpg"
+  },
+  {
+    "id": 559,
+    "categoria": "comidas",
+    "descripcion": "combo 03 tres leches tambo",
+    "precio": 9.9,
+    "imagen": "559.jpg"
+  },
+  {
+    "id": 560,
+    "categoria": "comidas",
+    "descripcion": "combo 04 empanadas premium (02 empanadas aji de gallina/02 empanadas lomo saltado)",
+    "precio": 15.6,
+    "imagen": "560.jpg"
+  },
+  {
+    "id": 561,
+    "categoria": "comidas",
+    "descripcion": "combo 04 empanadas premium (02 empanadas de chanchito oriental/02 empanadas de aji de gallina)",
+    "precio": 15.6,
+    "imagen": "561.jpg"
+  },
+  {
+    "id": 562,
+    "categoria": "comidas",
+    "descripcion": "combo 04 empanadas premium (02 empanadas de chanchito oriental/02 empanadas de lomo saltado)",
+    "precio": 15.6,
+    "imagen": "562.jpg"
+  },
+  {
+    "id": 563,
+    "categoria": "comidas",
+    "descripcion": "combo 05 cheesecake de maracuya",
+    "precio": 24.5,
+    "imagen": "563.jpg"
+  },
+  {
+    "id": 564,
+    "categoria": "comidas",
+    "descripcion": "combo 05 empanadas de carne + 01 gaseosa coca cola 1l",
+    "precio": 19.4,
+    "imagen": "564.jpg"
+  },
+  {
+    "id": 569,
+    "categoria": "comidas",
+    "descripcion": "combo 05 empanadas mixta + 01 gaseosa inca kola 1l",
+    "precio": 19.4,
+    "imagen": "569.jpg"
+  },
+  {
+    "id": 570,
+    "categoria": "comidas",
+    "descripcion": "combo 05 torta de chocolate tambo",
+    "precio": 24.5,
+    "imagen": "570.jpg"
+  },
+  {
+    "id": 571,
+    "categoria": "comidas",
+    "descripcion": "combo 05 torta helada tambo",
+    "precio": 24.5,
+    "imagen": "571.jpg"
+  },
+  {
+    "id": 572,
+    "categoria": "comidas",
+    "descripcion": "combo 05 torta selva negra tambo",
+    "precio": 24.5,
+    "imagen": "572.jpg"
+  },
+  {
+    "id": 573,
+    "categoria": "comidas",
+    "descripcion": "combo 05 tortas (chocolate/selva negra/helada/tres leches/cheesecake de maracuya)",
+    "precio": 24.5,
+    "imagen": "573.jpg"
+  },
+  {
+    "id": 574,
+    "categoria": "comidas",
+    "descripcion": "combo 05 tres leches tambo",
+    "precio": 24.5,
+    "imagen": "574.jpg"
+  },
+  {
+    "id": 575,
+    "categoria": "comidas",
+    "descripcion": "combo 5 empanadas pollo + gaseosa coca cola 1 l",
+    "precio": 17.1,
+    "imagen": "575.jpg"
+  },
+  {
+    "id": 576,
+    "categoria": "comidas",
+    "descripcion": "combo 5 empanadas pollo + gaseosa inca kola 1 l",
+    "precio": 17.1,
+    "imagen": "576.jpg"
+  },
+  {
+    "id": 581,
+    "categoria": "comidas",
+    "descripcion": "combo empanada mixta + jugo�epic�mango maracuya 250 ml",
+    "precio": 7,
+    "imagen": "581.jpg"
+  },
+  {
+    "id": 582,
+    "categoria": "comidas",
+    "descripcion": "combo empanada mixta + jugo�epic�naranja 250 ml",
+    "precio": 7,
+    "imagen": "582.jpg"
+  },
+  {
+    "id": 583,
+    "categoria": "comidas",
+    "descripcion": "combo hamburguesa pollo + jugo�epic�mango maracuya 250 ml",
+    "precio": 9,
+    "imagen": "583.jpg"
+  },
+  {
+    "id": 584,
+    "categoria": "comidas",
+    "descripcion": "empanada de chanchito oriental",
+    "precio": 4.2,
+    "imagen": "584.jpg"
+  },
+  {
+    "id": 585,
+    "categoria": "comidas",
+    "descripcion": "empanada de choclo con queso",
+    "precio": 4.2,
+    "imagen": "585.jpg"
+  },
+  {
+    "id": 586,
+    "categoria": "comidas",
+    "descripcion": "enrollado de pollo bbq el cedro 1 und",
+    "precio": 9.9,
+    "imagen": "586.jpg"
+  },
+  {
+    "id": 587,
+    "categoria": "comidas",
+    "descripcion": "enrollado pizzero el cedro 1 und",
+    "precio": 9.9,
+    "imagen": "587.jpg"
+  },
+  {
+    "id": 588,
+    "categoria": "comidas",
+    "descripcion": "enrollado pollo a la brasa el cedro 1 und",
+    "precio": 10.4,
+    "imagen": "588.jpg"
+  },
+  {
+    "id": 589,
+    "categoria": "comidas",
+    "descripcion": "enrollado de pollo jamon queso tambo 1 und",
+    "precio": 7.4,
+    "imagen": "589.jpg"
+  },
+  {
+    "id": 590,
+    "categoria": "comidas",
+    "descripcion": "gelatina tambo 1 und",
+    "precio": 1.9,
+    "imagen": "590.jpg"
+  },
+  {
+    "id": 591,
+    "categoria": "comidas",
+    "descripcion": "hamburguesa doble con queso tambo",
+    "precio": 6.9,
+    "imagen": "591.jpg"
+  },
+  {
+    "id": 592,
+    "categoria": "comidas",
+    "descripcion": "hamburguesa onion rings",
+    "precio": 6.9,
+    "imagen": "592.jpg"
+  },
+  {
+    "id": 593,
+    "categoria": "comidas",
+    "descripcion": "hamburguesa parrillera tambo",
+    "precio": 7.9,
+    "imagen": "593.jpg"
+  },
+  {
+    "id": 594,
+    "categoria": "comidas",
+    "descripcion": "hamburguesa queso y tocino tambo",
+    "precio": 6.9,
+    "imagen": "594.jpg"
+  },
+  {
+    "id": 595,
+    "categoria": "comidas",
+    "descripcion": "hamburguesa royal con queso y huevo",
+    "precio": 6.9,
+    "imagen": "595.jpg"
+  },
+  {
+    "id": 596,
+    "categoria": "comidas",
+    "descripcion": "hamburguesa de pollo tambo",
+    "precio": 4.9,
+    "imagen": "596.jpg"
+  },
+  {
+    "id": 597,
+    "categoria": "comidas",
+    "descripcion": "hamburguesa de res tambo",
+    "precio": 9.8,
+    "imagen": "597.jpg"
+  },
+  {
+    "id": 598,
+    "categoria": "comidas",
+    "descripcion": "pack vino altos del sur cabernet sauvignon 750 ml + pizza familiar americana",
+    "precio": 43.8,
+    "imagen": "598.jpg"
+  },
+  {
+    "id": 599,
+    "categoria": "comidas",
+    "descripcion": "pack vino altos del sur cabernet sauvignon 750 ml + pizza familiar mozzarella",
+    "precio": 42.8,
+    "imagen": "599.jpg"
+  },
+  {
+    "id": 600,
+    "categoria": "comidas",
+    "descripcion": "pack vino altos del sur carmenere 750 ml + pizza familiar americana",
+    "precio": 43.8,
+    "imagen": "600.jpg"
+  },
+  {
+    "id": 601,
+    "categoria": "comidas",
+    "descripcion": "pack vino altos del sur carmenere 750 ml + pizza familiar mozzarella",
+    "precio": 42.8,
+    "imagen": "601.jpg"
+  },
+  {
+    "id": 602,
+    "categoria": "comidas",
+    "descripcion": "pan pollo deshilachado tambo",
+    "precio": 4.9,
+    "imagen": "602.jpg"
+  },
+  {
+    "id": 603,
+    "categoria": "comidas",
+    "descripcion": "pan pollo mega crocante tambo",
+    "precio": 6.9,
+    "imagen": "603.jpg"
+  },
+  {
+    "id": 604,
+    "categoria": "comidas",
+    "descripcion": "papa rellena tambo",
+    "precio": 3.9,
+    "imagen": "604.jpg"
+  },
+  {
+    "id": 606,
+    "categoria": "comidas",
+    "descripcion": "pizza familiar carnivora tambo",
+    "precio": 16.9,
+    "imagen": "606.jpg"
+  },
+  {
+    "id": 609,
+    "categoria": "comidas",
+    "descripcion": "pizza personal carnivora tambo 1 und",
+    "precio": 5.4,
+    "imagen": "609.jpg"
+  },
+  {
+    "id": 610,
+    "categoria": "comidas",
+    "descripcion": "pizza familiar hawaiana tambo",
+    "precio": 12.9,
+    "imagen": "610.jpg"
+  },
+  {
+    "id": 611,
+    "categoria": "comidas",
+    "descripcion": "pizza personal americana tambo",
+    "precio": 3.9,
+    "imagen": "611.jpg"
+  },
+  {
+    "id": 612,
+    "categoria": "comidas",
+    "descripcion": "tres leches tambo",
+    "precio": 4.9,
+    "imagen": "612.jpg"
+  },
+  {
+    "id": 613,
+    "categoria": "comidas",
+    "descripcion": "triple de jamon queso y pollo tambo",
+    "precio": 5.9,
+    "imagen": "613.jpg"
+  },
+  {
+    "id": 614,
+    "categoria": "comidas",
+    "descripcion": "triple de jam�n, queso y huevo",
+    "precio": 4.5,
+    "imagen": "614.jpg"
+  },
+  {
+    "id": 615,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa inca kola + coca cola twopack 3 l",
+    "precio": 21.9,
+    "imagen": "615.jpg"
+  },
+  {
+    "id": 616,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa coca cola 3 l",
+    "precio": 12,
+    "imagen": "616.jpg"
+  },
+  {
+    "id": 617,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa inca kola 3 l",
+    "precio": 12,
+    "imagen": "617.jpg"
+  },
+  {
+    "id": 618,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa coca cola 2.5 l",
+    "precio": 9.9,
+    "imagen": "618.jpg"
+  },
+  {
+    "id": 619,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa inca kola 2.5 l",
+    "precio": 9.9,
+    "imagen": "619.jpg"
+  },
+  {
+    "id": 620,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa inca kola sin azucar twopack 1.5 l",
+    "precio": 14.4,
+    "imagen": "620.jpg"
+  },
+  {
+    "id": 621,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa coca cola sin azucar 1.5 l",
+    "precio": 3.9,
+    "imagen": "621.jpg"
+  },
+  {
+    "id": 622,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa inca kola sin azucar 1.5 l",
+    "precio": 7.5,
+    "imagen": "622.jpg"
+  },
+  {
+    "id": 623,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa coca cola 1 l",
+    "precio": 2.9,
+    "imagen": "623.jpg"
+  },
+  {
+    "id": 624,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa coca cola sin az�car 1 l",
+    "precio": 2.9,
+    "imagen": "624.jpg"
+  },
+  {
+    "id": 625,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa inca kola 1 l",
+    "precio": 2.9,
+    "imagen": "625.jpg"
+  },
+  {
+    "id": 626,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa inca kola sin az�car 1 l",
+    "precio": 2.9,
+    "imagen": "626.jpg"
+  },
+  {
+    "id": 627,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 02 gaseosas 1 l (01 coca cola + 01 inca kola)",
+    "precio": 9.5,
+    "imagen": "627.jpg"
+  },
+  {
+    "id": 628,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 02 gaseosas coca cola 1 l",
+    "precio": 9.5,
+    "imagen": "628.jpg"
+  },
+  {
+    "id": 629,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 02 gaseosas coca cola sin az�car 1 l",
+    "precio": 9.5,
+    "imagen": "629.jpg"
+  },
+  {
+    "id": 630,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 02 gaseosas inca kola 1 l",
+    "precio": 9.5,
+    "imagen": "630.jpg"
+  },
+  {
+    "id": 631,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 02 gaseosas inca kola sin az�car 1 l",
+    "precio": 9.5,
+    "imagen": "631.jpg"
+  },
+  {
+    "id": 632,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 02 gaseosas sin az�car 1 l (01 coca cola + 01 inca kola)",
+    "precio": 9.5,
+    "imagen": "632.jpg"
+  },
+  {
+    "id": 633,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "bebida carbonatada schweppes citrus 1.5 l",
+    "precio": 5.9,
+    "imagen": "633.jpg"
+  },
+  {
+    "id": 634,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "bebida carbonatada schweppes ginger ale 1.5 l",
+    "precio": 5.9,
+    "imagen": "634.jpg"
+  },
+  {
+    "id": 635,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 03 bebida carbonatada schweppes citrus 1.5 l",
+    "precio": 20.7,
+    "imagen": "635.jpg"
+  },
+  {
+    "id": 636,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 03 bebida carbonatada schweppes ginger ale 1.5 l",
+    "precio": 20.7,
+    "imagen": "636.jpg"
+  },
+  {
+    "id": 637,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 06 bebida carbonatada schweppes citrus 1.5 l",
+    "precio": 41.4,
+    "imagen": "637.jpg"
+  },
+  {
+    "id": 638,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 06 bebida carbonatada schweppes ginger ale 1.5 l",
+    "precio": 41.4,
+    "imagen": "638.jpg"
+  },
+  {
+    "id": 639,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "bebida evervess carbonatada 1.5 l",
+    "precio": 5.9,
+    "imagen": "639.jpg"
+  },
+  {
+    "id": 640,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 03 bebida carbonatada evervess 1.5 l",
+    "precio": 20.7,
+    "imagen": "640.jpg"
+  },
+  {
+    "id": 641,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa coca cola 500 ml",
+    "precio": 2.9,
+    "imagen": "641.jpg"
+  },
+  {
+    "id": 642,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa coca cola sin azucar 500 ml",
+    "precio": 2.9,
+    "imagen": "642.jpg"
+  },
+  {
+    "id": 643,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa inca kola 500 ml",
+    "precio": 2.9,
+    "imagen": "643.jpg"
+  },
+  {
+    "id": 644,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa inca kola sin azucar 500 ml",
+    "precio": 2.9,
+    "imagen": "644.jpg"
+  },
+  {
+    "id": 645,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa sprite 2.25 l",
+    "precio": 7.9,
+    "imagen": "645.jpg"
+  },
+  {
+    "id": 646,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa guaran� vitaminizada 3 l",
+    "precio": 7,
+    "imagen": "646.jpg"
+  },
+  {
+    "id": 647,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa guaran� vitaminizada 2 l",
+    "precio": 5.9,
+    "imagen": "647.jpg"
+  },
+  {
+    "id": 648,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa pepsi 3 l",
+    "precio": 11,
+    "imagen": "648.jpg"
+  },
+  {
+    "id": 649,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa pepsi 1.5 l",
+    "precio": 6.5,
+    "imagen": "649.jpg"
+  },
+  {
+    "id": 650,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa pepsi 1 l",
+    "precio": 4.4,
+    "imagen": "650.jpg"
+  },
+  {
+    "id": 651,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "agua embotellada mineral san mateo sin gas 2.5 l",
+    "precio": 2.8,
+    "imagen": "651.jpg"
+  },
+  {
+    "id": 652,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "sixpack agua san mateo con gas 600 ml",
+    "precio": 8.9,
+    "imagen": "652.jpg"
+  },
+  {
+    "id": 653,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "sixpack agua san mateo sin gas 600 ml",
+    "precio": 8.9,
+    "imagen": "653.jpg"
+  },
+  {
+    "id": 654,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "agua san mateo con gas 600 ml",
+    "precio": 2.2,
+    "imagen": "654.jpg"
+  },
+  {
+    "id": 655,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "agua san mateo sin gas 600 ml",
+    "precio": 2.2,
+    "imagen": "655.jpg"
+  },
+  {
+    "id": 656,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "monster energy 473 ml",
+    "precio": 7.9,
+    "imagen": "656.jpg"
+  },
+  {
+    "id": 657,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "monster energy ultra 473 ml",
+    "precio": 7.9,
+    "imagen": "657.jpg"
+  },
+  {
+    "id": 658,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "monster mango loco 473 ml",
+    "precio": 7.9,
+    "imagen": "658.jpg"
+  },
+  {
+    "id": 659,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "monster zero sugar 473 ml",
+    "precio": 7.9,
+    "imagen": "659.jpg"
+  },
+  {
+    "id": 660,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gatorade apple ice 500 ml",
+    "precio": 3.6,
+    "imagen": "660.jpg"
+  },
+  {
+    "id": 661,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gatorade mandarina 500 ml",
+    "precio": 3.6,
+    "imagen": "661.jpg"
+  },
+  {
+    "id": 662,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gatorade tropical fruit 1 l",
+    "precio": 6.1,
+    "imagen": "662.jpg"
+  },
+  {
+    "id": 663,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gatorade tropical fruit 500 ml",
+    "precio": 3.6,
+    "imagen": "663.jpg"
+  },
+  {
+    "id": 664,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "agua san luis sin gas tapa plana 1 l",
+    "precio": 2.4,
+    "imagen": "664.jpg"
+  },
+  {
+    "id": 665,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "bebida energizante red bull 355 ml",
+    "precio": 10.9,
+    "imagen": "665.jpg"
+  },
+  {
+    "id": 666,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "energizante volt dark 300 ml",
+    "precio": 2.6,
+    "imagen": "666.jpg"
+  },
+  {
+    "id": 667,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "energizante volt sin azucar 300 ml",
+    "precio": 2.8,
+    "imagen": "667.jpg"
+  },
+  {
+    "id": 668,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "jugo frugos del valle durazno 1 l",
+    "precio": 4.5,
+    "imagen": "668.jpg"
+  },
+  {
+    "id": 669,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "jugo frugos del valle durazno 300 ml",
+    "precio": 2.4,
+    "imagen": "669.jpg"
+  },
+  {
+    "id": 670,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "jugo frugos del valle durazno pet 1 l",
+    "precio": 5.9,
+    "imagen": "670.jpg"
+  },
+  {
+    "id": 671,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "jugo frugos del valle fresh fruit punch 500 ml",
+    "precio": 1.6,
+    "imagen": "671.jpg"
+  },
+  {
+    "id": 672,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "jugo frugos del valle fresh manzana 500 ml",
+    "precio": 1.6,
+    "imagen": "672.jpg"
+  },
+  {
+    "id": 673,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "jugo frugos del valle fresh naranja 500 ml",
+    "precio": 1.6,
+    "imagen": "673.jpg"
+  },
+  {
+    "id": 674,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "jugo frugos del valle mango 1 l",
+    "precio": 4.5,
+    "imagen": "674.jpg"
+  },
+  {
+    "id": 675,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "jugo frugos del valle naranja pet 1 l",
+    "precio": 5.9,
+    "imagen": "675.jpg"
+  },
+  {
+    "id": 676,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 02 agua de mesa fontlife sin gas 1 l",
+    "precio": 4,
+    "imagen": "676.jpg"
+  },
+  {
+    "id": 677,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 02 agua mineral san mateo sin gas 2.5 l",
+    "precio": 8.8,
+    "imagen": "677.jpg"
+  },
+  {
+    "id": 678,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 02 bebida energizante red bull 250 ml",
+    "precio": 12.9,
+    "imagen": "678.jpg"
+  },
+  {
+    "id": 679,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 02 bebida energizante red bull 355 ml",
+    "precio": 19.8,
+    "imagen": "679.jpg"
+  },
+  {
+    "id": 680,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 02 bebida energizante red bull sugar free 250 ml",
+    "precio": 12.9,
+    "imagen": "680.jpg"
+  },
+  {
+    "id": 681,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 02 bebida energizante red bull tropical edition 250 ml",
+    "precio": 12.9,
+    "imagen": "681.jpg"
+  },
+  {
+    "id": 682,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 02 gaseosa coca cola sin az�car 1.5 l",
+    "precio": 9.9,
+    "imagen": "682.jpg"
+  },
+  {
+    "id": 683,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 02 suerox adulto 630 ml (fresa kiwi/manzana)",
+    "precio": 11,
+    "imagen": "683.jpg"
+  },
+  {
+    "id": 684,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 02 suerox adulto 630 ml (fresa kiwi/mora azul)",
+    "precio": 11,
+    "imagen": "684.jpg"
+  },
+  {
+    "id": 685,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 02 suerox adulto 630 ml (manzana/mora azul)",
+    "precio": 11,
+    "imagen": "685.jpg"
+  },
+  {
+    "id": 686,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 02 suerox adulto fresa kiwi 630 ml",
+    "precio": 11,
+    "imagen": "686.jpg"
+  },
+  {
+    "id": 687,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 02 suerox adulto manzana 630 ml",
+    "precio": 11,
+    "imagen": "687.jpg"
+  },
+  {
+    "id": 688,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 02 suerox adulto mora azul 630 ml",
+    "precio": 11,
+    "imagen": "688.jpg"
+  },
+  {
+    "id": 689,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 03 agua mineral san mateo sin gas 2.5 l",
+    "precio": 13.8,
+    "imagen": "689.jpg"
+  },
+  {
+    "id": 690,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 03 agua t�nica evervess 1.5 l",
+    "precio": 20.7,
+    "imagen": "690.jpg"
+  },
+  {
+    "id": 691,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 03 gaseosa pepsi 1 l",
+    "precio": 10.8,
+    "imagen": "691.jpg"
+  },
+  {
+    "id": 692,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 04 gaseosa pepsi 1 l",
+    "precio": 11,
+    "imagen": "692.jpg"
+  },
+  {
+    "id": 693,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 04 gaseosas 1 l (02 coca cola + 02 inca kola)",
+    "precio": 12.9,
+    "imagen": "693.jpg"
+  },
+  {
+    "id": 694,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 04 gaseosas coca cola 1 l",
+    "precio": 12.9,
+    "imagen": "694.jpg"
+  },
+  {
+    "id": 699,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "suerox bebida hidratante sin az�car manzana 630ml",
+    "precio": 6.5,
+    "imagen": "699.jpg"
+  },
+  {
+    "id": 700,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "suerox bebida hidratante sin az�car mora azul 630ml",
+    "precio": 6.5,
+    "imagen": "700.jpg"
+  },
+  {
+    "id": 701,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "agua cielo con gas 625 ml",
+    "precio": 1.9,
+    "imagen": "701.jpg"
+  },
+  {
+    "id": 702,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "agua cielo sin gas 625 ml",
+    "precio": 1.9,
+    "imagen": "702.jpg"
+  },
+  {
+    "id": 703,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "agua de mesa fontlife sin gas 1 l",
+    "precio": 2,
+    "imagen": "703.jpg"
+  },
+  {
+    "id": 704,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "agua de mesa fontlife sin gas 10 l",
+    "precio": 9.5,
+    "imagen": "704.jpg"
+  },
+  {
+    "id": 705,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "agua de mesa fontlife sin gas 2.5 l",
+    "precio": 2.5,
+    "imagen": "705.jpg"
+  },
+  {
+    "id": 706,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "agua embotellada cielo sin gas 1 l",
+    "precio": 3.1,
+    "imagen": "706.jpg"
+  },
+  {
+    "id": 711,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "agua saborizada san luis maracuy� con gas 625 ml",
+    "precio": 2.2,
+    "imagen": "711.jpg"
+  },
+  {
+    "id": 712,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "agua saborizada san luis pi�a kion 625 ml",
+    "precio": 2.2,
+    "imagen": "712.jpg"
+  },
+  {
+    "id": 713,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "agua san carlos sin gas 750 ml",
+    "precio": 2.1,
+    "imagen": "713.jpg"
+  },
+  {
+    "id": 714,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "agua san luis sin gas 750 ml",
+    "precio": 1.8,
+    "imagen": "714.jpg"
+  },
+  {
+    "id": 715,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "agua san luis con gas 625 ml",
+    "precio": 1.8,
+    "imagen": "715.jpg"
+  },
+  {
+    "id": 716,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "agua san luis sin gas 2.5 l",
+    "precio": 3.5,
+    "imagen": "716.jpg"
+  },
+  {
+    "id": 717,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "agua t�nica britvic four pack",
+    "precio": 20.9,
+    "imagen": "717.jpg"
+  },
+  {
+    "id": 718,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "agua t�nica evervess 1.5 l",
+    "precio": 5.9,
+    "imagen": "718.jpg"
+  },
+  {
+    "id": 723,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "bebida energizante red bull 250 ml",
+    "precio": 8.9,
+    "imagen": "723.jpg"
+  },
+  {
+    "id": 724,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "bebida energizante red bull sugar free 250 ml",
+    "precio": 8.9,
+    "imagen": "724.jpg"
+  },
+  {
+    "id": 725,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "bebida energizante red bull watermelon edition 250 ml",
+    "precio": 8.9,
+    "imagen": "725.jpg"
+  },
+  {
+    "id": 726,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "combo 02 papa rellena + 01 coca cola 1 lt",
+    "precio": 12.7,
+    "imagen": "726.jpg"
+  },
+  {
+    "id": 727,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "combo 02 papa rellena + 01 coca cola sin az�car 1 lt",
+    "precio": 12.7,
+    "imagen": "727.jpg"
+  },
+  {
+    "id": 728,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "combo 02 papa rellena + 01 inca kola 1 lt",
+    "precio": 12.7,
+    "imagen": "728.jpg"
+  },
+  {
+    "id": 729,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "combo 02 papa rellena + 01 inca kola sin az�car 1 lt",
+    "precio": 12.7,
+    "imagen": "729.jpg"
+  },
+  {
+    "id": 730,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "combo 05 empanadas de carne + 01 gaseosa coca cola 1l",
+    "precio": 19.4,
+    "imagen": "730.jpg"
+  },
+  {
+    "id": 735,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "energizante vol pink 300 ml",
+    "precio": 2.6,
+    "imagen": "735.jpg"
+  },
+  {
+    "id": 736,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "energizante volt gamer lata 473 ml",
+    "precio": 5,
+    "imagen": "736.jpg"
+  },
+  {
+    "id": 737,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa big cola 3.3 l",
+    "precio": 9.6,
+    "imagen": "737.jpg"
+  },
+  {
+    "id": 738,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa coca cola zero 300 ml",
+    "precio": 2.2,
+    "imagen": "738.jpg"
+  },
+  {
+    "id": 739,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa coca cola sin az�car twopack pet 1.5 l",
+    "precio": 14.4,
+    "imagen": "739.jpg"
+  },
+  {
+    "id": 740,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa concordia pi�a 500 ml",
+    "precio": 2.5,
+    "imagen": "740.jpg"
+  },
+  {
+    "id": 741,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa fanta 2.25 l",
+    "precio": 7.9,
+    "imagen": "741.jpg"
+  },
+  {
+    "id": 742,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa fanta 300 ml",
+    "precio": 2.4,
+    "imagen": "742.jpg"
+  },
+  {
+    "id": 747,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa guaran� 1 l",
+    "precio": 4.5,
+    "imagen": "747.jpg"
+  },
+  {
+    "id": 748,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa guaran� 300 ml",
+    "precio": 2,
+    "imagen": "748.jpg"
+  },
+  {
+    "id": 749,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa guaran� backus 450 ml",
+    "precio": 2.7,
+    "imagen": "749.jpg"
+  },
+  {
+    "id": 750,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa inca kola zero 300 ml",
+    "precio": 2.2,
+    "imagen": "750.jpg"
+  },
+  {
+    "id": 751,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa pepsi 355 ml",
+    "precio": 2.1,
+    "imagen": "751.jpg"
+  },
+  {
+    "id": 752,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa pepsi 750 ml",
+    "precio": 3.8,
+    "imagen": "752.jpg"
+  },
+  {
+    "id": 753,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa seven up 1.5 l",
+    "precio": 5.4,
+    "imagen": "753.jpg"
+  },
+  {
+    "id": 754,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa seven up 3 l",
+    "precio": 8.6,
+    "imagen": "754.jpg"
+  },
+  {
+    "id": 759,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "gaseosa triple kola pet 500 ml",
+    "precio": 2.6,
+    "imagen": "759.jpg"
+  },
+  {
+    "id": 760,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "jugo ar�ndano pi�a epic 380 ml",
+    "precio": 5.6,
+    "imagen": "760.jpg"
+  },
+  {
+    "id": 761,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "jugo cifrut citrus punch 1.5 l",
+    "precio": 5.4,
+    "imagen": "761.jpg"
+  },
+  {
+    "id": 762,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "jugo epic aguaymanto pi�a 380 ml",
+    "precio": 5.6,
+    "imagen": "762.jpg"
+  },
+  {
+    "id": 763,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "jugo epic mango maracuya 250 ml",
+    "precio": 4.2,
+    "imagen": "763.jpg"
+  },
+  {
+    "id": 764,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "jugo epic mango maracuya 380 ml",
+    "precio": 5.6,
+    "imagen": "764.jpg"
+  },
+  {
+    "id": 765,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "jugo epic naranja 250 ml",
+    "precio": 4.2,
+    "imagen": "765.jpg"
+  },
+  {
+    "id": 766,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "jugo epic zanahoria naranja 250 ml",
+    "precio": 4.2,
+    "imagen": "766.jpg"
+  },
+  {
+    "id": 771,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "jugo mogu mogu fresa 320 ml",
+    "precio": 5.9,
+    "imagen": "771.jpg"
+  },
+  {
+    "id": 772,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "jugo mogu mogu uva 320 ml",
+    "precio": 5.9,
+    "imagen": "772.jpg"
+  },
+  {
+    "id": 773,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "jugo naranja epic 380 ml",
+    "precio": 5.6,
+    "imagen": "773.jpg"
+  },
+  {
+    "id": 774,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "jugo pulp durazno tetrapak 315 ml",
+    "precio": 2.4,
+    "imagen": "774.jpg"
+  },
+  {
+    "id": 775,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "jugo tampico citrus punch 1.5 l",
+    "precio": 4.4,
+    "imagen": "775.jpg"
+  },
+  {
+    "id": 776,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "jugo tampico citrus punch 500 ml",
+    "precio": 1.9,
+    "imagen": "776.jpg"
+  },
+  {
+    "id": 777,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 02 bebida energizante red bull watermelon edition 250 ml",
+    "precio": 12.9,
+    "imagen": "777.jpg"
+  },
+  {
+    "id": 778,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 02 energizante monster energy 473 ml",
+    "precio": 11.5,
+    "imagen": "778.jpg"
+  },
+  {
+    "id": 783,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 06 gaseosa coca cola zero 300 ml",
+    "precio": 13.2,
+    "imagen": "783.jpg"
+  },
+  {
+    "id": 784,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "pack 06 gaseosa inca kola zero 300 ml",
+    "precio": 13.2,
+    "imagen": "784.jpg"
+  },
+  {
+    "id": 785,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "rehidratante sporade blueberry tapa plana 500 ml",
+    "precio": 2.8,
+    "imagen": "785.jpg"
+  },
+  {
+    "id": 786,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "rehidratante sporade mandarina tapa plana 500 ml",
+    "precio": 2.8,
+    "imagen": "786.jpg"
+  },
+  {
+    "id": 787,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "rehidratante sporade tropical tapa plana 500 ml",
+    "precio": 2.8,
+    "imagen": "787.jpg"
+  },
+  {
+    "id": 788,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "six pack rehidratante gatorade 500 ml (03 apple ice/03 cool blue)",
+    "precio": 10.9,
+    "imagen": "788.jpg"
+  },
+  {
+    "id": 789,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "six pack rehidratante gatorade 500 ml (03 apple ice/03 mandarina)",
+    "precio": 10.9,
+    "imagen": "789.jpg"
+  },
+  {
+    "id": 790,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "six pack rehidratante gatorade 500 ml (03 apple ice/03 tropical fruit)",
+    "precio": 10.9,
+    "imagen": "790.jpg"
+  },
+  {
+    "id": 795,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "six pack rehidratante gatorade mandarina 500 ml",
+    "precio": 10.9,
+    "imagen": "795.jpg"
+  },
+  {
+    "id": 796,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "six pack rehidratante gatorade tropical fruit 500 ml",
+    "precio": 10.9,
+    "imagen": "796.jpg"
+  },
+  {
+    "id": 797,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "sixpack agua mineral san mateo sin gas 2.5 l",
+    "precio": 16.8,
+    "imagen": "797.jpg"
+  },
+  {
+    "id": 798,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "sixpack coca cola 500ml",
+    "precio": 17.4,
+    "imagen": "798.jpg"
+  },
+  {
+    "id": 799,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "sixpack coca cola zero 500ml",
+    "precio": 17.4,
+    "imagen": "799.jpg"
+  },
+  {
+    "id": 800,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "sixpack inca kola 500ml",
+    "precio": 17.4,
+    "imagen": "800.jpg"
+  },
+  {
+    "id": 801,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "sixpack inca kola zero 500ml",
+    "precio": 17.4,
+    "imagen": "801.jpg"
+  },
+  {
+    "id": 802,
+    "categoria": "bebidas no alholicas",
+    "descripcion": "suerox bebida hidratante sin az�car fresa kiwi 630ml",
+    "precio": 6.5,
+    "imagen": "802.jpg"
+  },
+  {
+    "id": 805,
+    "categoria": "cigarros",
+    "descripcion": "vapeador electr�nico meloso berry trio ice 9000 puff 1 und",
+    "precio": 74.9,
+    "imagen": "805.jpg"
+  },
+  {
+    "id": 806,
+    "categoria": "cigarros",
+    "descripcion": "vapeador electr�nico meloso sour apple ice 9000 puff 1und",
+    "precio": 74.9,
+    "imagen": "806.jpg"
+  },
+  {
+    "id": 807,
+    "categoria": "cigarros",
+    "descripcion": "vapeador electr�nico meloso strawberry mango 9000 puff 1und",
+    "precio": 74.9,
+    "imagen": "807.jpg"
+  },
+  {
+    "id": 808,
+    "categoria": "cigarros",
+    "descripcion": "vapeador electr�nico boom blue razz 1 und",
+    "precio": 39.9,
+    "imagen": "808.jpg"
+  },
+  {
+    "id": 809,
+    "categoria": "cigarros",
+    "descripcion": "vapeador electr�nico boom mango ice 1 und",
+    "precio": 39.9,
+    "imagen": "809.jpg"
+  },
+  {
+    "id": 810,
+    "categoria": "cigarros",
+    "descripcion": "vapeador electr�nico boom grape ice 1 und",
+    "precio": 39.9,
+    "imagen": "810.jpg"
+  },
+  {
+    "id": 811,
+    "categoria": "cigarros",
+    "descripcion": "cigarro electr�nico stlth apple kiwi melon ice 5000 puff 1 und",
+    "precio": 44.9,
+    "imagen": "811.jpg"
+  },
+  {
+    "id": 812,
+    "categoria": "cigarros",
+    "descripcion": "cigarro electr�nico stlth berry burst ice mini 1 und",
+    "precio": 21.9,
+    "imagen": "812.jpg"
+  },
+  {
+    "id": 813,
+    "categoria": "cigarros",
+    "descripcion": "cigarro electr�nico stlth strawberry lime ice 8000 puff 1 und",
+    "precio": 59.9,
+    "imagen": "813.jpg"
+  },
+  {
+    "id": 814,
+    "categoria": "cigarros",
+    "descripcion": "cigarro electr�nico stlth grape ice mini 1 und",
+    "precio": 21.9,
+    "imagen": "814.jpg"
+  },
+  {
+    "id": 815,
+    "categoria": "cigarros",
+    "descripcion": "cigarro electr�nico stlth maxngo aloe ice 5000 puff  1 und",
+    "precio": 44.9,
+    "imagen": "815.jpg"
+  },
+  {
+    "id": 816,
+    "categoria": "cigarros",
+    "descripcion": "cigarro l&m electro fusion ks box 10 und",
+    "precio": 6.6,
+    "imagen": "816.jpg"
+  },
+  {
+    "id": 817,
+    "categoria": "cigarros",
+    "descripcion": "cigarro l&m forward blue ks 20 und",
+    "precio": 12,
+    "imagen": "817.jpg"
+  },
+  {
+    "id": 818,
+    "categoria": "cigarros",
+    "descripcion": "cigarro marlboro double burst 10 und",
+    "precio": 10.5,
+    "imagen": "818.jpg"
+  },
+  {
+    "id": 819,
+    "categoria": "cigarros",
+    "descripcion": "cigarro marlboro double burst 20",
+    "precio": 19,
+    "imagen": "819.jpg"
+  },
+  {
+    "id": 820,
+    "categoria": "cigarros",
+    "descripcion": "cigarro marlboro exotic fusion ks box 20 und",
+    "precio": 17,
+    "imagen": "820.jpg"
+  },
+  {
+    "id": 821,
+    "categoria": "cigarros",
+    "descripcion": "cigarro marlboro fusion ks 20 und",
+    "precio": 19,
+    "imagen": "821.jpg"
+  },
+  {
+    "id": 822,
+    "categoria": "cigarros",
+    "descripcion": "cigarro marlboro gold 10 und",
+    "precio": 9,
+    "imagen": "822.jpg"
+  },
+  {
+    "id": 823,
+    "categoria": "cigarros",
+    "descripcion": "cigarro marlboro gold 20",
+    "precio": 17.5,
+    "imagen": "823.jpg"
+  },
+  {
+    "id": 824,
+    "categoria": "cigarros",
+    "descripcion": "cigarro marlboro kretek mint ks 20",
+    "precio": 19,
+    "imagen": "824.jpg"
+  },
+  {
+    "id": 829,
+    "categoria": "cigarros",
+    "descripcion": "cigarro winston red 10 und",
+    "precio": 8.7,
+    "imagen": "829.jpg"
+  },
+  {
+    "id": 830,
+    "categoria": "cigarros",
+    "descripcion": "encendedor braza 1 und",
+    "precio": 1.2,
+    "imagen": "830.jpg"
+  },
+  {
+    "id": 831,
+    "categoria": "cigarros",
+    "descripcion": "papel p/cigarro ocb organic hemp n�1 50 und",
+    "precio": 3.5,
+    "imagen": "831.jpg"
+  },
+  {
+    "id": 832,
+    "categoria": "cigarros",
+    "descripcion": "papel p/cigarro ocb premium n� 1 negro 50 und",
+    "precio": 3.5,
+    "imagen": "832.jpg"
+  },
+  {
+    "id": 833,
+    "categoria": "cigarros",
+    "descripcion": "papel p/cigarro ocb x-pert n� 1 azul 50 und",
+    "precio": 3.5,
+    "imagen": "833.jpg"
+  },
+  {
+    "id": 834,
+    "categoria": "cigarros",
+    "descripcion": "pod stlth 5% double mint caja 2 und",
+    "precio": 30,
+    "imagen": "834.jpg"
+  },
+  {
+    "id": 835,
+    "categoria": "cigarros",
+    "descripcion": "pod stlth 5% grape ice caja 2 und",
+    "precio": 30,
+    "imagen": "835.jpg"
+  },
+  {
+    "id": 836,
+    "categoria": "cigarros",
+    "descripcion": "vapeador electronico meloso max apple sunrise 9000 puff  1 und",
+    "precio": 74.9,
+    "imagen": "836.jpg"
+  },
+  {
+    "id": 837,
+    "categoria": "cigarros",
+    "descripcion": "vapeador electronico meloso max coconut shake 9000 puff  1 und",
+    "precio": 74.9,
+    "imagen": "837.jpg"
+  },
+  {
+    "id": 838,
+    "categoria": "cigarros",
+    "descripcion": "vapeador electronico meloso max colombian coffe ice 9000 puff  1 und",
+    "precio": 74.9,
+    "imagen": "838.jpg"
+  },
+  {
+    "id": 839,
+    "categoria": "cigarros",
+    "descripcion": "vapeador electronico meloso max purple haze 9000 puff  1 und",
+    "precio": 74.9,
+    "imagen": "839.jpg"
+  },
+  {
+    "id": 840,
+    "categoria": "cigarros",
+    "descripcion": "vapeador electronico meloso mini blueberry ice 1500 puff  1 und",
+    "precio": 24.9,
+    "imagen": "840.jpg"
+  },
+  {
+    "id": 841,
+    "categoria": "cigarros",
+    "descripcion": "vapeador electronico meloso mini grape jelly 1500 puff  1 und",
+    "precio": 24.9,
+    "imagen": "841.jpg"
+  },
+  {
+    "id": 842,
+    "categoria": "cigarros",
+    "descripcion": "vapeador electronico meloso mini peach berry 1500 puff  1 und",
+    "precio": 24.9,
+    "imagen": "842.jpg"
+  },
+  {
+    "id": 843,
+    "categoria": "cigarros",
+    "descripcion": "vapeador electronico meloso mini strawberry maxngo 1500 puff  1 und",
+    "precio": 24.9,
+    "imagen": "843.jpg"
+  },
+  {
+    "id": 844,
+    "categoria": "cigarros",
+    "descripcion": "vapeador electr�nico meloso alaska mint 1500 puff  1 und",
+    "precio": 24.9,
+    "imagen": "844.jpg"
+  },
+  {
+    "id": 845,
+    "categoria": "cigarros",
+    "descripcion": "vapeador electr�nico meloso meico maxngo 1500 puff  1 und",
+    "precio": 24.9,
+    "imagen": "845.jpg"
+  },
+  {
+    "id": 846,
+    "categoria": "cigarros",
+    "descripcion": "vapeador electr�nico meloso pina colada 1500 puff  1 und",
+    "precio": 24.9,
+    "imagen": "846.jpg"
+  },
+  {
+    "id": 847,
+    "categoria": "cigarros",
+    "descripcion": "vapeador electr�nico meloso strawberry banana 1500 puff  1 und",
+    "precio": 24.9,
+    "imagen": "847.jpg"
+  },
+  {
+    "id": 848,
+    "categoria": "cigarros",
+    "descripcion": "vapeador electr�nico meloso watermelon ice 9000 puff",
+    "precio": 74.9,
+    "imagen": "848.jpg"
+  },
+  {
+    "id": 849,
+    "categoria": "piqueos y snacks",
+    "descripcion": "papas lays cl�sicas 150g",
+    "precio": 8.4,
+    "imagen": "849.jpg"
+  },
+  {
+    "id": 1000,
+    "categoria": "piqueos y snacks",
+    "descripcion": "pop corn jappy snack acaramelado 30 gr",
+    "precio": 1.5,
+    "imagen": "1000.jpg"
+  },
+  {
+    "id": 1001,
+    "categoria": "piqueos y snacks",
+    "descripcion": "pop corn jappy snack original 95 gr",
+    "precio": 2.9,
+    "imagen": "1001.jpg"
+  },
+  {
+    "id": 1002,
+    "categoria": "piqueos y snacks",
+    "descripcion": "pop corn movie pop extra mantequilla 90 gr",
+    "precio": 2.9,
+    "imagen": "1002.jpg"
+  },
+  {
+    "id": 1003,
+    "categoria": "piqueos y snacks",
+    "descripcion": "pop corn movie pop mantequilla 90 gr",
+    "precio": 2.9,
+    "imagen": "1003.jpg"
+  },
+  {
+    "id": 1004,
+    "categoria": "piqueos y snacks",
+    "descripcion": "pop corn movie pop natural 90 gr",
+    "precio": 2.9,
+    "imagen": "1004.jpg"
+  },
+  {
+    "id": 1005,
+    "categoria": "piqueos y snacks",
+    "descripcion": "pop corn movie pop tripack extra mantequilla 270 gr",
+    "precio": 8.9,
+    "imagen": "1005.jpg"
+  },
+  {
+    "id": 1006,
+    "categoria": "piqueos y snacks",
+    "descripcion": "potato snack nongshim 55 gr",
+    "precio": 7.9,
+    "imagen": "1006.jpg"
+  },
+  {
+    "id": 1007,
+    "categoria": "piqueos y snacks",
+    "descripcion": "snack blends villa natura cocktail premium 80 gr",
+    "precio": 8.4,
+    "imagen": "1007.jpg"
+  },
+  {
+    "id": 1008,
+    "categoria": "piqueos y snacks",
+    "descripcion": "snack inka corn ma�z gigante chile picante 100 gr",
+    "precio": 6.9,
+    "imagen": "1008.jpg"
+  },
+  {
+    "id": 1009,
+    "categoria": "piqueos y snacks",
+    "descripcion": "snack inka corn ma�z gigante original 100 gr",
+    "precio": 6.9,
+    "imagen": "1009.jpg"
+  },
+  {
+    "id": 1010,
+    "categoria": "piqueos y snacks",
+    "descripcion": "sweet potato snack nongshim 55 gr",
+    "precio": 7.9,
+    "imagen": "1010.jpg"
+  },
+  {
+    "id": 1011,
+    "categoria": "piqueos y snacks",
+    "descripcion": "taquitos hot jappy snack 28 gr",
+    "precio": 1.5,
+    "imagen": "1011.jpg"
+  },
+  {
+    "id": 1012,
+    "categoria": "piqueos y snacks",
+    "descripcion": "taquitos hot jappy snack 84 gr",
+    "precio": 4.9,
+    "imagen": "1012.jpg"
+  },
+  {
+    "id": 1013,
+    "categoria": "piqueos y snacks",
+    "descripcion": "tor-tees picante 138g",
+    "precio": 5.9,
+    "imagen": "1013.jpg"
+  },
+  {
+    "id": 1014,
+    "categoria": "piqueos y snacks",
+    "descripcion": "tostitos redondos salado 280g",
+    "precio": 12.9,
+    "imagen": "1014.jpg"
+  },
+  {
+    "id": 1015,
+    "categoria": "piqueos y snacks",
+    "descripcion": "yogurt mix granuts 180 gr",
+    "precio": 11.9,
+    "imagen": "1015.jpg"
+  },
+  {
+    "id": 1016,
+    "categoria": "piqueos y snacks",
+    "descripcion": "yogurt mix granuts 40 gr",
+    "precio": 3.5,
+    "imagen": "1016.jpg"
+  },
+  {
+    "id": 1017,
+    "categoria": "confiteria",
+    "descripcion": "ba�ado chocolate mani gordis 21g",
+    "precio": 2.3,
+    "imagen": "1017.jpg"
+  },
+  {
+    "id": 1018,
+    "categoria": "confiteria",
+    "descripcion": "ba�ado chocolate pasas gordis 21g",
+    "precio": 2.3,
+    "imagen": "1018.jpg"
+  },
+  {
+    "id": 1019,
+    "categoria": "confiteria",
+    "descripcion": "bomb�n bon o bon coraz�n acr�lico 105 gr",
+    "precio": 20,
+    "imagen": "1019.jpg"
+  },
+  {
+    "id": 1020,
+    "categoria": "confiteria",
+    "descripcion": "chicle trident 5s yerba 8.5 gr",
+    "precio": 1.9,
+    "imagen": "1020.jpg"
+  },
+  {
+    "id": 1021,
+    "categoria": "confiteria",
+    "descripcion": "chocolate arcor semiamargo 50% 25 gr",
+    "precio": 2.7,
+    "imagen": "1021.jpg"
+  },
+  {
+    "id": 1022,
+    "categoria": "confiteria",
+    "descripcion": "chocolate bon o bon osito 75 gr",
+    "precio": 18.4,
+    "imagen": "1022.jpg"
+  },
+  {
+    "id": 1023,
+    "categoria": "confiteria",
+    "descripcion": "chocolate ferrero rocher 100 gr",
+    "precio": 34.9,
+    "imagen": "1023.jpg"
+  },
+  {
+    "id": 1024,
+    "categoria": "confiteria",
+    "descripcion": "chocolate nestle triangulo doypack 136 gr",
+    "precio": 14.9,
+    "imagen": "1024.jpg"
+  },
+  {
+    "id": 1025,
+    "categoria": "confiteria",
+    "descripcion": "chocolate princesa coraz�n 144 gr",
+    "precio": 23.9,
+    "imagen": "1025.jpg"
+  },
+  {
+    "id": 1026,
+    "categoria": "confiteria",
+    "descripcion": "chocolate princesa doypack 136 g",
+    "precio": 14.9,
+    "imagen": "1026.jpg"
+  },
+  {
+    "id": 1027,
+    "categoria": "confiteria",
+    "descripcion": "chocolate rocklets doypack 150 gr",
+    "precio": 15.2,
+    "imagen": "1027.jpg"
+  },
+  {
+    "id": 1028,
+    "categoria": "confiteria",
+    "descripcion": "chocolate tableta bon o bon leche 1 und",
+    "precio": 2.4,
+    "imagen": "1028.jpg"
+  },
+  {
+    "id": 1029,
+    "categoria": "confiteria",
+    "descripcion": "chocolate vizzio cereal 21 gr",
+    "precio": 1,
+    "imagen": "1029.jpg"
+  },
+  {
+    "id": 1030,
+    "categoria": "confiteria",
+    "descripcion": "chocolate vizzio gragea man� 21 gr",
+    "precio": 1,
+    "imagen": "1030.jpg"
+  },
+  {
+    "id": 1031,
+    "categoria": "confiteria",
+    "descripcion": "galleta choko soda 36 g",
+    "precio": 1.9,
+    "imagen": "1031.jpg"
+  },
+  {
+    "id": 1032,
+    "categoria": "confiteria",
+    "descripcion": "galleta oreo xl regular 54 gr",
+    "precio": 2,
+    "imagen": "1032.jpg"
+  },
+  {
+    "id": 1033,
+    "categoria": "confiteria",
+    "descripcion": "galleta picaras coraz�n fresa 40 gr",
+    "precio": 1.2,
+    "imagen": "1033.jpg"
+  },
+  {
+    "id": 1034,
+    "categoria": "confiteria",
+    "descripcion": "galleta de arroz coste�o cl�sica 50 gr",
+    "precio": 2.2,
+    "imagen": "1034.jpg"
+  },
+  {
+    "id": 1035,
+    "categoria": "confiteria",
+    "descripcion": "galleta de arroz coste�o finas hierbas 50 gr",
+    "precio": 2.2,
+    "imagen": "1035.jpg"
+  },
+  {
+    "id": 1036,
+    "categoria": "confiteria",
+    "descripcion": "galletas surtiditas arcor 400 gr",
+    "precio": 8.5,
+    "imagen": "1036.jpg"
+  },
+  {
+    "id": 1037,
+    "categoria": "confiteria",
+    "descripcion": "nestl� sublime chocolate doypack 136 gr",
+    "precio": 14.9,
+    "imagen": "1037.jpg"
+  },
+  {
+    "id": 1038,
+    "categoria": "confiteria",
+    "descripcion": "pack 02 chocolate princesa doypack 136 gr",
+    "precio": 29.8,
+    "imagen": "1038.jpg"
+  },
+  {
+    "id": 1039,
+    "categoria": "confiteria",
+    "descripcion": "wafer nik ba�ado 34 gr",
+    "precio": 1.4,
+    "imagen": "1039.jpg"
+  },
+  {
+    "id": 1040,
+    "categoria": "confiteria",
+    "descripcion": "alfajor bon o bon 40 gr",
+    "precio": 3.4,
+    "imagen": "1040.jpg"
+  },
+  {
+    "id": 1041,
+    "categoria": "confiteria",
+    "descripcion": "barquillo morochas stick 28 g",
+    "precio": 2.2,
+    "imagen": "1041.jpg"
+  },
+  {
+    "id": 1042,
+    "categoria": "confiteria",
+    "descripcion": "barquillo obsesi�n 21 g",
+    "precio": 1.5,
+    "imagen": "1042.jpg"
+  },
+  {
+    "id": 1043,
+    "categoria": "confiteria",
+    "descripcion": "barra de chocolate snickers peanut butter 1 und",
+    "precio": 5.3,
+    "imagen": "1043.jpg"
+  },
+  {
+    "id": 1044,
+    "categoria": "confiteria",
+    "descripcion": "bauducco cookies chocolate 100 gr",
+    "precio": 6.9,
+    "imagen": "1044.jpg"
+  },
+  {
+    "id": 1045,
+    "categoria": "confiteria",
+    "descripcion": "bauducco cookies original 100 gr",
+    "precio": 6.9,
+    "imagen": "1045.jpg"
+  },
+  {
+    "id": 1046,
+    "categoria": "confiteria",
+    "descripcion": "ba�ado chocolate galleta gordis 21g",
+    "precio": 2.3,
+    "imagen": "1046.jpg"
+  },
+  {
+    "id": 1047,
+    "categoria": "confiteria",
+    "descripcion": "beso de moza cl�sico 9 und",
+    "precio": 9.9,
+    "imagen": "1047.jpg"
+  },
+  {
+    "id": 1048,
+    "categoria": "confiteria",
+    "descripcion": "bizcocho ba�ado chocman black 29 gr",
+    "precio": 1.8,
+    "imagen": "1048.jpg"
+  },
+  {
+    "id": 1049,
+    "categoria": "confiteria",
+    "descripcion": "bizcocho ba�ado chocman doble black 53 gr",
+    "precio": 2,
+    "imagen": "1049.jpg"
+  },
+  {
+    "id": 1050,
+    "categoria": "confiteria",
+    "descripcion": "bombones montblanc surtidos 8 und",
+    "precio": 18.9,
+    "imagen": "1050.jpg"
+  },
+  {
+    "id": 1051,
+    "categoria": "confiteria",
+    "descripcion": "bomb�n bon o bon leche 15 gr",
+    "precio": 1.6,
+    "imagen": "1051.jpg"
+  },
+  {
+    "id": 1052,
+    "categoria": "confiteria",
+    "descripcion": "bomb�n bon o bon leche caja 105 gr",
+    "precio": 20.4,
+    "imagen": "1052.jpg"
+  },
+  {
+    "id": 1053,
+    "categoria": "confiteria",
+    "descripcion": "bon o bon coraz�n chocolinas pote mini 105 gr",
+    "precio": 20,
+    "imagen": "1053.jpg"
+  },
+  {
+    "id": 1054,
+    "categoria": "confiteria",
+    "descripcion": "bon o bon fresa pote coraz�n mini 105 gr",
+    "precio": 20,
+    "imagen": "1054.jpg"
+  },
+  {
+    "id": 1055,
+    "categoria": "confiteria",
+    "descripcion": "caramelo ambrosoli full cherry 22.5 gr",
+    "precio": 1.3,
+    "imagen": "1055.jpg"
+  },
+  {
+    "id": 1056,
+    "categoria": "confiteria",
+    "descripcion": "caramelo ambrosoli mentitas 21 g",
+    "precio": 1.3,
+    "imagen": "1056.jpg"
+  },
+  {
+    "id": 1057,
+    "categoria": "confiteria",
+    "descripcion": "caramelo barbie anillo diamante 13 gr",
+    "precio": 1.7,
+    "imagen": "1057.jpg"
+  },
+  {
+    "id": 1058,
+    "categoria": "confiteria",
+    "descripcion": "caramelo halls cherry lyptus barra 1 und",
+    "precio": 2,
+    "imagen": "1058.jpg"
+  },
+  {
+    "id": 1059,
+    "categoria": "confiteria",
+    "descripcion": "caramelo halls extra strong barra 1 und",
+    "precio": 2,
+    "imagen": "1059.jpg"
+  },
+  {
+    "id": 1060,
+    "categoria": "confiteria",
+    "descripcion": "caramelo halls fruit mix barra",
+    "precio": 2,
+    "imagen": "1060.jpg"
+  },
+  {
+    "id": 1061,
+    "categoria": "confiteria",
+    "descripcion": "caramelo halls mora azul barra 1 und",
+    "precio": 2,
+    "imagen": "1061.jpg"
+  },
+  {
+    "id": 1062,
+    "categoria": "confiteria",
+    "descripcion": "caramelo mentos clean breath peppermint 17.5 gr",
+    "precio": 7.9,
+    "imagen": "1062.jpg"
+  },
+  {
+    "id": 1063,
+    "categoria": "confiteria",
+    "descripcion": "caramelo mentos clean breath wintergreen 17.5 gr",
+    "precio": 7.9,
+    "imagen": "1063.jpg"
+  },
+  {
+    "id": 1064,
+    "categoria": "confiteria",
+    "descripcion": "caramelo push pop sabores surtidos",
+    "precio": 6.9,
+    "imagen": "1064.jpg"
+  },
+  {
+    "id": 1065,
+    "categoria": "confiteria",
+    "descripcion": "caramelo skittles original 62 g",
+    "precio": 5.9,
+    "imagen": "1065.jpg"
+  },
+  {
+    "id": 1066,
+    "categoria": "confiteria",
+    "descripcion": "caramelo skittles wild berry candy 62 g",
+    "precio": 5.9,
+    "imagen": "1066.jpg"
+  },
+  {
+    "id": 1067,
+    "categoria": "confiteria",
+    "descripcion": "caramelo tic tac menta 16 gr",
+    "precio": 2,
+    "imagen": "1067.jpg"
+  },
+  {
+    "id": 1068,
+    "categoria": "confiteria",
+    "descripcion": "caramelo tic tac naranja 16 gr",
+    "precio": 2,
+    "imagen": "1068.jpg"
+  },
+  {
+    "id": 1069,
+    "categoria": "confiteria",
+    "descripcion": "ca�onazo costa 22 g",
+    "precio": 1.4,
+    "imagen": "1069.jpg"
+  },
+  {
+    "id": 1070,
+    "categoria": "confiteria",
+    "descripcion": "chicle aterralenguas super hiper �cido 22g 1 und",
+    "precio": 1.7,
+    "imagen": "1070.jpg"
+  },
+  {
+    "id": 1071,
+    "categoria": "confiteria",
+    "descripcion": "chicle boogie fresa sand�a � naranja 1 und",
+    "precio": 0.9,
+    "imagen": "1071.jpg"
+  },
+  {
+    "id": 1072,
+    "categoria": "confiteria",
+    "descripcion": "chicle bubbaloo sparkies adams 25 gr",
+    "precio": 1.7,
+    "imagen": "1072.jpg"
+  },
+  {
+    "id": 1073,
+    "categoria": "confiteria",
+    "descripcion": "chicle trident 5s fresa 8.5 gr",
+    "precio": 1.9,
+    "imagen": "1073.jpg"
+  },
+  {
+    "id": 1074,
+    "categoria": "confiteria",
+    "descripcion": "chicle trident 5s menta 8.5 gr",
+    "precio": 1.9,
+    "imagen": "1074.jpg"
+  },
+  {
+    "id": 1075,
+    "categoria": "confiteria",
+    "descripcion": "chicle trident 5s mora 8.5 gr",
+    "precio": 1.9,
+    "imagen": "1075.jpg"
+  },
+  {
+    "id": 1076,
+    "categoria": "confiteria",
+    "descripcion": "chicle trident 5s sandia 8.5 gr",
+    "precio": 1.9,
+    "imagen": "1076.jpg"
+  },
+  {
+    "id": 1077,
+    "categoria": "confiteria",
+    "descripcion": "chicle trident adams evup fresh herbal 30.6 g",
+    "precio": 3.9,
+    "imagen": "1077.jpg"
+  },
+  {
+    "id": 1078,
+    "categoria": "confiteria",
+    "descripcion": "chicle trident adams evup freshmint 30.6 gr",
+    "precio": 3.9,
+    "imagen": "1078.jpg"
+  },
+  {
+    "id": 1079,
+    "categoria": "confiteria",
+    "descripcion": "chicle trident adams evup sand�a 30.6 g",
+    "precio": 3.9,
+    "imagen": "1079.jpg"
+  },
+  {
+    "id": 1080,
+    "categoria": "confiteria",
+    "descripcion": "chicle trident evup cool bubble 30.6 g",
+    "precio": 3.9,
+    "imagen": "1080.jpg"
+  },
+  {
+    "id": 1081,
+    "categoria": "confiteria",
+    "descripcion": "chicle trident evup mentcam 30.6 gr",
+    "precio": 3.9,
+    "imagen": "1081.jpg"
+  },
+  {
+    "id": 1082,
+    "categoria": "confiteria",
+    "descripcion": "chicle trident evup yerbcam 30.6 gr",
+    "precio": 3.9,
+    "imagen": "1082.jpg"
+  },
+  {
+    "id": 1083,
+    "categoria": "confiteria",
+    "descripcion": "chicle grosso 1 und",
+    "precio": 0.6,
+    "imagen": "1083.jpg"
+  },
+  {
+    "id": 1084,
+    "categoria": "confiteria",
+    "descripcion": "chocman costa 30 gr",
+    "precio": 1.8,
+    "imagen": "1084.jpg"
+  },
+  {
+    "id": 1085,
+    "categoria": "confiteria",
+    "descripcion": "chocman costa doble manjar 50 gr",
+    "precio": 1,
+    "imagen": "1085.jpg"
+  },
+  {
+    "id": 1086,
+    "categoria": "confiteria",
+    "descripcion": "choco crema chin chin punch 15 gr",
+    "precio": 0.8,
+    "imagen": "1086.jpg"
+  },
+  {
+    "id": 1087,
+    "categoria": "confiteria",
+    "descripcion": "chocolate beso de moza cl�sico 2 und",
+    "precio": 3.2,
+    "imagen": "1087.jpg"
+  },
+  {
+    "id": 1088,
+    "categoria": "confiteria",
+    "descripcion": "chocolate blanco princesa barra 30 gr",
+    "precio": 2,
+    "imagen": "1088.jpg"
+  },
+  {
+    "id": 1089,
+    "categoria": "confiteria",
+    "descripcion": "chocolate bon o bon frutilla 15 gr",
+    "precio": 1.6,
+    "imagen": "1089.jpg"
+  },
+  {
+    "id": 1090,
+    "categoria": "confiteria",
+    "descripcion": "chocolate chin chin 50 gr",
+    "precio": 3,
+    "imagen": "1090.jpg"
+  },
+  {
+    "id": 1091,
+    "categoria": "confiteria",
+    "descripcion": "chocolate chin chin punch 90 gr",
+    "precio": 6,
+    "imagen": "1091.jpg"
+  },
+  {
+    "id": 1092,
+    "categoria": "confiteria",
+    "descripcion": "chocolate ferrero rocher 37.5 gr",
+    "precio": 10.4,
+    "imagen": "1092.jpg"
+  },
+  {
+    "id": 1093,
+    "categoria": "confiteria",
+    "descripcion": "chocolate golpe barra ba�ada 22 g",
+    "precio": 1.5,
+    "imagen": "1093.jpg"
+  },
+  {
+    "id": 1094,
+    "categoria": "confiteria",
+    "descripcion": "chocolate helena peccanroll caramel crunch 30 gr",
+    "precio": 6.9,
+    "imagen": "1094.jpg"
+  },
+  {
+    "id": 1095,
+    "categoria": "confiteria",
+    "descripcion": "chocolate helena peccanroll clasico 30 gr",
+    "precio": 6.9,
+    "imagen": "1095.jpg"
+  },
+  {
+    "id": 1096,
+    "categoria": "confiteria",
+    "descripcion": "chocolate kisses cookies n creme estuche lazo 102 g",
+    "precio": 16.9,
+    "imagen": "1096.jpg"
+  },
+  {
+    "id": 1097,
+    "categoria": "confiteria",
+    "descripcion": "chocolate kit kat 41.5 gr",
+    "precio": 5.9,
+    "imagen": "1097.jpg"
+  },
+  {
+    "id": 1098,
+    "categoria": "confiteria",
+    "descripcion": "chocolate la iberica pastillas de leche 100 gr",
+    "precio": 16.9,
+    "imagen": "1098.jpg"
+  },
+  {
+    "id": 1099,
+    "categoria": "confiteria",
+    "descripcion": "chocolate la ib�rica barra fondy semisweet 50 gr",
+    "precio": 5.9,
+    "imagen": "1099.jpg"
+  },
+  {
+    "id": 1101,
+    "categoria": "confiteria",
+    "descripcion": "chocolate la ib�rica milky con pecanas y pasas 50 gr",
+    "precio": 8.4,
+    "imagen": "1101.jpg"
+  },
+  {
+    "id": 1102,
+    "categoria": "confiteria",
+    "descripcion": "chocolate la ib�rica mily con almendras 50 gr",
+    "precio": 8.4,
+    "imagen": "1102.jpg"
+  },
+  {
+    "id": 1103,
+    "categoria": "confiteria",
+    "descripcion": "chocolate la ib�rica mini fondy barra 20 gr",
+    "precio": 2.6,
+    "imagen": "1103.jpg"
+  },
+  {
+    "id": 1104,
+    "categoria": "confiteria",
+    "descripcion": "chocolate la ib�rica mini milky barra 20 gr",
+    "precio": 2.6,
+    "imagen": "1104.jpg"
+  },
+  {
+    "id": 1105,
+    "categoria": "confiteria",
+    "descripcion": "chocolate la ib�rica mini milky sin az�car barra 20 gr",
+    "precio": 3.6,
+    "imagen": "1105.jpg"
+  },
+  {
+    "id": 1106,
+    "categoria": "confiteria",
+    "descripcion": "chocolate lentejas nestle cajita 30 gr",
+    "precio": 2.3,
+    "imagen": "1106.jpg"
+  },
+  {
+    "id": 1107,
+    "categoria": "confiteria",
+    "descripcion": "chocolate m&m man� 45 gr",
+    "precio": 5.3,
+    "imagen": "1107.jpg"
+  },
+  {
+    "id": 1108,
+    "categoria": "confiteria",
+    "descripcion": "chocolate m&m's milk 47.9 g",
+    "precio": 5.3,
+    "imagen": "1108.jpg"
+  },
+  {
+    "id": 1109,
+    "categoria": "confiteria",
+    "descripcion": "chocolate milky way 52.2 gr",
+    "precio": 5.3,
+    "imagen": "1109.jpg"
+  },
+  {
+    "id": 1110,
+    "categoria": "confiteria",
+    "descripcion": "chocolate nikolo fresa xl 43 gr",
+    "precio": 2.2,
+    "imagen": "1110.jpg"
+  },
+  {
+    "id": 1111,
+    "categoria": "confiteria",
+    "descripcion": "chocolate nikolo xl 43 gr",
+    "precio": 2.2,
+    "imagen": "1111.jpg"
+  },
+  {
+    "id": 1112,
+    "categoria": "confiteria",
+    "descripcion": "chocolate princesa fresa doypack 136 gr",
+    "precio": 14.9,
+    "imagen": "1112.jpg"
+  },
+  {
+    "id": 1113,
+    "categoria": "confiteria",
+    "descripcion": "chocolate princesa menta doypack 136 gr",
+    "precio": 14.9,
+    "imagen": "1113.jpg"
+  },
+  {
+    "id": 1114,
+    "categoria": "confiteria",
+    "descripcion": "chocolate princesa menta barra 30 gr",
+    "precio": 2,
+    "imagen": "1114.jpg"
+  },
+  {
+    "id": 1115,
+    "categoria": "confiteria",
+    "descripcion": "chocolate rocklets arcor tableta 28 g",
+    "precio": 2.6,
+    "imagen": "1115.jpg"
+  },
+  {
+    "id": 1116,
+    "categoria": "confiteria",
+    "descripcion": "chocolate snickers original 52.7 g",
+    "precio": 5.3,
+    "imagen": "1116.jpg"
+  },
+  {
+    "id": 1117,
+    "categoria": "confiteria",
+    "descripcion": "chocolate snickers snack 21.5 gr",
+    "precio": 2.3,
+    "imagen": "1117.jpg"
+  },
+  {
+    "id": 1118,
+    "categoria": "confiteria",
+    "descripcion": "chocolate sorrento 32 gr",
+    "precio": 1.7,
+    "imagen": "1118.jpg"
+  },
+  {
+    "id": 1119,
+    "categoria": "confiteria",
+    "descripcion": "chocolate sublime almendras 50 gr",
+    "precio": 3.5,
+    "imagen": "1119.jpg"
+  },
+  {
+    "id": 1120,
+    "categoria": "confiteria",
+    "descripcion": "chocolate sublime sonrisa 40 gr",
+    "precio": 2.6,
+    "imagen": "1120.jpg"
+  },
+  {
+    "id": 1121,
+    "categoria": "confiteria",
+    "descripcion": "chocolate triangulo sin az�car 17 gr",
+    "precio": 1.7,
+    "imagen": "1121.jpg"
+  },
+  {
+    "id": 1122,
+    "categoria": "confiteria",
+    "descripcion": "chocolate twix 40 gr",
+    "precio": 5.3,
+    "imagen": "1122.jpg"
+  },
+  {
+    "id": 1123,
+    "categoria": "confiteria",
+    "descripcion": "chocolate vizzio 21 g",
+    "precio": 3,
+    "imagen": "1123.jpg"
+  },
+  {
+    "id": 1124,
+    "categoria": "confiteria",
+    "descripcion": "chocolate vizzio bitter 72 g",
+    "precio": 8.4,
+    "imagen": "1124.jpg"
+  },
+  {
+    "id": 1125,
+    "categoria": "confiteria",
+    "descripcion": "chocolate vizzio costa 72 g",
+    "precio": 8.4,
+    "imagen": "1125.jpg"
+  },
+  {
+    "id": 1126,
+    "categoria": "confiteria",
+    "descripcion": "chocolate winters flow 48 g",
+    "precio": 3.5,
+    "imagen": "1126.jpg"
+  },
+  {
+    "id": 1127,
+    "categoria": "confiteria",
+    "descripcion": "chupete globo pop led print 12 g 1 und",
+    "precio": 1.3,
+    "imagen": "1127.jpg"
+  },
+  {
+    "id": 1128,
+    "categoria": "confiteria",
+    "descripcion": "chupete globo pop led surtido 1 und",
+    "precio": 1.4,
+    "imagen": "1128.jpg"
+  },
+  {
+    "id": 1129,
+    "categoria": "confiteria",
+    "descripcion": "chupete globo pop shake 1 und",
+    "precio": 0.7,
+    "imagen": "1129.jpg"
+  },
+  {
+    "id": 1130,
+    "categoria": "confiteria",
+    "descripcion": "chupete globo pop surtido 1 und",
+    "precio": 0.7,
+    "imagen": "1130.jpg"
+  },
+  {
+    "id": 1131,
+    "categoria": "confiteria",
+    "descripcion": "chupete globo pop xxl 1 und",
+    "precio": 13.9,
+    "imagen": "1131.jpg"
+  },
+  {
+    "id": 1132,
+    "categoria": "confiteria",
+    "descripcion": "costa vizzio estuche 122 g",
+    "precio": 16.9,
+    "imagen": "1132.jpg"
+  },
+  {
+    "id": 1133,
+    "categoria": "confiteria",
+    "descripcion": "coste�o galleta de arroz cl�sicas 150 gr",
+    "precio": 7.9,
+    "imagen": "1133.jpg"
+  },
+  {
+    "id": 1134,
+    "categoria": "confiteria",
+    "descripcion": "coste�o galleta de arroz finas hierbas 150 gr",
+    "precio": 7.9,
+    "imagen": "1134.jpg"
+  },
+  {
+    "id": 1135,
+    "categoria": "confiteria",
+    "descripcion": "do�a pepa 23 g",
+    "precio": 1.8,
+    "imagen": "1135.jpg"
+  },
+  {
+    "id": 1136,
+    "categoria": "confiteria",
+    "descripcion": "d�o pack oreo + ritz 350.4 gr",
+    "precio": 11.4,
+    "imagen": "1136.jpg"
+  },
+  {
+    "id": 1137,
+    "categoria": "confiteria",
+    "descripcion": "galleta agua line de costa 210 gr",
+    "precio": 4.4,
+    "imagen": "1137.jpg"
+  },
+  {
+    "id": 1138,
+    "categoria": "confiteria",
+    "descripcion": "galleta black out 60 gr",
+    "precio": 1.6,
+    "imagen": "1138.jpg"
+  },
+  {
+    "id": 1139,
+    "categoria": "confiteria",
+    "descripcion": "galleta casino chocolate 43 g",
+    "precio": 1.8,
+    "imagen": "1139.jpg"
+  },
+  {
+    "id": 1140,
+    "categoria": "confiteria",
+    "descripcion": "galleta casino fresa 43 g",
+    "precio": 1.8,
+    "imagen": "1140.jpg"
+  },
+  {
+    "id": 1141,
+    "categoria": "confiteria",
+    "descripcion": "galleta casino menta 43 g",
+    "precio": 1.8,
+    "imagen": "1141.jpg"
+  },
+  {
+    "id": 1142,
+    "categoria": "confiteria",
+    "descripcion": "galleta casino vainilla 43 gr",
+    "precio": 1.8,
+    "imagen": "1142.jpg"
+  },
+  {
+    "id": 1143,
+    "categoria": "confiteria",
+    "descripcion": "galleta charada rollo 122.8 gr",
+    "precio": 2.9,
+    "imagen": "1143.jpg"
+  },
+  {
+    "id": 1144,
+    "categoria": "confiteria",
+    "descripcion": "galleta charada de chocolate 40 gr",
+    "precio": 1.5,
+    "imagen": "1144.jpg"
+  },
+  {
+    "id": 1145,
+    "categoria": "confiteria",
+    "descripcion": "galleta chips ahoy 45 gr",
+    "precio": 2.4,
+    "imagen": "1145.jpg"
+  },
+  {
+    "id": 1146,
+    "categoria": "confiteria",
+    "descripcion": "galleta chocodonuts leche costa 36 g",
+    "precio": 1.1,
+    "imagen": "1146.jpg"
+  },
+  {
+    "id": 1147,
+    "categoria": "confiteria",
+    "descripcion": "galleta club social regular 26 g",
+    "precio": 1.5,
+    "imagen": "1147.jpg"
+  },
+  {
+    "id": 1148,
+    "categoria": "confiteria",
+    "descripcion": "galleta coconut san jorge 55 gr",
+    "precio": 1.2,
+    "imagen": "1148.jpg"
+  },
+  {
+    "id": 1149,
+    "categoria": "confiteria",
+    "descripcion": "galleta coronita chocolate 38 g",
+    "precio": 1.5,
+    "imagen": "1149.jpg"
+  },
+  {
+    "id": 1150,
+    "categoria": "confiteria",
+    "descripcion": "galleta coronita rollo 123.5 gr",
+    "precio": 2.9,
+    "imagen": "1150.jpg"
+  },
+  {
+    "id": 1151,
+    "categoria": "confiteria",
+    "descripcion": "galleta costa caritas 31.5 gr",
+    "precio": 1.1,
+    "imagen": "1151.jpg"
+  },
+  {
+    "id": 1152,
+    "categoria": "confiteria",
+    "descripcion": "galleta costa chips chocolate 36 g",
+    "precio": 1.1,
+    "imagen": "1152.jpg"
+  },
+  {
+    "id": 1153,
+    "categoria": "confiteria",
+    "descripcion": "galleta crackelet snack jam�n 47 gr",
+    "precio": 1.9,
+    "imagen": "1153.jpg"
+  },
+  {
+    "id": 1154,
+    "categoria": "confiteria",
+    "descripcion": "galleta cream cracker 73.5 gr",
+    "precio": 2.1,
+    "imagen": "1154.jpg"
+  },
+  {
+    "id": 1155,
+    "categoria": "confiteria",
+    "descripcion": "galleta de mantequilla la vita panettiere lata dorada 114 gr",
+    "precio": 6.9,
+    "imagen": "1155.jpg"
+  },
+  {
+    "id": 1156,
+    "categoria": "confiteria",
+    "descripcion": "galleta de mantequilla la vita panettieri lata verde oscuro 114 gr",
+    "precio": 6.9,
+    "imagen": "1156.jpg"
+  },
+  {
+    "id": 1157,
+    "categoria": "confiteria",
+    "descripcion": "galleta dore 230 gr",
+    "precio": 6.7,
+    "imagen": "1157.jpg"
+  },
+  {
+    "id": 1158,
+    "categoria": "confiteria",
+    "descripcion": "galleta hony bran belvita 33 gr",
+    "precio": 1.5,
+    "imagen": "1158.jpg"
+  },
+  {
+    "id": 1159,
+    "categoria": "confiteria",
+    "descripcion": "galleta integral soy diet coco 150 gr",
+    "precio": 3.5,
+    "imagen": "1159.jpg"
+  },
+  {
+    "id": 1160,
+    "categoria": "confiteria",
+    "descripcion": "galleta integral soy diet kiwicha 150 gr",
+    "precio": 3.5,
+    "imagen": "1160.jpg"
+  },
+  {
+    "id": 1161,
+    "categoria": "confiteria",
+    "descripcion": "galleta integral soy diet quinua 150 gr",
+    "precio": 3.5,
+    "imagen": "1161.jpg"
+  },
+  {
+    "id": 1162,
+    "categoria": "confiteria",
+    "descripcion": "galleta morochas cl�sicas 30 gr",
+    "precio": 1.7,
+    "imagen": "1162.jpg"
+  },
+  {
+    "id": 1163,
+    "categoria": "confiteria",
+    "descripcion": "galleta munici�n san jorge 55 gr",
+    "precio": 1.2,
+    "imagen": "1163.jpg"
+  },
+  {
+    "id": 1164,
+    "categoria": "confiteria",
+    "descripcion": "galleta oreo chocolate rollo 126 g",
+    "precio": 3.4,
+    "imagen": "1164.jpg"
+  },
+  {
+    "id": 1165,
+    "categoria": "confiteria",
+    "descripcion": "galleta oreo cookie and cream 36 g",
+    "precio": 1.6,
+    "imagen": "1165.jpg"
+  },
+  {
+    "id": 1166,
+    "categoria": "confiteria",
+    "descripcion": "galleta oreo regular 36g",
+    "precio": 1.6,
+    "imagen": "1166.jpg"
+  },
+  {
+    "id": 1167,
+    "categoria": "confiteria",
+    "descripcion": "galleta oreo regular rollo 126 g",
+    "precio": 3.4,
+    "imagen": "1167.jpg"
+  },
+  {
+    "id": 1168,
+    "categoria": "confiteria",
+    "descripcion": "galleta p�caras chips 42 g",
+    "precio": 1.5,
+    "imagen": "1168.jpg"
+  },
+  {
+    "id": 1169,
+    "categoria": "confiteria",
+    "descripcion": "galleta p�caras cl�sicas xl 60 gr",
+    "precio": 1.8,
+    "imagen": "1169.jpg"
+  },
+  {
+    "id": 1170,
+    "categoria": "confiteria",
+    "descripcion": "galleta p�caras extrema 40 gr",
+    "precio": 1.5,
+    "imagen": "1170.jpg"
+  },
+  {
+    "id": 1171,
+    "categoria": "confiteria",
+    "descripcion": "galleta rellenitas chocolate taco 90 gr",
+    "precio": 2.1,
+    "imagen": "1171.jpg"
+  },
+  {
+    "id": 1172,
+    "categoria": "confiteria",
+    "descripcion": "galleta rellenitas coco taco 90 gr",
+    "precio": 2.1,
+    "imagen": "1172.jpg"
+  },
+  {
+    "id": 1173,
+    "categoria": "confiteria",
+    "descripcion": "galleta rellenitas fresa taco 90 gr",
+    "precio": 2.1,
+    "imagen": "1173.jpg"
+  },
+  {
+    "id": 1174,
+    "categoria": "confiteria",
+    "descripcion": "galleta rellenitas gn chocolate 36 g",
+    "precio": 1.2,
+    "imagen": "1174.jpg"
+  },
+  {
+    "id": 1175,
+    "categoria": "confiteria",
+    "descripcion": "galleta rellenitas gn coco 36 g",
+    "precio": 1.2,
+    "imagen": "1175.jpg"
+  },
+  {
+    "id": 1176,
+    "categoria": "confiteria",
+    "descripcion": "galleta rellenitas gn fresa 36 g",
+    "precio": 1.2,
+    "imagen": "1176.jpg"
+  },
+  {
+    "id": 1177,
+    "categoria": "confiteria",
+    "descripcion": "galleta rellenitas gn lim�n 36 g",
+    "precio": 1.2,
+    "imagen": "1177.jpg"
+  },
+  {
+    "id": 1178,
+    "categoria": "confiteria",
+    "descripcion": "galleta ritz 22.4 g",
+    "precio": 1.9,
+    "imagen": "1178.jpg"
+  },
+  {
+    "id": 1179,
+    "categoria": "confiteria",
+    "descripcion": "galleta ritz mini original 50 gr",
+    "precio": 2.4,
+    "imagen": "1179.jpg"
+  },
+  {
+    "id": 1180,
+    "categoria": "confiteria",
+    "descripcion": "galleta ritz queso 34 g",
+    "precio": 1.3,
+    "imagen": "1180.jpg"
+  },
+  {
+    "id": 1181,
+    "categoria": "confiteria",
+    "descripcion": "galleta ritz taco caja 201 gr",
+    "precio": 6.9,
+    "imagen": "1181.jpg"
+  },
+  {
+    "id": 1182,
+    "categoria": "confiteria",
+    "descripcion": "galleta san jorge mini rondela 25 gr",
+    "precio": 1.5,
+    "imagen": "1182.jpg"
+  },
+  {
+    "id": 1183,
+    "categoria": "confiteria",
+    "descripcion": "galleta san jorge sabrochas 30 gr",
+    "precio": 1,
+    "imagen": "1183.jpg"
+  },
+  {
+    "id": 1184,
+    "categoria": "confiteria",
+    "descripcion": "galleta soda field original 34 g",
+    "precio": 1.4,
+    "imagen": "1184.jpg"
+  },
+  {
+    "id": 1185,
+    "categoria": "confiteria",
+    "descripcion": "galleta soda light costa familiar 180 gr",
+    "precio": 4.4,
+    "imagen": "1185.jpg"
+  },
+  {
+    "id": 1186,
+    "categoria": "confiteria",
+    "descripcion": "galleta soda san jorge 40 gr",
+    "precio": 1,
+    "imagen": "1186.jpg"
+  },
+  {
+    "id": 1187,
+    "categoria": "confiteria",
+    "descripcion": "galleta tentaci�n sabor chocolate 45 gr",
+    "precio": 1.8,
+    "imagen": "1187.jpg"
+  },
+  {
+    "id": 1188,
+    "categoria": "confiteria",
+    "descripcion": "galleta tentaci�n sabor naranja 42 gr",
+    "precio": 1.8,
+    "imagen": "1188.jpg"
+  },
+  {
+    "id": 1189,
+    "categoria": "confiteria",
+    "descripcion": "galleta vainilla familiar san jorge 120 gr",
+    "precio": 2.4,
+    "imagen": "1189.jpg"
+  },
+  {
+    "id": 1190,
+    "categoria": "confiteria",
+    "descripcion": "galleta gran cereal chocolate 40 gr",
+    "precio": 1.4,
+    "imagen": "1190.jpg"
+  },
+  {
+    "id": 1191,
+    "categoria": "confiteria",
+    "descripcion": "galleta gran cereal cl�sica 40 gr",
+    "precio": 1.4,
+    "imagen": "1191.jpg"
+  },
+  {
+    "id": 1192,
+    "categoria": "confiteria",
+    "descripcion": "galletas colombina moments chocolate 135 gr",
+    "precio": 8.9,
+    "imagen": "1192.jpg"
+  },
+  {
+    "id": 1193,
+    "categoria": "confiteria",
+    "descripcion": "galletas de ma�z salmas granos y semillas 126 gr",
+    "precio": 12.9,
+    "imagen": "1193.jpg"
+  },
+  {
+    "id": 1194,
+    "categoria": "confiteria",
+    "descripcion": "galletas morochas taco 75 gr",
+    "precio": 2,
+    "imagen": "1194.jpg"
+  },
+  {
+    "id": 1195,
+    "categoria": "confiteria",
+    "descripcion": "galletas p�caras cl�sicas 40 gr",
+    "precio": 1.5,
+    "imagen": "1195.jpg"
+  },
+  {
+    "id": 1196,
+    "categoria": "confiteria",
+    "descripcion": "galletas quinoa +nutri co 30 gr",
+    "precio": 3,
+    "imagen": "1196.jpg"
+  },
+  {
+    "id": 1197,
+    "categoria": "confiteria",
+    "descripcion": "galletas quinoa blueberry +nutri co 30 gr",
+    "precio": 3,
+    "imagen": "1197.jpg"
+  },
+  {
+    "id": 1198,
+    "categoria": "confiteria",
+    "descripcion": "galletas quinoa cacao fresa +nutri co 30 gr",
+    "precio": 3,
+    "imagen": "1198.jpg"
+  },
+  {
+    "id": 1199,
+    "categoria": "confiteria",
+    "descripcion": "galletas quinoa cacao nibs +nutri co 30 gr",
+    "precio": 3,
+    "imagen": "1199.jpg"
+  },
+  {
+    "id": 1200,
+    "categoria": "confiteria",
+    "descripcion": "galletas travesura 50 gr",
+    "precio": 2.9,
+    "imagen": "1200.jpg"
+  },
+  {
+    "id": 1201,
+    "categoria": "confiteria",
+    "descripcion": "gallete fruta mixta 55 gr",
+    "precio": 1.2,
+    "imagen": "1201.jpg"
+  },
+  {
+    "id": 1202,
+    "categoria": "confiteria",
+    "descripcion": "gallete vainilla field 37 g",
+    "precio": 1.7,
+    "imagen": "1202.jpg"
+  },
+  {
+    "id": 1203,
+    "categoria": "confiteria",
+    "descripcion": "goma de mascar trident twist fresa 17.1 g",
+    "precio": 3.5,
+    "imagen": "1203.jpg"
+  },
+  {
+    "id": 1204,
+    "categoria": "confiteria",
+    "descripcion": "goma de mascar trident twist menta 17.1 g",
+    "precio": 3.5,
+    "imagen": "1204.jpg"
+  },
+  {
+    "id": 1205,
+    "categoria": "confiteria",
+    "descripcion": "gomas trolli clasic bears 100 gr",
+    "precio": 7.4,
+    "imagen": "1205.jpg"
+  },
+  {
+    "id": 1206,
+    "categoria": "confiteria",
+    "descripcion": "gomas trolli sour glow worms 100 gr",
+    "precio": 7.4,
+    "imagen": "1206.jpg"
+  },
+  {
+    "id": 1207,
+    "categoria": "confiteria",
+    "descripcion": "gomitas fini gusanos �cidos 100 gr",
+    "precio": 5.1,
+    "imagen": "1207.jpg"
+  },
+  {
+    "id": 1208,
+    "categoria": "confiteria",
+    "descripcion": "gomitas fini moras 90 gr",
+    "precio": 5.1,
+    "imagen": "1208.jpg"
+  },
+  {
+    "id": 1209,
+    "categoria": "confiteria",
+    "descripcion": "gomitas fini ositos 90 gr",
+    "precio": 5.1,
+    "imagen": "1209.jpg"
+  },
+  {
+    "id": 1210,
+    "categoria": "confiteria",
+    "descripcion": "gomitas mogul extreme �cido rollo 35 gr",
+    "precio": 1.9,
+    "imagen": "1210.jpg"
+  },
+  {
+    "id": 1211,
+    "categoria": "confiteria",
+    "descripcion": "gomitas mogul ositos extreme 55 gr",
+    "precio": 2,
+    "imagen": "1211.jpg"
+  },
+  {
+    "id": 1212,
+    "categoria": "confiteria",
+    "descripcion": "gomitas mogul sandia extreme 50 gr",
+    "precio": 2.6,
+    "imagen": "1212.jpg"
+  },
+  {
+    "id": 1213,
+    "categoria": "confiteria",
+    "descripcion": "gomitas trolli gummy sharks 100 gr",
+    "precio": 7.4,
+    "imagen": "1213.jpg"
+  },
+  {
+    "id": 1214,
+    "categoria": "confiteria",
+    "descripcion": "gomitas trolli hot dog bola 90 gr",
+    "precio": 11.4,
+    "imagen": "1214.jpg"
+  },
+  {
+    "id": 1215,
+    "categoria": "confiteria",
+    "descripcion": "gomitas trolli neon squiggles 100 gr",
+    "precio": 7.4,
+    "imagen": "1215.jpg"
+  },
+  {
+    "id": 1216,
+    "categoria": "confiteria",
+    "descripcion": "gomitas grissly delf�n 90 gr",
+    "precio": 5.1,
+    "imagen": "1216.jpg"
+  },
+  {
+    "id": 1217,
+    "categoria": "confiteria",
+    "descripcion": "helado kit kat paleta 85 ml",
+    "precio": 4.9,
+    "imagen": "1217.jpg"
+  },
+  {
+    "id": 1218,
+    "categoria": "confiteria",
+    "descripcion": "hershey's barra milk con almendras 41 g",
+    "precio": 5.4,
+    "imagen": "1218.jpg"
+  },
+  {
+    "id": 1219,
+    "categoria": "confiteria",
+    "descripcion": "la iberica chocolate milky 50 gr",
+    "precio": 5.9,
+    "imagen": "1219.jpg"
+  },
+  {
+    "id": 1220,
+    "categoria": "confiteria",
+    "descripcion": "la iberica chocolate milky sin az�car 50 gr",
+    "precio": 7.4,
+    "imagen": "1220.jpg"
+  },
+  {
+    "id": 1221,
+    "categoria": "confiteria",
+    "descripcion": "marshmallow colombina millows surtido 145 gr",
+    "precio": 6.4,
+    "imagen": "1221.jpg"
+  },
+  {
+    "id": 1222,
+    "categoria": "confiteria",
+    "descripcion": "marshmellows ol� ol� bolsita 7 unid 4.5 gr",
+    "precio": 1.8,
+    "imagen": "1222.jpg"
+  },
+  {
+    "id": 1223,
+    "categoria": "confiteria",
+    "descripcion": "marshmellows ol� ol� vainilla 225 gr",
+    "precio": 9.9,
+    "imagen": "1223.jpg"
+  },
+  {
+    "id": 1224,
+    "categoria": "confiteria",
+    "descripcion": "mecano manjar de costa 19 g",
+    "precio": 1.6,
+    "imagen": "1224.jpg"
+  },
+  {
+    "id": 1225,
+    "categoria": "confiteria",
+    "descripcion": "nestl� sublime bitter 40 gr",
+    "precio": 3.2,
+    "imagen": "1225.jpg"
+  },
+  {
+    "id": 1226,
+    "categoria": "confiteria",
+    "descripcion": "nestl� sublime chocolate galleta 28 g",
+    "precio": 2.1,
+    "imagen": "1226.jpg"
+  },
+  {
+    "id": 1227,
+    "categoria": "confiteria",
+    "descripcion": "nestl� sublime cl�sico 30 gr",
+    "precio": 2.1,
+    "imagen": "1227.jpg"
+  },
+  {
+    "id": 1228,
+    "categoria": "confiteria",
+    "descripcion": "nestl� sublime extremo 50 gr",
+    "precio": 3.5,
+    "imagen": "1228.jpg"
+  },
+  {
+    "id": 1229,
+    "categoria": "confiteria",
+    "descripcion": "nestl� sublime sonrisa blanco 40 gr",
+    "precio": 2.6,
+    "imagen": "1229.jpg"
+  },
+  {
+    "id": 1230,
+    "categoria": "confiteria",
+    "descripcion": "oreo dark fudge 131.5 gr",
+    "precio": 5.9,
+    "imagen": "1230.jpg"
+  },
+  {
+    "id": 1231,
+    "categoria": "confiteria",
+    "descripcion": "pack 02 chocolate ferrero rocher 37.5 gr",
+    "precio": 15,
+    "imagen": "1231.jpg"
+  },
+  {
+    "id": 1232,
+    "categoria": "confiteria",
+    "descripcion": "pack 02 chocolate kit kat 41.5 gr",
+    "precio": 8,
+    "imagen": "1232.jpg"
+  },
+  {
+    "id": 1233,
+    "categoria": "confiteria",
+    "descripcion": "pack 05 chocolate snickers snack 21.5 gr",
+    "precio": 10,
+    "imagen": "1233.jpg"
+  },
+  {
+    "id": 1234,
+    "categoria": "confiteria",
+    "descripcion": "palitos de galleta pepero chocolate 47 gr",
+    "precio": 6,
+    "imagen": "1234.jpg"
+  },
+  {
+    "id": 1235,
+    "categoria": "confiteria",
+    "descripcion": "palitos de galleta pepero chocolate blanco 32 gr",
+    "precio": 6,
+    "imagen": "1235.jpg"
+  },
+  {
+    "id": 1236,
+    "categoria": "confiteria",
+    "descripcion": "princesa barra 30 gr",
+    "precio": 2,
+    "imagen": "1236.jpg"
+  },
+  {
+    "id": 1237,
+    "categoria": "confiteria",
+    "descripcion": "princesa box 16 und",
+    "precio": 15.9,
+    "imagen": "1237.jpg"
+  },
+  {
+    "id": 1238,
+    "categoria": "confiteria",
+    "descripcion": "reese's barra 47 g",
+    "precio": 5,
+    "imagen": "1238.jpg"
+  },
+  {
+    "id": 1239,
+    "categoria": "confiteria",
+    "descripcion": "regaliz fini fresa �cida 80 gr",
+    "precio": 5.1,
+    "imagen": "1239.jpg"
+  },
+  {
+    "id": 1240,
+    "categoria": "confiteria",
+    "descripcion": "regaliz fini twister acido 80 gr",
+    "precio": 5.1,
+    "imagen": "1240.jpg"
+  },
+  {
+    "id": 1241,
+    "categoria": "confiteria",
+    "descripcion": "regaliz fini uva acida 80 gr",
+    "precio": 5.1,
+    "imagen": "1241.jpg"
+  },
+  {
+    "id": 1242,
+    "categoria": "confiteria",
+    "descripcion": "ritz taco 58.6 g",
+    "precio": 2.5,
+    "imagen": "1242.jpg"
+  },
+  {
+    "id": 1243,
+    "categoria": "confiteria",
+    "descripcion": "san jorge soda familiar 75 gr",
+    "precio": 1,
+    "imagen": "1243.jpg"
+  },
+  {
+    "id": 1244,
+    "categoria": "confiteria",
+    "descripcion": "sublime bombones caja especial 20 und 8 g",
+    "precio": 15.9,
+    "imagen": "1244.jpg"
+  },
+  {
+    "id": 1245,
+    "categoria": "confiteria",
+    "descripcion": "toffees la iberica surtidos 100 gr",
+    "precio": 10.4,
+    "imagen": "1245.jpg"
+  },
+  {
+    "id": 1246,
+    "categoria": "confiteria",
+    "descripcion": "tri�ngulo cl�sico 30 gr",
+    "precio": 2.4,
+    "imagen": "1246.jpg"
+  },
+  {
+    "id": 1247,
+    "categoria": "confiteria",
+    "descripcion": "wafer bauducco chocolate 78 gr",
+    "precio": 3.5,
+    "imagen": "1247.jpg"
+  },
+  {
+    "id": 1248,
+    "categoria": "confiteria",
+    "descripcion": "wafer bauducco fresa 78 gr",
+    "precio": 3.5,
+    "imagen": "1248.jpg"
+  },
+  {
+    "id": 1249,
+    "categoria": "confiteria",
+    "descripcion": "wafer bauducco vainilla 78 gr",
+    "precio": 3.5,
+    "imagen": "1249.jpg"
+  },
+  {
+    "id": 1250,
+    "categoria": "confiteria",
+    "descripcion": "wafer ba�ado cua cua 18 g",
+    "precio": 1.9,
+    "imagen": "1250.jpg"
+  },
+  {
+    "id": 1251,
+    "categoria": "confiteria",
+    "descripcion": "wafer ba�ado cua cua mini 42 g",
+    "precio": 2.5,
+    "imagen": "1251.jpg"
+  },
+  {
+    "id": 1252,
+    "categoria": "confiteria",
+    "descripcion": "wafer cocosette 50 gr",
+    "precio": 2.6,
+    "imagen": "1252.jpg"
+  },
+  {
+    "id": 1257,
+    "categoria": "confiteria",
+    "descripcion": "wafer nik fresa 72 g",
+    "precio": 2.3,
+    "imagen": "1257.jpg"
+  },
+  {
+    "id": 1258,
+    "categoria": "confiteria",
+    "descripcion": "wafer nik vainilla 72 g",
+    "precio": 2.3,
+    "imagen": "1258.jpg"
+  },
+  {
+    "id": 1259,
+    "categoria": "helados",
+    "descripcion": "helado gelatico chocochips 930 ml",
+    "precio": 9.9,
+    "imagen": "1259.jpg"
+  },
+  {
+    "id": 1260,
+    "categoria": "helados",
+    "descripcion": "helado gelatico tricolor 930 ml",
+    "precio": 9.9,
+    "imagen": "1260.jpg"
+  },
+  {
+    "id": 1261,
+    "categoria": "helados",
+    "descripcion": "helado frio rico capuccino 130 ml",
+    "precio": 4.8,
+    "imagen": "1261.jpg"
+  },
+  {
+    "id": 1262,
+    "categoria": "helados",
+    "descripcion": "helado frio rico vainilla 130 ml",
+    "precio": 4.8,
+    "imagen": "1262.jpg"
+  },
+  {
+    "id": 1263,
+    "categoria": "helados",
+    "descripcion": "helado frio rico vainilla paleta 93 ml",
+    "precio": 6,
+    "imagen": "1263.jpg"
+  },
+  {
+    "id": 1264,
+    "categoria": "helados",
+    "descripcion": "helado fr�o rico l�cuma 130 ml",
+    "precio": 4.8,
+    "imagen": "1264.jpg"
+  },
+  {
+    "id": 1265,
+    "categoria": "helados",
+    "descripcion": "combo 02 helado gelatico (chocochips/chocolate) 930 ml",
+    "precio": 21.8,
+    "imagen": "1265.jpg"
+  },
+  {
+    "id": 1266,
+    "categoria": "helados",
+    "descripcion": "combo 02 helado gelatico (tricolor/chocochips) 930 ml",
+    "precio": 21.8,
+    "imagen": "1266.jpg"
+  },
+  {
+    "id": 1267,
+    "categoria": "helados",
+    "descripcion": "combo 02 helado gelatico (tricolor/chocolate) 930 ml",
+    "precio": 21.8,
+    "imagen": "1267.jpg"
+  },
+  {
+    "id": 1268,
+    "categoria": "helados",
+    "descripcion": "combo 02 helado gelatico chocochips 930 ml",
+    "precio": 21.8,
+    "imagen": "1268.jpg"
+  },
+  {
+    "id": 1269,
+    "categoria": "helados",
+    "descripcion": "combo 02 helado gelatico chocolate 930 ml",
+    "precio": 21.8,
+    "imagen": "1269.jpg"
+  },
+  {
+    "id": 1270,
+    "categoria": "helados",
+    "descripcion": "combo 02 helado gelatico tricolor 930 ml",
+    "precio": 21.8,
+    "imagen": "1270.jpg"
+  },
+  {
+    "id": 1271,
+    "categoria": "helados",
+    "descripcion": "helado donofrio peziduri chocochips cremoso 900 ml",
+    "precio": 10.9,
+    "imagen": "1271.jpg"
+  },
+  {
+    "id": 1272,
+    "categoria": "helados",
+    "descripcion": "helado donofrio peziduri tricolor cremoso 900 ml",
+    "precio": 10.9,
+    "imagen": "1272.jpg"
+  },
+  {
+    "id": 1273,
+    "categoria": "helados",
+    "descripcion": "helado donofrio peziduri vainilla cremoso 900 ml",
+    "precio": 10.9,
+    "imagen": "1273.jpg"
+  },
+  {
+    "id": 1274,
+    "categoria": "helados",
+    "descripcion": "helado frio rico maracuya paleta 93 ml",
+    "precio": 6,
+    "imagen": "1274.jpg"
+  },
+  {
+    "id": 1275,
+    "categoria": "helados",
+    "descripcion": "helado gelatico chocolate 930 ml",
+    "precio": 9.9,
+    "imagen": "1275.jpg"
+  },
+  {
+    "id": 1276,
+    "categoria": "helados",
+    "descripcion": "helado alaska camu camu 70 ml",
+    "precio": 2.6,
+    "imagen": "1276.jpg"
+  },
+  {
+    "id": 1277,
+    "categoria": "helados",
+    "descripcion": "helado alaska fresa 75 ml",
+    "precio": 2.6,
+    "imagen": "1277.jpg"
+  },
+  {
+    "id": 1278,
+    "categoria": "helados",
+    "descripcion": "helado alaska maracuya 75 ml",
+    "precio": 2.6,
+    "imagen": "1278.jpg"
+  },
+  {
+    "id": 1283,
+    "categoria": "helados",
+    "descripcion": "helado kit kat layers 900 ml",
+    "precio": 26.9,
+    "imagen": "1283.jpg"
+  },
+  {
+    "id": 1284,
+    "categoria": "helados",
+    "descripcion": "helado kit kat paleta 85 ml",
+    "precio": 4.9,
+    "imagen": "1284.jpg"
+  },
+  {
+    "id": 1285,
+    "categoria": "helados",
+    "descripcion": "helado donofrio sandwich vainilla 112 ml",
+    "precio": 3.7,
+    "imagen": "1285.jpg"
+  },
+  {
+    "id": 1286,
+    "categoria": "helados",
+    "descripcion": "helado grand prix bombones 216 ml",
+    "precio": 15.9,
+    "imagen": "1286.jpg"
+  },
+  {
+    "id": 1287,
+    "categoria": "helados",
+    "descripcion": "helado grand prix bombones 72 ml",
+    "precio": 5.7,
+    "imagen": "1287.jpg"
+  },
+  {
+    "id": 1288,
+    "categoria": "helados",
+    "descripcion": "helado sublime 80 ml",
+    "precio": 3.6,
+    "imagen": "1288.jpg"
+  },
+  {
+    "id": 1289,
+    "categoria": "helados",
+    "descripcion": "pack 02 helado alaska (fresa/camu camu) 70 ml",
+    "precio": 3.5,
+    "imagen": "1289.jpg"
+  },
+  {
+    "id": 1290,
+    "categoria": "helados",
+    "descripcion": "pack 02 helado alaska (fresa/maracuya) 70 ml",
+    "precio": 3.5,
+    "imagen": "1290.jpg"
+  },
+  {
+    "id": 1291,
+    "categoria": "helados",
+    "descripcion": "pack 02 helado alaska (maracuya/camu camu) 70 ml",
+    "precio": 3.5,
+    "imagen": "1291.jpg"
+  },
+  {
+    "id": 1292,
+    "categoria": "helados",
+    "descripcion": "pack 02 helado alaska camu camu 70 ml",
+    "precio": 3.5,
+    "imagen": "1292.jpg"
+  },
+  {
+    "id": 1293,
+    "categoria": "helados",
+    "descripcion": "pack 02 helado alaska fresa 75 ml",
+    "precio": 3.5,
+    "imagen": "1293.jpg"
+  },
+  {
+    "id": 1294,
+    "categoria": "helados",
+    "descripcion": "pack 02 helado alaska maracuya 75 ml",
+    "precio": 3.5,
+    "imagen": "1294.jpg"
+  },
+  {
+    "id": 1295,
+    "categoria": "helados",
+    "descripcion": "pack 02 helado grand prix bombones 216 ml",
+    "precio": 31.8,
+    "imagen": "1295.jpg"
+  },
+  {
+    "id": 1296,
+    "categoria": "helados",
+    "descripcion": "pack 04 donofrio sin parar lucuma 170 ml",
+    "precio": 22,
+    "imagen": "1296.jpg"
+  },
+  {
+    "id": 1297,
+    "categoria": "helados",
+    "descripcion": "pack 04 helado d'onofrio bombones 72 ml",
+    "precio": 13.9,
+    "imagen": "1297.jpg"
+  },
+  {
+    "id": 1298,
+    "categoria": "helados",
+    "descripcion": "pack 04 helado frio rico capuccino 120 ml",
+    "precio": 13.9,
+    "imagen": "1298.jpg"
+  },
+  {
+    "id": 1299,
+    "categoria": "helados",
+    "descripcion": "pack 04 helado frio rico lucuma 120 ml",
+    "precio": 13.9,
+    "imagen": "1299.jpg"
+  },
+  {
+    "id": 1300,
+    "categoria": "helados",
+    "descripcion": "pack 04 helado frio rico vainilla 120 ml",
+    "precio": 13.9,
+    "imagen": "1300.jpg"
+  },
+  {
+    "id": 1301,
+    "categoria": "helados",
+    "descripcion": "pack 04 helado sin parar lucuma 80.5 ml",
+    "precio": 12.9,
+    "imagen": "1301.jpg"
+  },
+  {
+    "id": 1302,
+    "categoria": "helados",
+    "descripcion": "pack 04 helado sin parar twist 80.5 ml",
+    "precio": 12.9,
+    "imagen": "1302.jpg"
+  },
+  {
+    "id": 1303,
+    "categoria": "helados",
+    "descripcion": "pack 04 sandwich sin parar twist 80.5 ml",
+    "precio": 16,
+    "imagen": "1303.jpg"
+  },
+  {
+    "id": 1304,
+    "categoria": "abarrotes",
+    "descripcion": "pack 03 aceite primor vegetal 900 ml",
+    "precio": 28.5,
+    "imagen": "1304.jpg"
+  },
+  {
+    "id": 1305,
+    "categoria": "abarrotes",
+    "descripcion": "avena quaker tradicional 100g",
+    "precio": 1.9,
+    "imagen": "1305.jpg"
+  },
+  {
+    "id": 1306,
+    "categoria": "abarrotes",
+    "descripcion": "crema de avellanas gurmex duo 350 gr",
+    "precio": 5.9,
+    "imagen": "1306.jpg"
+  },
+  {
+    "id": 1307,
+    "categoria": "abarrotes",
+    "descripcion": "crema de avellanas gurmex original 350 gr",
+    "precio": 5.9,
+    "imagen": "1307.jpg"
+  },
+  {
+    "id": 1308,
+    "categoria": "abarrotes",
+    "descripcion": "pack 02 aceite primor vegetal 900 ml",
+    "precio": 19,
+    "imagen": "1308.jpg"
+  },
+  {
+    "id": 1309,
+    "categoria": "abarrotes",
+    "descripcion": "pack 02 aceite vegetal coraz�n del fundo 900 ml",
+    "precio": 15,
+    "imagen": "1309.jpg"
+  },
+  {
+    "id": 1310,
+    "categoria": "abarrotes",
+    "descripcion": "pack 02 arroz extra coraz�n del fundo 750 gr",
+    "precio": 7.8,
+    "imagen": "1310.jpg"
+  },
+  {
+    "id": 1311,
+    "categoria": "abarrotes",
+    "descripcion": "pack 02 az�car rubia coraz�n del fundo 1 kg",
+    "precio": 9,
+    "imagen": "1311.jpg"
+  },
+  {
+    "id": 1312,
+    "categoria": "abarrotes",
+    "descripcion": "pack 02 trozos de at�n en aceite coraz�n del mar 150 gr",
+    "precio": 9,
+    "imagen": "1312.jpg"
+  },
+  {
+    "id": 1313,
+    "categoria": "abarrotes",
+    "descripcion": "pack 03 aceite vegetal coraz�n del fundo 900 ml",
+    "precio": 22.5,
+    "imagen": "1313.jpg"
+  },
+  {
+    "id": 1314,
+    "categoria": "abarrotes",
+    "descripcion": "pack 03 spaghetti molitalia 450 gr",
+    "precio": 13.2,
+    "imagen": "1314.jpg"
+  },
+  {
+    "id": 1315,
+    "categoria": "abarrotes",
+    "descripcion": "pack 04 filete de at�n en aceite coraz�n del mar 150 gr",
+    "precio": 17.9,
+    "imagen": "1315.jpg"
+  },
+  {
+    "id": 1316,
+    "categoria": "abarrotes",
+    "descripcion": "pack 04 trozos de at�n en aceite coraz�n del mar 150 gr",
+    "precio": 17.9,
+    "imagen": "1316.jpg"
+  },
+  {
+    "id": 1317,
+    "categoria": "abarrotes",
+    "descripcion": "pack 05 filete de at�n en aceite coraz�n del mar 150 gr",
+    "precio": 24.5,
+    "imagen": "1317.jpg"
+  },
+  {
+    "id": 1318,
+    "categoria": "abarrotes",
+    "descripcion": "pack 05 trozos de at�n en aceite coraz�n del mar 150 gr",
+    "precio": 22.5,
+    "imagen": "1318.jpg"
+  },
+  {
+    "id": 1319,
+    "categoria": "abarrotes",
+    "descripcion": "pack aceite vegetal coraz�n del fundo 900 ml + arroz extra coraz�n del fundo 750 gr",
+    "precio": 14,
+    "imagen": "1319.jpg"
+  },
+  {
+    "id": 1320,
+    "categoria": "abarrotes",
+    "descripcion": "sopa ajinomen sabor carne picante vaso 51 gr",
+    "precio": 3.7,
+    "imagen": "1320.jpg"
+  },
+  {
+    "id": 1321,
+    "categoria": "abarrotes",
+    "descripcion": "sopa ajinomen sabor carne con fideos 51 g",
+    "precio": 3.7,
+    "imagen": "1321.jpg"
+  },
+  {
+    "id": 1322,
+    "categoria": "abarrotes",
+    "descripcion": "sopa ajinomen sabor pollo con fideos 51 g",
+    "precio": 3.7,
+    "imagen": "1322.jpg"
+  },
+  {
+    "id": 1323,
+    "categoria": "abarrotes",
+    "descripcion": "tallar�n molitalia 450 gr",
+    "precio": 4.4,
+    "imagen": "1323.jpg"
+  },
+  {
+    "id": 1324,
+    "categoria": "abarrotes",
+    "descripcion": "aceite de oliva olivos del sur extra virgen 500 ml",
+    "precio": 37.9,
+    "imagen": "1324.jpg"
+  },
+  {
+    "id": 1325,
+    "categoria": "abarrotes",
+    "descripcion": "aceite primor vegetal 900 ml",
+    "precio": 9.5,
+    "imagen": "1325.jpg"
+  },
+  {
+    "id": 1326,
+    "categoria": "abarrotes",
+    "descripcion": "aceite vegetal coraz�n del fundo 900 ml",
+    "precio": 7.5,
+    "imagen": "1326.jpg"
+  },
+  {
+    "id": 1327,
+    "categoria": "abarrotes",
+    "descripcion": "aji criollo saborissima 100 gr",
+    "precio": 1.9,
+    "imagen": "1327.jpg"
+  },
+  {
+    "id": 1328,
+    "categoria": "abarrotes",
+    "descripcion": "arroz coste�o graneadito 750 gr",
+    "precio": 3.9,
+    "imagen": "1328.jpg"
+  },
+  {
+    "id": 1329,
+    "categoria": "abarrotes",
+    "descripcion": "arroz extra coraz�n del fundo 750 gr",
+    "precio": 3.5,
+    "imagen": "1329.jpg"
+  },
+  {
+    "id": 1330,
+    "categoria": "abarrotes",
+    "descripcion": "arveja partida coraz�n del fundo 450 gr",
+    "precio": 3.5,
+    "imagen": "1330.jpg"
+  },
+  {
+    "id": 1331,
+    "categoria": "abarrotes",
+    "descripcion": "az�car rubia coraz�n del fundo 1 kg",
+    "precio": 4.5,
+    "imagen": "1331.jpg"
+  },
+  {
+    "id": 1332,
+    "categoria": "abarrotes",
+    "descripcion": "barra de cereal quinoa bars de man� con chocolate 30 gr",
+    "precio": 3.3,
+    "imagen": "1332.jpg"
+  },
+  {
+    "id": 1333,
+    "categoria": "abarrotes",
+    "descripcion": "barra de cereal quinoa bars de man� con pasas 30 gr",
+    "precio": 3.3,
+    "imagen": "1333.jpg"
+  },
+  {
+    "id": 1334,
+    "categoria": "abarrotes",
+    "descripcion": "bebida l�ctea pro uht chocolate 320 ml",
+    "precio": 4.8,
+    "imagen": "1334.jpg"
+  },
+  {
+    "id": 1335,
+    "categoria": "abarrotes",
+    "descripcion": "bebida l�ctea shake uht gloria capuccino 320 ml",
+    "precio": 2.9,
+    "imagen": "1335.jpg"
+  },
+  {
+    "id": 1340,
+    "categoria": "abarrotes",
+    "descripcion": "bebida de cebada ecco 170 gr",
+    "precio": 11.5,
+    "imagen": "1340.jpg"
+  },
+  {
+    "id": 1341,
+    "categoria": "abarrotes",
+    "descripcion": "bowl shin ramyun 86 gr",
+    "precio": 8.9,
+    "imagen": "1341.jpg"
+  },
+  {
+    "id": 1342,
+    "categoria": "abarrotes",
+    "descripcion": "cafe sello rojo 425 gr",
+    "precio": 22.9,
+    "imagen": "1342.jpg"
+  },
+  {
+    "id": 1343,
+    "categoria": "abarrotes",
+    "descripcion": "caf� instant�neo cl�sico altomayo doy pack 100 gr",
+    "precio": 10.5,
+    "imagen": "1343.jpg"
+  },
+  {
+    "id": 1344,
+    "categoria": "abarrotes",
+    "descripcion": "caf� instant�neo gourmet altomayo doy pack 45 gr",
+    "precio": 7.9,
+    "imagen": "1344.jpg"
+  },
+  {
+    "id": 1345,
+    "categoria": "abarrotes",
+    "descripcion": "caf� nescaf� tradici�n dawn 95 gr",
+    "precio": 19,
+    "imagen": "1345.jpg"
+  },
+  {
+    "id": 1346,
+    "categoria": "abarrotes",
+    "descripcion": "cereal chocapic 90 gr",
+    "precio": 4.5,
+    "imagen": "1346.jpg"
+  },
+  {
+    "id": 1347,
+    "categoria": "abarrotes",
+    "descripcion": "cereal copix choco/marsh �ngel 120 gr",
+    "precio": 3.5,
+    "imagen": "1347.jpg"
+  },
+  {
+    "id": 1348,
+    "categoria": "abarrotes",
+    "descripcion": "cereal corn flakes 110 gr",
+    "precio": 6.5,
+    "imagen": "1348.jpg"
+  },
+  {
+    "id": 1349,
+    "categoria": "abarrotes",
+    "descripcion": "cereal corn flakes 180 gr",
+    "precio": 12.9,
+    "imagen": "1349.jpg"
+  },
+  {
+    "id": 1350,
+    "categoria": "abarrotes",
+    "descripcion": "cereal �ngel chock 130 gr",
+    "precio": 3.5,
+    "imagen": "1350.jpg"
+  },
+  {
+    "id": 1351,
+    "categoria": "abarrotes",
+    "descripcion": "cereal �ngel flakes 140 gr",
+    "precio": 3.5,
+    "imagen": "1351.jpg"
+  },
+  {
+    "id": 1352,
+    "categoria": "abarrotes",
+    "descripcion": "cereal �ngel zuck 130 gr",
+    "precio": 3.5,
+    "imagen": "1352.jpg"
+  },
+  {
+    "id": 1353,
+    "categoria": "abarrotes",
+    "descripcion": "conserva filete de at�n campomar 150 gr",
+    "precio": 5.7,
+    "imagen": "1353.jpg"
+  },
+  {
+    "id": 1354,
+    "categoria": "abarrotes",
+    "descripcion": "conserva lomos de atun en agua y sal 170 gr",
+    "precio": 5.9,
+    "imagen": "1354.jpg"
+  },
+  {
+    "id": 1355,
+    "categoria": "abarrotes",
+    "descripcion": "conserva trozos de at�n campomar 150 gr",
+    "precio": 5.5,
+    "imagen": "1355.jpg"
+  },
+  {
+    "id": 1356,
+    "categoria": "abarrotes",
+    "descripcion": "conserva trozos de at�n florida 140 gr",
+    "precio": 6.5,
+    "imagen": "1356.jpg"
+  },
+  {
+    "id": 1357,
+    "categoria": "abarrotes",
+    "descripcion": "crema de aji tari 85 gr",
+    "precio": 4.4,
+    "imagen": "1357.jpg"
+  },
+  {
+    "id": 1358,
+    "categoria": "abarrotes",
+    "descripcion": "fideos tornillo molitalia 250 gr",
+    "precio": 2.3,
+    "imagen": "1358.jpg"
+  },
+  {
+    "id": 1359,
+    "categoria": "abarrotes",
+    "descripcion": "filete de at�n en aceite coraz�n del mar 150 gr",
+    "precio": 4.9,
+    "imagen": "1359.jpg"
+  },
+  {
+    "id": 1360,
+    "categoria": "abarrotes",
+    "descripcion": "flan universal vainilla 150 gr",
+    "precio": 4.2,
+    "imagen": "1360.jpg"
+  },
+  {
+    "id": 1361,
+    "categoria": "abarrotes",
+    "descripcion": "fortificante milo doypack 200 gr",
+    "precio": 11.4,
+    "imagen": "1361.jpg"
+  },
+  {
+    "id": 1362,
+    "categoria": "abarrotes",
+    "descripcion": "fortificante nesquik optistart 200 gr",
+    "precio": 8.4,
+    "imagen": "1362.jpg"
+  },
+  {
+    "id": 1363,
+    "categoria": "abarrotes",
+    "descripcion": "frijol canario coraz�n del fundo 450 gr",
+    "precio": 6.4,
+    "imagen": "1363.jpg"
+  },
+  {
+    "id": 1364,
+    "categoria": "abarrotes",
+    "descripcion": "gelatina universal fresa diet 19 gr",
+    "precio": 4,
+    "imagen": "1364.jpg"
+  },
+  {
+    "id": 1365,
+    "categoria": "abarrotes",
+    "descripcion": "gelatina de fresa universal 150 gr",
+    "precio": 4.7,
+    "imagen": "1365.jpg"
+  },
+  {
+    "id": 1366,
+    "categoria": "abarrotes",
+    "descripcion": "harina molitalia preparada 1 kg",
+    "precio": 7.4,
+    "imagen": "1366.jpg"
+  },
+  {
+    "id": 1367,
+    "categoria": "abarrotes",
+    "descripcion": "infusi�n anis mc colins 25 und",
+    "precio": 3.6,
+    "imagen": "1367.jpg"
+  },
+  {
+    "id": 1368,
+    "categoria": "abarrotes",
+    "descripcion": "infusi�n hierba luisa mc colins 25 und",
+    "precio": 3.6,
+    "imagen": "1368.jpg"
+  },
+  {
+    "id": 1369,
+    "categoria": "abarrotes",
+    "descripcion": "infusi�n manzanilla mc colins 25 und",
+    "precio": 3.6,
+    "imagen": "1369.jpg"
+  },
+  {
+    "id": 1370,
+    "categoria": "abarrotes",
+    "descripcion": "infusi�n te canela y clavo mc colins 25 und",
+    "precio": 3.6,
+    "imagen": "1370.jpg"
+  },
+  {
+    "id": 1371,
+    "categoria": "abarrotes",
+    "descripcion": "ketchup alacena 380 gr",
+    "precio": 6.9,
+    "imagen": "1371.jpg"
+  },
+  {
+    "id": 1372,
+    "categoria": "abarrotes",
+    "descripcion": "leche condensada nestl� 393 g",
+    "precio": 7.9,
+    "imagen": "1372.jpg"
+  },
+  {
+    "id": 1373,
+    "categoria": "abarrotes",
+    "descripcion": "lenteja bebe coraz�n del fundo 450 gr",
+    "precio": 3.5,
+    "imagen": "1373.jpg"
+  },
+  {
+    "id": 1374,
+    "categoria": "abarrotes",
+    "descripcion": "macaroni & cheese jappy macs original 226 gr",
+    "precio": 3.9,
+    "imagen": "1374.jpg"
+  },
+  {
+    "id": 1375,
+    "categoria": "abarrotes",
+    "descripcion": "manjar blanco nestl� 200 gr",
+    "precio": 5.8,
+    "imagen": "1375.jpg"
+  },
+  {
+    "id": 1376,
+    "categoria": "abarrotes",
+    "descripcion": "mayonesa alacena 190 gr",
+    "precio": 5.9,
+    "imagen": "1376.jpg"
+  },
+  {
+    "id": 1377,
+    "categoria": "abarrotes",
+    "descripcion": "mayonesa saborissima baja en grasa 100 gr",
+    "precio": 1.9,
+    "imagen": "1377.jpg"
+  },
+  {
+    "id": 1378,
+    "categoria": "abarrotes",
+    "descripcion": "mazamorra morada universal 150 gr",
+    "precio": 3.4,
+    "imagen": "1378.jpg"
+  },
+  {
+    "id": 1379,
+    "categoria": "abarrotes",
+    "descripcion": "ma�z pop corn coraz�n del fundo 450 gr",
+    "precio": 1.5,
+    "imagen": "1379.jpg"
+  },
+  {
+    "id": 1380,
+    "categoria": "abarrotes",
+    "descripcion": "mermelada fresa gloria sachet 100 gr",
+    "precio": 1.9,
+    "imagen": "1380.jpg"
+  },
+  {
+    "id": 1381,
+    "categoria": "abarrotes",
+    "descripcion": "mermelada vive day fresa 350 gr",
+    "precio": 3.9,
+    "imagen": "1381.jpg"
+  },
+  {
+    "id": 1382,
+    "categoria": "abarrotes",
+    "descripcion": "nissin sopa ramen pollo 85 gr",
+    "precio": 2.1,
+    "imagen": "1382.jpg"
+  },
+  {
+    "id": 1383,
+    "categoria": "abarrotes",
+    "descripcion": "pack 03 arroz coste�o graneadito 750 gr",
+    "precio": 11.7,
+    "imagen": "1383.jpg"
+  },
+  {
+    "id": 1384,
+    "categoria": "abarrotes",
+    "descripcion": "pack 03 arroz extra coraz�n del fundo 750 gr",
+    "precio": 10.5,
+    "imagen": "1384.jpg"
+  },
+  {
+    "id": 1385,
+    "categoria": "abarrotes",
+    "descripcion": "pack 04 conserva trozos de at�n campomar 150 gr",
+    "precio": 22,
+    "imagen": "1385.jpg"
+  },
+  {
+    "id": 1386,
+    "categoria": "abarrotes",
+    "descripcion": "pack 04 spaghetti molitalia 450 gr",
+    "precio": 14,
+    "imagen": "1386.jpg"
+  },
+  {
+    "id": 1387,
+    "categoria": "abarrotes",
+    "descripcion": "pack 04 tallar�n molitalia 450 gr",
+    "precio": 14,
+    "imagen": "1387.jpg"
+  },
+  {
+    "id": 1388,
+    "categoria": "abarrotes",
+    "descripcion": "pur� tradicional knorr 125 gr",
+    "precio": 3.3,
+    "imagen": "1388.jpg"
+  },
+  {
+    "id": 1389,
+    "categoria": "abarrotes",
+    "descripcion": "sal de cocina ensal 500 gr",
+    "precio": 1.4,
+    "imagen": "1389.jpg"
+  },
+  {
+    "id": 1390,
+    "categoria": "abarrotes",
+    "descripcion": "salsa huancaina alacena 85 gr",
+    "precio": 5.4,
+    "imagen": "1390.jpg"
+  }
+]
+    ];
 
     function filtrarProductos(categoria) {
-      cargarProductos(categoria);
+      const productosContainer = document.getElementById('productos-container');
+      productosContainer.innerHTML = '';
+      let columnasActuales = 0;
+      const productosSeleccionados = [];
+
+      productos.forEach(producto => {
+        if (categoria === '' || producto.categoria === categoria) {
+          const divProducto = document.createElement('div');
+          divProducto.className = 'col-md-2';
+
+          const imgProducto = document.createElement('img');
+          imgProducto.src = `imagenes/${producto.imagen}`;
+          imgProducto.alt = producto.descripcion;
+          imgProducto.className = 'img-fluid';
+
+          const descProducto = document.createElement('p');
+          descProducto.textContent = producto.descripcion;
+
+          const precioProducto = document.createElement('p');
+          precioProducto.textContent = `Precio: ${producto.precio}`;
+
+          const checkboxProducto = document.createElement('input');
+          checkboxProducto.type = 'checkbox';
+          checkboxProducto.addEventListener('change', () => {
+            if (checkboxProducto.checked) {
+              productosSeleccionados.push(producto.id);
+            } else {
+              const index = productosSeleccionados.indexOf(producto.id);
+              if (index !== -1) {
+                productosSeleccionados.splice(index, 1);
+              }
+            }
+            console.log('Productos seleccionados:', productosSeleccionados);
+          });
+
+          divProducto.appendChild(imgProducto);
+          divProducto.appendChild(descProducto);
+          divProducto.appendChild(precioProducto);
+          divProducto.appendChild(checkboxProducto);
+
+          productosContainer.appendChild(divProducto);
+
+          columnasActuales++;
+          if (columnasActuales === 5) {
+            const divFila = document.createElement('div');
+            divFila.className = 'row';
+            productosContainer.appendChild(divFila);
+            columnasActuales = 0;
+          }
+        }
+      });
     }
 
     // Llamar a la función para cargar todos los productos al cargar la página
-    cargarProductos();
+    filtrarProductos('');
   </script>
 </body>
 </html>
