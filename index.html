@@ -5,97 +5,160 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Catálogo de Productos</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .fixed-top {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 1030;
+      background-color: #fffacd;
+    }
+
+    .product-checkbox {
+      width: 30px;
+      height: 30px;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    .product-checkbox.checked {
+      border-color: #28a745;
+      background-color: #28a745;
+      color: #fff;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    body {
+      background-color: #f8f9fa;
+      color: #333333;
+
+    }
+
+    h1, h2 {
+      color: #007bff;
+    }
+
+    .nav-link {
+      color: #333333;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      background-color: #f8f9fa;
+    }
+
+    .nav-link.active {
+      color: #fff;
+      background-color: #007bff;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Catálogo de Productos</h1>
+  <div class="container fixed-top">
+    <h1 class="text-center">Catálogo de Productos</h1>
 
     <!-- Cuestionario -->
     <div class="row">
-      <div class="col-md-6">
-        <h2>Cuestionario</h2>
-        <form>
-          <div class="form-group">
-            <label for="sexo">Sexo:</label>
-            <select class="form-control" id="sexo">
-              <option value="hombre">Hombre</option>
-              <option value="mujer">Mujer</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="edad">Edad:</label>
-            <input type="number" class="form-control" id="edad" min="1" max="128">
-          </div>
-          <div class="form-group">
-            <label for="estadoAnimo">Estado de ánimo:</label>
-            <select class="form-control" id="estadoAnimo">
-              <option value="feliz">Feliz</option>
-              <option value="neutral">Neutral</option>
-              <option value="triste">Triste</option>
-              <option value="asco">Asco</option>
-              <option value="enojado">Enojado</option>
-              <option value="miedo">Miedo</option>
-              <option value="sorpresa">Sorpresa</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="raza">Raza:</label>
-            <select class="form-control" id="raza">
-              <option value="blanco">Blanco</option>
-              <option value="hispano">Hispano Latino</option>
-              <option value="indio">Indio</option>
-              <option value="asiatico">Asiático</option>
-              <option value="negro">Negro</option>
-              <option value="orienteMedio">Oriente Medio</option>
-            </select>
-          </div>
-        </form>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="sexo">Sexo:</label>
+          <select class="form-control form-control-sm" id="sexo">
+            <option value="hombre">Hombre</option>
+            <option value="mujer">Mujer</option>
+          </select>
+        </div>
       </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="edad">Edad:</label>
+          <input type="number" class="form-control form-control-sm" id="edad" min="1" max="128">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="estadoAnimo">Estado de ánimo:</label>
+          <select class="form-control form-control-sm" id="estadoAnimo">
+            <option value="feliz">Feliz</option>
+            <option value="neutral">Neutral</option>
+            <option value="triste">Triste</option>
+            <option value="asco">Asco</option>
+            <option value="enojado">Enojado</option>
+            <option value="miedo">Miedo</option>
+            <option value="sorpresa">Sorpresa</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="raza">Raza:</label>
+          <select class="form-control form-control-sm" id="raza">
+            <option value="blanco">Blanco</option>
+            <option value="hispano">Hispano Latino</option>
+            <option value="indio">Indio</option>
+            <option value="asiatico">Asiático</option>
+            <option value="negro">Negro</option>
+            <option value="orienteMedio">Oriente Medio</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="btn-container">
+      <button id="enviarRespuesta" class="btn btn-success">Enviar Respuesta</button>
+      <button id="limpiarFormulario" class="btn btn-danger">Limpiar</button>
     </div>
 
     <!-- Barra de navegación -->
     <nav>
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link" href="#" onclick="filtrarProductos('bebidas alholicas')">BEBIDAS ALHOLICAS</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" onclick="filtrarProductos('comidas')">COMIDAS</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" onclick="filtrarProductos('bebidas no alholicas')">BEBIDAS NO ALHOLICAS</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" onclick="filtrarProductos('cigarros')">CIGARROS</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" onclick="filtrarProductos('piqueos y snacks')">PIQUEOS Y SNACKS</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" onclick="filtrarProductos('confiteria')">CONFITERIA</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" onclick="filtrarProductos('helados')">HELADOS</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" onclick="filtrarProductos('abarrotes')">ABARROTES</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" onclick="filtrarProductos('EMBUTIDOS, LÁCTEOS Y HUEVOS')">EMBUTIDOS, LÁCTEOS Y HUEVOS</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" onclick="filtrarProductos('PANES & BISCUITS')">PANES & BISCUITS</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" onclick="filtrarProductos('CUIDADO PERSONAL')">CUIDADO PERSONAL</a>
-        </li>
-      </ul>
-    </nav>
-
-    <!-- Catálogo de productos -->
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="filtrarProductos('bebidas alholicas')">BEBIDAS ALHOLICAS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="filtrarProductos('comidas')">COMIDAS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="filtrarProductos('bebidas no alholicas')">BEBIDAS NO ALHOLICAS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="filtrarProductos('cigarros')">CIGARROS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="filtrarProductos('piqueos y snacks')">PIQUEOS Y SNACKS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="filtrarProductos('confiteria')">CONFITERIA</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="filtrarProductos('helados')">HELADOS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="filtrarProductos('abarrotes')">ABARROTES</a>
+          </li>
+        </ul>
+      </nav>
+  </div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <!-- Catálogo de productos -->
+  <div class="container mt-12">
     <div class="row">
       <div class="col-md-12">
-        <h2>Catálogo de Productos</h2>
         <!-- Los productos se cargarán aquí mediante JavaScript -->
         <div id="productos-container" class="row"></div>
       </div>
@@ -7075,32 +7138,33 @@
   }
 ];
 
+    let sexoSeleccionado = '';
+    let edadDigitada = '';
+    let razaSeleccionada = '';
+    let estadoAnimoSeleccionado = '';
+    const productosSeleccionados = [];
+
     function filtrarProductos(categoria) {
       const productosContainer = document.getElementById('productos-container');
       productosContainer.innerHTML = '';
-      let columnasActuales = 0;
-      const productosSeleccionados = [];
 
-      productos.forEach(producto => {
-        if (categoria === '' || producto.categoria === categoria) {
+      const productosFiltrados = productos.filter(producto => categoria === '' || producto.categoria === categoria);
+
+      for (let i = 0; i < productosFiltrados.length; i += 6) {
+        const fila = document.createElement('div');
+        fila.className = 'row';
+
+        for (let j = 0; j < 6 && i + j < productosFiltrados.length; j++) {
+          const producto = productosFiltrados[i + j];
           const divProducto = document.createElement('div');
           divProducto.className = 'col-md-2';
 
-          const imgProducto = document.createElement('img');
-          imgProducto.src = producto.imagen;
-          imgProducto.alt = producto.descripcion;
-          imgProducto.className = 'img-fluid';
-
-          const descProducto = document.createElement('p');
-          descProducto.textContent = producto.descripcion;
-
-          const precioProducto = document.createElement('p');
-          precioProducto.textContent = `Precio: ${producto.precio}`;
-
-          const checkboxProducto = document.createElement('input');
-          checkboxProducto.type = 'checkbox';
-          checkboxProducto.addEventListener('change', () => {
-            if (checkboxProducto.checked) {
+          const checkboxProducto = document.createElement('div');
+          checkboxProducto.className = 'product-checkbox';
+          checkboxProducto.setAttribute('data-id', producto.id);
+          checkboxProducto.addEventListener('click', () => {
+            checkboxProducto.classList.toggle('checked');
+            if (checkboxProducto.classList.contains('checked')) {
               productosSeleccionados.push(producto.id);
             } else {
               const index = productosSeleccionados.indexOf(producto.id);
@@ -7111,23 +7175,67 @@
             console.log('Productos seleccionados:', productosSeleccionados);
           });
 
+          const imgProducto = document.createElement('img');
+          imgProducto.src = producto.imagen;
+          imgProducto.alt = producto.descripcion;
+          imgProducto.className = 'img-fluid';
+
+          const descProducto = document.createElement('p');
+          descProducto.textContent = producto.descripcion;
+
+          const precioProducto = document.createElement('p');
+          precioProducto.textContent = `Precio: S/. ${producto.precio}`;
+
+          
           divProducto.appendChild(imgProducto);
+          divProducto.appendChild(checkboxProducto);
           divProducto.appendChild(descProducto);
           divProducto.appendChild(precioProducto);
-          divProducto.appendChild(checkboxProducto);
 
-          productosContainer.appendChild(divProducto);
-
-          columnasActuales++;
-          if (columnasActuales === 5) {
-            const divFila = document.createElement('div');
-            divFila.className = 'row';
-            productosContainer.appendChild(divFila);
-            columnasActuales = 0;
-          }
+          fila.appendChild(divProducto);
         }
-      });
+
+        productosContainer.insertBefore(fila, productosContainer.firstChild);
+      }
     }
+
+    const enviarRespuestaBtn = document.getElementById('enviarRespuesta');
+    const limpiarFormularioBtn = document.getElementById('limpiarFormulario');
+
+    enviarRespuestaBtn.addEventListener('click', () => {
+      const sexo = document.getElementById('sexo').value;
+      const edad = document.getElementById('edad').value;
+      const raza = document.getElementById('raza').value;
+      const estadoAnimo = document.getElementById('estadoAnimo').value;
+
+      sexoSeleccionado = sexo;
+      edadDigitada = edad;
+      razaSeleccionada = raza;
+      estadoAnimoSeleccionado = estadoAnimo;
+
+      const respuesta = `Sexo: ${sexoSeleccionado}, Edad: ${edadDigitada}, Raza: ${razaSeleccionada}, Estado de ánimo: ${estadoAnimoSeleccionado}, Productos seleccionados: ${productosSeleccionados.join(', ')}`;
+
+      const fs = require('fs');
+      fs.appendFile('https://raw.githubusercontent.com/ikarus009/ikarus009.github.io/main/respuestas.txt', respuesta + '\n', (err) => {
+        if (err) throw err;
+        console.log('Respuesta guardada en respuestas.txt');
+      });
+    });
+
+    limpiarFormularioBtn.addEventListener('click', () => {
+      document.getElementById('sexo').value = '';
+      document.getElementById('edad').value = '';
+      document.getElementById('raza').value = '';
+      document.getElementById('estadoAnimo').value = '';
+
+      sexoSeleccionado = '';
+      edadDigitada = '';
+      razaSeleccionada = '';
+      estadoAnimoSeleccionado = '';
+      productosSeleccionados.length = 0;
+      const checkboxes = document.querySelectorAll('.product-checkbox');
+      checkboxes.forEach(checkbox => checkbox.classList.remove('checked'));
+    });
 
     // Llamar a la función para cargar todos los productos al cargar la página
     filtrarProductos('');
